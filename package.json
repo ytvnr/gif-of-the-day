@@ -1,0 +1,20 @@
+{
+  "name": "gif-of-the-day",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "firebase serve --only hosting",
+    "deploy": "firebase deploy --only hosting"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ytvnr/gif-of-the-day.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ytvnr/gif-of-the-day/issues"
+  },
+  "homepage": "https://github.com/ytvnr/gif-of-the-day#readme"
+}
