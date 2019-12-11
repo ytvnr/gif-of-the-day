@@ -24,9 +24,7 @@
 
   import TeamCard from '@/components/TeamCard';
 
-  const db = firebase
-  .initializeApp(require('../firebaseConfig.json'))
-  .firestore();
+  const db = firebase.firestore();
 
   export default {
 		name: "teams",
@@ -37,9 +35,12 @@
           teams: db.collection('teams')
       },
       data() {
-          return {name: "test",teams:[]};
+          return {user: undefined ,teams:[]};
       },
       created() {
+        firebase.auth().onAuthStateChanged( user => {
+            this.user = user;
+        });
       },
       computed: {
       },

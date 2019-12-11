@@ -10,7 +10,7 @@
     </header>
     <div class="card-content">
       <div class="content">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+        Team description
         <a
           href="#"
         >@bulmaio</a>.
@@ -21,16 +21,43 @@
       </div>
     </div>
     <footer class="card-footer">
-      <a href="#" class="card-footer-item">Save</a>
-      <a href="#" class="card-footer-item">Edit</a>
-      <a href="#" class="card-footer-item">Delete</a>
+      <div class="card-footer-item">
+        <button class="button is-primary" @click="joinTeam" :disabled="user.assignedTeam">Join</button>
+      </div>
+      <div class="card-footer-item">
+        <button class="button is-danger">Leave</button>
+      </div>
+      <div class="card-footer-item">
+        <button class="button is-info">See GIFs</button>
+      </div>
+
     </footer>
   </div>
 </template>
 
 <script>
+  import firebase from 'firebase';
+
 export default {
-    props: ['team']
+    props: ['team'],
+    methods: {
+        joinTeam() {
+            console.log('Join team id: ' + this.team.id)
+            this.user.assignedTeam = this.team.id;
+            firebase.auth().updateCurrentUser(this.user);
+        }
+    },
+    data() {
+        return {
+            user: null,
+            teamInput: null
+        }
+    },
+    created() {
+        firebase.auth().onAuthStateChanged(user => {
+            this.user = user;
+        });
+    }
 }
 </script>
 

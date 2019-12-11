@@ -60,12 +60,13 @@
 <script type="javascript">
   import firebase from 'firebase';
 
-  firebase.initializeApp(require('../firebaseConfig.json'))
+
 
 export default {
     created() {
         firebase.auth().onAuthStateChanged( user => {
-          console.log(user);
+          this.user = user;
+          console.log(user)
         });
     },
     data() {
