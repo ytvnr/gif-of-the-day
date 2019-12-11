@@ -7,3 +7,9 @@
 ## Gif of the day !
 
 </p>
+
+### Generate secret for ci
+
+`firebase login:ci`
+
+Add token to GitHub
