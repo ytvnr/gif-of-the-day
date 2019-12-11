@@ -19,6 +19,6 @@ jobs:
             - name: Build Front
               run: npm --prefix front install && npm --prefix front run build
             - name: Deploy to Firebase
-              run: firebase deploy
+              run: firebase deploy --only hosting
               env:
                   FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
