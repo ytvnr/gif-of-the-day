@@ -21,6 +21,10 @@
       </div>
     </div>
     <footer class="card-footer">
+<!--      <button class="link card-footer-item icon" @click="joinTeam" :disabled="user && user.assignedTeam">-->
+<!--        <i class=""></i>-->
+<!--        <span>Join</span>-->
+<!--      </button>-->
       <div class="card-footer-item">
         <button class="button is-primary" @click="joinTeam" :disabled="user.assignedTeam">Join</button>
       </div>
@@ -36,16 +40,21 @@
 </template>
 
 <script>
-  import firebase from 'firebase';
 
 export default {
     props: ['team'],
     methods: {
-        joinTeam() {
-            console.log('Join team id: ' + this.team.id)
-            this.user.assignedTeam = this.team.id;
-            firebase.auth().updateCurrentUser(this.user);
-        }
+      joinTeam() {
+        console.log('Join team id: ' + this.team.id)
+        this.user.assignedTeam = this.team.id;
+        this.$userService.updateUser(this.user);
+        // firebase.auth().updateCurrentUser(this.user);
+      },
+      leaveTeam() {
+        this.user.assignedTeam = null;
+        this.$userService.updateUser(this.user);
+        // firebase.auth().updateCurrentUser(this.user);
+      }
     },
     data() {
         return {
@@ -54,9 +63,11 @@ export default {
         }
     },
     created() {
-        firebase.auth().onAuthStateChanged(user => {
-            this.user = user;
-        });
+      this.user = this.$userService.getCurrentUser();
+      // firebase.auth().onAuthStateChanged(user => {
+      //   console.log('Created ' + user);
+      //   this.user = user;
+      // });
     }
 }
 </script>
