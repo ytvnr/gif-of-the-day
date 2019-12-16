@@ -6,7 +6,12 @@
         This is the list of
         <strong>QIMA</strong> teams
       </h2>
-      <div class="list">
+      <div class="list" v-if="!user">
+        <h2 class="subtitle has-text-danger">
+          You do not have access to this page !
+        </h2>
+      </div>
+      <div class="list" v-if="user">
         <god-cardteam
           class="item"
           v-for="(team, index) in teams"
@@ -24,9 +29,7 @@
 
   import TeamCard from '@/components/TeamCard';
 
-  const db = firebase
-  .initializeApp(require('../firebaseConfig.json'))
-  .firestore();
+  const db = firebase.firestore();
 
   export default {
 		name: "teams",
@@ -37,11 +40,20 @@
           teams: db.collection('teams')
       },
       data() {
-          return {name: "test",teams:[]};
+          return {teams:[]};
       },
       created() {
+        // this.user = this.$userService.getCurrentUser();
+        // console.log('Created');
+        // console.log(this.user);
+        // firebase.auth().onAuthStateChanged( user => {
+        //     this.user = user;
+        // });
       },
       computed: {
+        user() {
+          return this.$userService.getCurrentUser();
+        }
       },
       methods: {
       }

@@ -42,15 +42,15 @@
             <a v-if="!user" class="button is-primary" @click="signInWithGoogle">
               <strong>Log in</strong>
             </a>
-            <div v-if="user">
-              <a class="button is-danger" @click="signOut">
-                <strong>Log out</strong>
-              </a>
-              <figure class="image is-32x32">
-                <img class="is-rounded" :src="user.photoURL">
-              </figure>
-            </div>
+            <a v-if="user" class="button is-danger" @click="signOut">
+              <strong>Log out</strong>
+            </a>
           </div>
+        </div>
+        <div v-if="user"  class="navbar-item" >
+          <figure class="image is-32x32">
+            <img class="is-rounded" :src="user.photoURL">
+          </figure>
         </div>
       </div>
     </div>
@@ -60,12 +60,11 @@
 <script type="javascript">
   import firebase from 'firebase';
 
-  firebase.initializeApp(require('../firebaseConfig.json'))
-
 export default {
     created() {
         firebase.auth().onAuthStateChanged( user => {
-          console.log(user);
+          this.user = user;
+          console.log(user)
         });
     },
     data() {
@@ -75,15 +74,17 @@ export default {
     },
     methods: {
         signInWithGoogle: function() {
-            const provider = new firebase.auth.GoogleAuthProvider()
-            firebase.auth().signInWithPopup(provider).then((result) => {
-                this.user = result.user;
-            }).catch(console.error)
+          this.$userService.signInWithGoogle();
+            // const provider = new firebase.auth.GoogleAuthProvider()
+            // firebase.auth().signInWithPopup(provider).then((result) => {
+            //     this.user = result.user;
+            // }).catch(console.error)
         },
         signOut: function() {
-            firebase.auth().signOut().then(() => {
-                this.user = null;
-            }).catch(console.error)
+          this.$userService.signOut()
+            // firebase.auth().signOut().then(() => {
+            //     this.user = null;
+            // }).catch(console.error)
         }
   }
 }
