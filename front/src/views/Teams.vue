@@ -7,9 +7,7 @@
         <strong>QIMA</strong> teams
       </h2>
       <div class="list" v-if="!user">
-        <h2 class="subtitle has-text-danger">
-          You do not have access to this page !
-        </h2>
+        <h2 class="subtitle has-text-danger">You do not have access to this page !</h2>
       </div>
       <div class="list" v-if="user">
         <god-cardteam
@@ -26,7 +24,6 @@
 <script>
 
   import firebase from 'firebase';
-
   import TeamCard from '@/components/TeamCard';
 
   const db = firebase.firestore();
@@ -43,16 +40,10 @@
           return {teams:[]};
       },
       created() {
-        // this.user = this.$userService.getCurrentUser();
-        // console.log('Created');
-        // console.log(this.user);
-        // firebase.auth().onAuthStateChanged( user => {
-        //     this.user = user;
-        // });
       },
       computed: {
         user() {
-          return this.$userService.getCurrentUser();
+          return this.$store.getters.user;
         }
       },
       methods: {
@@ -61,9 +52,8 @@
 </script>
 
 <style lang="scss" scoped>
-
 .container {
-	padding-top: 20px;
+  padding-top: 20px;
 }
 .list {
   padding: 10%;

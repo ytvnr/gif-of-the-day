@@ -8,9 +8,6 @@
 <script>
 
 import NavBar from '@/components/NavBar'
-import firebase from 'firebase';
-
-firebase.initializeApp(require('./firebaseConfig.json'));
 
 export default {
   components: {

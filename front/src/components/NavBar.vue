@@ -2,7 +2,7 @@
   <nav class="navbar is-dark is-fixed-top" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://bulma.io">
-        <img alt="GOD Logo" src="../../src/assets/logo.png"/>
+        <img alt="GOD Logo" src="../../src/assets/logo.png" />
         <span class="title is-3">GIF OF THE DAY</span>
       </a>
 
@@ -47,9 +47,9 @@
             </a>
           </div>
         </div>
-        <div v-if="user"  class="navbar-item" >
+        <div v-if="user" class="navbar-item">
           <figure class="image is-32x32">
-            <img class="is-rounded" :src="user.photoURL">
+            <img class="is-rounded" :src="user.photoURL" />
           </figure>
         </div>
       </div>
@@ -58,40 +58,31 @@
 </template>
 
 <script type="javascript">
-  import firebase from 'firebase';
 
 export default {
-    created() {
-        firebase.auth().onAuthStateChanged( user => {
-          this.user = user;
-          console.log(user)
-        });
-    },
+    
     data() {
         return {
-           user: null
         };
     },
+    computed: {
+      user() {
+        return this.$store.getters.user;
+      }
+    },
     methods: {
-        signInWithGoogle: function() {
-          this.$userService.signInWithGoogle();
-            // const provider = new firebase.auth.GoogleAuthProvider()
-            // firebase.auth().signInWithPopup(provider).then((result) => {
-            //     this.user = result.user;
-            // }).catch(console.error)
+        signInWithGoogle() {
+          this.$store.dispatch('signInWithGoogleAction');
         },
-        signOut: function() {
-          this.$userService.signOut()
-            // firebase.auth().signOut().then(() => {
-            //     this.user = null;
-            // }).catch(console.error)
+        signOut() {
+          this.$store.dispatch('signOutAction');
         }
   }
 }
 </script>
 
 <style>
-  .title {
-    color: #42b983 !important;
-  }
+.title {
+  color: #42b983 !important;
+}
 </style>

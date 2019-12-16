@@ -11,9 +11,7 @@
     <div class="card-content">
       <div class="content">
         Team description
-        <a
-          href="#"
-        >@bulmaio</a>.
+        <a href="#">@bulmaio</a>.
         <a href="#">#css</a>
         <a href="#">#responsive</a>
         <br />
@@ -21,10 +19,10 @@
       </div>
     </div>
     <footer class="card-footer">
-<!--      <button class="link card-footer-item icon" @click="joinTeam" :disabled="user && user.assignedTeam">-->
-<!--        <i class=""></i>-->
-<!--        <span>Join</span>-->
-<!--      </button>-->
+      <!--      <button class="link card-footer-item icon" @click="joinTeam" :disabled="user && user.assignedTeam">-->
+      <!--        <i class=""></i>-->
+      <!--        <span>Join</span>-->
+      <!--      </button>-->
       <div class="card-footer-item">
         <button class="button is-primary" @click="joinTeam" :disabled="user.assignedTeam">Join</button>
       </div>
@@ -34,7 +32,6 @@
       <div class="card-footer-item">
         <button class="button is-info">See GIFs</button>
       </div>
-
     </footer>
   </div>
 </template>
@@ -43,32 +40,26 @@
 
 export default {
     props: ['team'],
-    methods: {
-      joinTeam() {
-        console.log('Join team id: ' + this.team.id)
-        this.user.assignedTeam = this.team.id;
-        this.$userService.updateUser(this.user);
-        // firebase.auth().updateCurrentUser(this.user);
-      },
-      leaveTeam() {
-        this.user.assignedTeam = null;
-        this.$userService.updateUser(this.user);
-        // firebase.auth().updateCurrentUser(this.user);
-      }
-    },
     data() {
         return {
-            user: null,
+            
             teamInput: null
         }
     },
-    created() {
-      this.user = this.$userService.getCurrentUser();
-      // firebase.auth().onAuthStateChanged(user => {
-      //   console.log('Created ' + user);
-      //   this.user = user;
-      // });
-    }
+    computed: {
+      user() {
+        return this.$store.getters.user;
+      }
+    },
+    methods: {
+      joinTeam() {
+        console.log('Join team id: ' + this.team.id)
+        this.$store.dispatch('assignTeamAction', this.team.id);
+      },
+      leaveTeam() {
+        this.$store.dispatch('assignTeamAction', null);
+      }
+    },
 }
 </script>
 
