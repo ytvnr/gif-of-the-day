@@ -11,10 +11,11 @@
     "type": "git",
     "url": "git+https://github.com/ytvnr/gif-of-the-day.git"
   },
-  "author": "",
+  "author": "Yann T. / Aurelien L.",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ytvnr/gif-of-the-day/issues"
   },
-  "homepage": "https://github.com/ytvnr/gif-of-the-day#readme"
+  "homepage": "https://github.com/ytvnr/gif-of-the-day#readme",
+  "dependencies": {}
 }
