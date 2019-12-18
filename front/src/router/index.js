@@ -1,8 +1,8 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Home from '../views/Home.vue';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
@@ -16,12 +16,28 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Teams.vue')
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../views/Teams.vue')
   }
-]
+];
 
 const router = new VueRouter({
   routes
-})
+});
 
-export default router
+// router.beforeEach((to, from, next) => {
+//   //Instead of     const currentUser = firebase.auth.currentUser;  do
+//   const currentUser = firebase.auth().currentUser;
+
+//   const requireAuth = to.matched.some(record => record.meta.requireAuth);
+
+//   if (requireAuth && !currentUser) {
+//     next({ name: 'Login' });
+//   } else if (!requireAuth && currentUser) {
+//     next({ name: 'Tasks' });
+//   } else {
+//     next();
+//   }
+// });
+
+export default router;

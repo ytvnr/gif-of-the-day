@@ -34,15 +34,18 @@ export default new Vuex.Store({
       });
     },
 
+    autoLoginAction({commit}, user) {
+      commit('setUser', user);
+      commit('setStatus', 'success');
+    },
+
     updateUserAction({ commit }, user) {
       commit('setStatus', 'loading');
 
       firebase
         .auth()
-        .updateCurrentUser({
-          ...firebase.auth().currentUser,
-          ...user
-        })
+        .currentUser
+        .updateProfile(user)
         .then(() => {
           commit('setUser', user);
           commit('setStatus', 'success');

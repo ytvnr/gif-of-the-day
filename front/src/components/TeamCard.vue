@@ -19,15 +19,19 @@
       </div>
     </div>
     <footer class="card-footer">
-      <!--      <button class="link card-footer-item icon" @click="joinTeam" :disabled="user && user.assignedTeam">-->
-      <!--        <i class=""></i>-->
-      <!--        <span>Join</span>-->
-      <!--      </button>-->
       <div class="card-footer-item">
-        <button class="button is-primary" @click="joinTeam" :disabled="user.assignedTeam">Join</button>
+        <button
+          class="button is-primary"
+          @click="joinTeam()"
+          :disabled="userMetadata.assignedTeam !== team.uid"
+        >Join</button>
       </div>
       <div class="card-footer-item">
-        <button class="button is-danger">Leave</button>
+        <button
+          class="button is-danger"
+          @click="leaveTeam()"
+          :disabled="userMetadata.assignedTeam === team.uid"
+        >Leave</button>
       </div>
       <div class="card-footer-item">
         <button class="button is-info">See GIFs</button>
@@ -38,11 +42,15 @@
 
 <script>
 
+ import firebase from 'firebase';
+
+  const db = firebase.firestore();
+
 export default {
     props: ['team'],
     data() {
         return {
-            
+            userMetadata: {},
             teamInput: null
         }
     },
@@ -51,13 +59,26 @@ export default {
         return this.$store.getters.user;
       }
     },
+    mounted() {
+      db.collection('userMetadata')
+      .doc(this.user.uid)
+      .get()
+      .then(snapshot => {
+        this.userMetadata = snapshot.data();
+      })
+    },
     methods: {
-      joinTeam() {
-        console.log('Join team id: ' + this.team.id)
-        this.$store.dispatch('assignTeamAction', this.team.id);
+      joinTeam() {  
+        console.log(this.user.uid);      
+        db.collection("usersMetadata").doc(this.user.uid).set({
+          assignedTeamId: this.team.id
+        }, { merge: true });
       },
       leaveTeam() {
-        this.$store.dispatch('assignTeamAction', null);
+        console.log(this.user.uid);
+        db.collection("usersMetadata").doc(this.user.uid).update({
+          assignedTeamId: firebase.firestore.FieldValue.delete()
+        });
       }
     },
 }
