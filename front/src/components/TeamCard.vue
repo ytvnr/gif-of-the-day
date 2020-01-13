@@ -34,7 +34,8 @@
         >Leave</button>
       </div>
       <div class="card-footer-item">
-        <button class="button is-info">See GIFs</button>
+<!--        <button class="button is-info" >See GIFs</button>-->
+        <router-link class="button is-info" :to="{ name: 'gifs', params: { teamId: team.uid}}">See GIFs</router-link>
       </div>
     </footer>
   </div>
