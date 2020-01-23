@@ -1,9 +1,10 @@
 <template>
   <nav class="navbar is-dark is-fixed-top" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://bulma.io">
+      <a class="navbar-item" href="/">
         <img alt="GOD Logo" src="../../src/assets/logo.png" />
-        <span class="title is-3">GIF OF THE DAY</span>
+        <span class="title is-3 is-hidden-mobile">GIF OF THE DAY</span>
+        <span class="title is-3 is-hidden-tablet">GOD</span>
       </a>
 
       <a
@@ -42,9 +43,14 @@
             <a v-if="!user" class="button is-primary" @click="signInWithGoogle">
               <strong>Log in</strong>
             </a>
-            <a v-if="user" class="button is-danger" @click="signOut">
-              <strong>Log out</strong>
-            </a>
+            <div v-if="user">
+              <a class="button is-danger" @click="signOut">
+                <strong>Log out</strong>
+              </a>
+              <figure class="image is-32x32">
+                <img class="is-rounded" :src="user.photoURL" />
+              </figure>
+            </div>
           </div>
         </div>
         <div v-if="user" class="navbar-item">
@@ -81,8 +87,10 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .title {
   color: #42b983 !important;
+  margin-bottom: 0px !important;
+  margin-left: 10px !important;
 }
 </style>
