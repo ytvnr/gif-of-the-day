@@ -4,8 +4,8 @@ import firebase from 'firebase';
 import { firestorePlugin } from 'vuefire';
 import App from './App.vue';
 import router from './router';
-import './../node_modules/bulma/css/bulma.css';
 import store from '@/store';
+import vuetify from './plugins/vuetify';
 
 firebase.initializeApp(require('./firebaseConfig.json'));
 firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
@@ -24,5 +24,6 @@ firebase.auth().onAuthStateChanged(user => {
 new Vue({
   router,
   store,
+  vuetify,
   render: h => h(App)
 }).$mount('#app');
