@@ -1,13 +1,7 @@
 <template>
   <v-app id="sandbox">
-    <v-navigation-drawer
-      :clipped="true"
-      :floating="false"
-      :mini-variant="isDrawerMini"
-      :permanent="true"
-      app
-      overflow
-    />
+    
+    <god-drawer :isDrawerMini="isDrawerMini"></god-drawer>
 
     <v-app-bar :clipped-left="true" app>
       <v-btn icon @click="isDrawerMini = !isDrawerMini">🍔</v-btn>
@@ -20,14 +14,20 @@
       </v-container>
     </v-content>
 
-    <v-footer :inset="false" app>
-      <span class="px-4">&copy; 2019 - {{ new Date().getFullYear() }}</span>
-    </v-footer>
+    <god-footer></god-footer>
   </v-app>
 </template>
 
 <script>
+
+  import Footer from '@/components/Footer.vue';
+  import Drawer from '@/components/Drawer.vue';
+
   export default {
+    components: {
+      'god-footer': Footer,
+      'god-drawer': Drawer,
+    },
     data: () => ({
       isDrawerMini: true,
     }),
@@ -36,3 +36,9 @@
     }
   }
 </script>
+
+<style lang="scss">
+.v-navigation-drawer {
+  max-height: calc(100% - 104px) !important;
+}
+</style>
