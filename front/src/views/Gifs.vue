@@ -1,45 +1,54 @@
 <template>
-  <div class="gifs">
-    <h2>GIFFFFFSSSS</h2>
-    <div class="table-container">
-      <table class="table is-bordered is-striped is-narrow is-hoverable">
-        <thead>
-          <tr>
-            <th>Day</th>
-            <th>Theme</th>
-            <th>Preview</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>Monday</th>
-            <td>Monday Theme</td>
-            <td>Preview</td>
-          </tr>
-          <tr>
-            <th>Tuesday</th>
-            <td>Tuesday Theme</td>
-            <td>Preview</td>
-          </tr>
-          <tr>
-            <th>Wednesday</th>
-            <td>Wednesday Theme</td>
-            <td>Preview</td>
-          </tr>
-          <tr>
-            <th>Thursday</th>
-            <td>Thursday Theme</td>
-            <td>Preview</td>
-          </tr>
-          <tr>
-            <th>Friday</th>
-            <td>Friday Theme</td>
-            <td>Preview</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+  <v-row align="center" justify="center">
+    <v-col cols="12">
+      <v-card>
+        <v-card-text>
+          <div class="gifs">
+            <h2>GIFFFFFSSSS</h2>
+            <div class="table-container">
+              <table class="table is-bordered is-striped is-narrow is-hoverable">
+                <thead>
+                  <tr>
+                    <th>Day</th>
+                    <th>Theme</th>
+                    <th>Preview</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>Monday</th>
+                    <td>Monday Theme</td>
+                    <td>Preview</td>
+                  </tr>
+                  <tr>
+                    <th>Tuesday</th>
+                    <td>Tuesday Theme</td>
+                    <td>Preview</td>
+                  </tr>
+                  <tr>
+                    <th>Wednesday</th>
+                    <td>Wednesday Theme</td>
+                    <td>Preview</td>
+                  </tr>
+                  <tr>
+                    <th>Thursday</th>
+                    <td>Thursday Theme</td>
+                    <td>Preview</td>
+                  </tr>
+                  <tr>
+                    <th>Friday</th>
+                    <td>Friday Theme</td>
+                    <td>Preview</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </v-card-text>
+        <v-card-actions></v-card-actions>
+      </v-card>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
