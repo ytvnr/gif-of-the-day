@@ -1,11 +1,10 @@
 <template>
   <v-app id="sandbox">
-    
     <god-drawer :isDrawerMini="isDrawerMini"></god-drawer>
 
-    <v-app-bar :clipped-left="true" app>
+    <v-app-bar :clipped-left="true" app dense>
       <v-btn icon @click="isDrawerMini = !isDrawerMini">🍔</v-btn>
-      <v-toolbar-title>GIF OF THE DAY</v-toolbar-title>
+      <v-toolbar-title >GIF OF THE DAY</v-toolbar-title>
     </v-app-bar>
 
     <v-content>
@@ -39,6 +38,10 @@
 
 <style lang="scss">
 .v-navigation-drawer {
-  max-height: calc(100% - 104px) !important;
+  height: calc(100vh - 96px) !important;
+}
+
+.v-content {
+  padding: 64px 0px 50px 56px;
 }
 </style>

@@ -7,26 +7,40 @@
     app
     overflow
   >
-    <v-list-item class="px-2">
+    <v-list-item class="px-2" v-if="user">
       <v-list-item-avatar>
-        <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
+        <v-img :src="user.photoURL"></v-img>
       </v-list-item-avatar>
 
-      <v-list-item-title>Aurelien Loyer</v-list-item-title>
+      <v-list-item-title>{{user.displayName}}</v-list-item-title>
     </v-list-item>
 
     <v-divider></v-divider>
     <v-list dense nav>
-      <v-list-item v-for="item in items" :key="item.title" link :to="item.href">
+      <template v-for="item in items">
+        <v-list-item :key="item.title" v-if="!item.needAuth || user" link :to="item.href">
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </template>
+    </v-list>
+
+    <template v-slot:append v-if="user">
+      <v-list-item link to="/logout">
         <v-list-item-icon>
-          <v-icon>{{ item.icon }}</v-icon>
+          <v-icon color="error">mdi-logout</v-icon>
         </v-list-item-icon>
 
         <v-list-item-content>
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
+          <v-list-item-title>Logout</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-    </v-list>
+    </template>
   </v-navigation-drawer>
 </template>
 
@@ -38,12 +52,16 @@ export default {
     data () {
       return {
         items: [
-          { title: 'Dashboard', icon: 'mdi-view-dashboard', href: '/' },
-          { title: 'Gifs', icon: 'mdi-gif', href: '/gifs' },
-          { title: 'Teams', icon: 'mdi-account-group', href: '/teams' },
-          { title: 'About', icon: 'mdi-help-box', href: '/about' },
-          { title: 'Logout', icon: 'mdi-logout', href: '/logout' },
+          { title: 'Dashboard', icon: 'mdi-view-dashboard', href: '/', needAuth: false },
+          { title: 'Gifs', icon: 'mdi-gif', href: '/gifs', needAuth: true },
+          { title: 'Teams', icon: 'mdi-account-group', href: '/teams', needAuth: true },
+          { title: 'About', icon: 'mdi-help-box', href: '/about', needAuth: false }
         ],
+      }
+    },
+    computed: {
+      user() {
+        return this.$store.getters.user;
       }
     },
 }
