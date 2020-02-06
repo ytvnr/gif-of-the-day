@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    #home
+  <div class="about">
+    #about
   </div>
 </template>
 
@@ -9,7 +9,7 @@
 // import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
-  name: 'home',
+  name: 'about',
   components: {
   }
 }
