@@ -1,43 +1,33 @@
 <template>
-  <div class="card">
-    <header class="card-header">
-      <p class="card-header-title">{{team.name}}</p>
-      <a href="#" class="card-header-icon" aria-label="more options">
-        <span class="icon">
-          <i class="fas fa-angle-down" aria-hidden="true"></i>
-        </span>
-      </a>
-    </header>
-    <div class="card-content">
-      <div class="content">
-        Team description
-        <a href="#">@bulmaio</a>.
-        <a href="#">#css</a>
-        <a href="#">#responsive</a>
-        <br />
-        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-      </div>
-    </div>
-    <footer class="card-footer">
-      <div class="card-footer-item">
-        <button
-          class="button is-primary"
-          @click="joinTeam()"
-          :disabled="userMetadata.assignedTeam !== team.uid"
-        >Join</button>
-      </div>
-      <div class="card-footer-item">
-        <button
-          class="button is-danger"
-          @click="leaveTeam()"
-          :disabled="userMetadata.assignedTeam === team.uid"
-        >Leave</button>
-      </div>
-      <div class="card-footer-item">
-        <router-link class="button is-info" :to="{ name: 'gifs', params: { teamId: team.uid}}">See GIFs</router-link>
-      </div>
-    </footer>
-  </div>
+  <v-card
+          class="mx-auto"
+          max-width="75%"
+          outlined
+  >
+    <v-list-item three-line>
+      <v-list-item-content>
+        <div class="overline mb-4">Teams</div>
+        <v-list-item-title class="headline mb-1">{{team.name}}</v-list-item-title>
+        <v-list-item-subtitle>Awesome Subtitle</v-list-item-subtitle>
+      </v-list-item-content>
+
+      <v-list-item-avatar
+              tile
+              size="80"
+              color="grey"
+      >
+        <span class="white--text headline">{{team.avatar}}</span>
+      </v-list-item-avatar>
+    </v-list-item>
+
+    <v-card-actions>
+      <v-btn class="ma-2" outlined color="green" text @click="joinTeam()" :disabled="userMetadata.assignedTeamId === team.id">Join team</v-btn>
+      <v-btn class="ma-2" outlined color="red darken-1" text @click="leaveTeam()" :disabled="userMetadata.assignedTeamId !== team.id">Leave team</v-btn>
+      <router-link :to="{ name: 'gifs', params: { teamId: team.id}}">
+        <v-btn class="ma-2" outlined color="lime">See GIFs</v-btn>
+      </router-link>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <script>
@@ -60,7 +50,7 @@ export default {
       }
     },
     mounted() {
-      db.collection('userMetadata')
+      db.collection('usersMetadata')
       .doc(this.user.uid)
       .get()
       .then(snapshot => {
@@ -69,14 +59,15 @@ export default {
     },
     methods: {
       joinTeam() {  
-        console.log(this.user.uid);      
         db.collection("usersMetadata").doc(this.user.uid).set({
           assignedTeamId: this.team.id
         }, { merge: true });
+        // temprorary fix to disable join button
+        // TODO: handle team selection ion Team.vue to sync all buttons
+        this.userMetadata.assignedTeamId = this.team.id;
       },
       leaveTeam() {
-        console.log(this.user.uid);
-        db.collection("usersMetadata").doc(this.user.uid).update({
+        this.userMetadata = db.collection("usersMetadata").doc(this.user.uid).update({
           assignedTeamId: firebase.firestore.FieldValue.delete()
         });
       }
@@ -85,4 +76,7 @@ export default {
 </script>
 
 <style>
+  a {
+    text-decoration: none;
+  }
 </style>

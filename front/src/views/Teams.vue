@@ -4,7 +4,7 @@
       <h1 class="title">Teams</h1>
       <h2 class="subtitle">
         This is the list of
-        <strong>QIMA</strong> teams
+        <strong>YourOrganization</strong> teams
       </h2>
       <div class="list" v-if="!user">
         <h2 class="subtitle has-text-danger">You do not have access to this page !</h2>
@@ -33,21 +33,21 @@
 		components: {
 		'god-cardteam': TeamCard,
 		},
-      firestore: {
-          teams: db.collection('teams')
-      },
-      data() {
-          return {teams:[]};
-      },
-      created() {
-      },
-      computed: {
-        user() {
-          return this.$store.getters.user;
-        }
-      },
-      methods: {
+    firestore: {
+        teams: db.collection('teams')
+    },
+    data() {
+        return {teams:[]};
+    },
+    created() {
+    },
+    computed: {
+      user() {
+        return this.$store.getters.user;
       }
+    },
+    methods: {
+    }
   }
 </script>
 
