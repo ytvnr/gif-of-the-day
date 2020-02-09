@@ -2,7 +2,7 @@
 
 <p align="center">
 
-![GitHub issues](https://img.shields.io/github/issues-raw/ytvnr/gif-of-the-day?color=RED&logo=VUE.JS&style=for-the-badge)
+![GitHub issues](https://img.shields.io/github/issues-raw/ytvnr/gif-of-the-day?color=RED&style=for-the-badge) ![GitHub pulls](https://img.shields.io/github/issues-pr/ytvnr/gif-of-the-day?color=RED&style=for-the-badge) ![GitHub pulls](https://img.shields.io/github/issues-closed/ytvnr/gif-of-the-day?color=RED&style=for-the-badge) ![GitHub pulls](https://img.shields.io/github/contributors/ytvnr/gif-of-the-day?color=RED&style=for-the-badge)
 
 # GOD
 
