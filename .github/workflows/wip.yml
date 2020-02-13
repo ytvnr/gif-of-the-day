@@ -1,12 +1,29 @@
-name: WIP
 on:
   pull_request:
-    types: [ opened, synchronize, reopened, edited ]
+    types:
+      - labeled
+      - review_request_removed
+      - review_requested
+      - unlabeled
+  pull_request_review:
+    types:
+      - dismissed
+      - submitted
+  status:
 
 jobs:
-  wip:
+  merge:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    name: Merge
     steps:
-      - uses: wip/action@v1.0.0
+      - name: Integration check
+        uses: squalrus/merge-bot@v0.2.0
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          test: true
+          reviewers: true
+          labels: ready, merge
+          blocking-labels: Work in progress 🚧
+          checks_enabled: false
+          checks: true
+          method: squash
