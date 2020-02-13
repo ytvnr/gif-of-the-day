@@ -8,7 +8,8 @@ export default new Vuex.Store({
   state: {
     user: null,
     status: null,
-    error: null
+    error: null,
+    assignedTeamId: null
   },
   mutations: {
     setUser(state, payload) {
@@ -25,13 +26,15 @@ export default new Vuex.Store({
 
     setError(state, payload) {
       state.error = payload;
+    },
+
+    setAssignedTeamId(state, payload) {
+      state.assignedTeamId = payload;
     }
   },
   actions: {
-    assignTeamAction({ dispatch }, teamId) {
-      dispatch('updateUserAction', {
-        assignedTeam: teamId
-      });
+    assignTeamAction({ commit }, teamId) {
+      commit('setAssignedTeamId', teamId);
     },
 
     autoLoginAction({commit}, user) {
@@ -50,6 +53,7 @@ export default new Vuex.Store({
           commit('setUser', user);
           commit('setStatus', 'success');
           commit('setError', null);
+          commit('setAssignedTeamId', user.assignedTeamId);
         })
         .catch(error => {
           commit('setStatus', 'failure');
@@ -68,6 +72,7 @@ export default new Vuex.Store({
           commit('setUser', response.user);
           commit('setStatus', 'success');
           commit('setError', null);
+          commit('setAssignedTeamId', response.user.assignedTeamId);
         })
         .catch(error => {
           commit('setStatus', 'failure');
@@ -83,6 +88,7 @@ export default new Vuex.Store({
           commit('setUser', null);
           commit('setStatus', 'success');
           commit('setError', null);
+          commit('setAssignedTeamId', null);
         })
         .catch(error => {
           commit('setStatus', 'failure');
@@ -102,6 +108,10 @@ export default new Vuex.Store({
 
     error(state) {
       return state.error;
+    },
+
+    assignedTeamId(state) {
+      return state.assignedTeamId;
     }
   }
 });

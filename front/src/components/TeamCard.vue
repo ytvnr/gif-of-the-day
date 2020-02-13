@@ -21,8 +21,8 @@
     </v-list-item>
 
     <v-card-actions>
-      <v-btn class="ma-2" outlined color="green" text @click="joinTeam()" :disabled="userMetadata.assignedTeamId === team.id">Join team</v-btn>
-      <v-btn class="ma-2" outlined color="red darken-1" text @click="leaveTeam()" :disabled="userMetadata.assignedTeamId !== team.id">Leave team</v-btn>
+      <v-btn class="ma-2" outlined color="green" text @click="joinTeam()" :disabled="this.assignedTeamId === team.id">Join team</v-btn>
+      <v-btn class="ma-2" outlined color="red darken-1" text @click="leaveTeam()" :disabled="this.assignedTeamId !== team.id">Leave team</v-btn>
       <router-link :to="{ name: 'gifs', params: { teamId: team.id}}">
         <v-btn class="ma-2" outlined color="lime">See GIFs</v-btn>
       </router-link>
@@ -47,6 +47,9 @@ export default {
     computed: {
       user() {
         return this.$store.getters.user;
+      },
+      assignedTeamId() {
+        return this.$store.getters.assignedTeamId;
       }
     },
     mounted() {
@@ -55,21 +58,22 @@ export default {
       .get()
       .then(snapshot => {
         this.userMetadata = snapshot.data();
-      })
+        this.$store.dispatch('assignTeamAction', this.userMetadata.assignedTeamId);
+      });
+
     },
     methods: {
-      joinTeam() {  
+      joinTeam() {
         db.collection("usersMetadata").doc(this.user.uid).set({
           assignedTeamId: this.team.id
         }, { merge: true });
-        // temprorary fix to disable join button
-        // TODO: handle team selection ion Team.vue to sync all buttons
-        this.userMetadata.assignedTeamId = this.team.id;
+        this.$store.dispatch('assignTeamAction', this.team.id);
       },
       leaveTeam() {
         this.userMetadata = db.collection("usersMetadata").doc(this.user.uid).update({
           assignedTeamId: firebase.firestore.FieldValue.delete()
         });
+        this.$store.dispatch('assignTeamAction', null);
       }
     },
 }
