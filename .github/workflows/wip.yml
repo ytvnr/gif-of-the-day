@@ -1,3 +1,4 @@
+name: Block WIP merging
 on:
   pull_request:
     types:
@@ -22,7 +23,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           test: true
           reviewers: true
-          labels: ready, merge
+          labels: Feature 🎉, Bug 🐜, Documentation 📒, Technical task 👨🏻‍, Nice to have 🦞
           blocking-labels: Work in progress 🚧
           checks_enabled: false
           checks: true
