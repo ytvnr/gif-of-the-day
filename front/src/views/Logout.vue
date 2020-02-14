@@ -5,11 +5,11 @@
 <script>
 export default {
     beforeCreate() {
-          this.$store.dispatch('signOutAction');
+      this.$store.dispatch('signOutAction');
     },
     computed: {
       user() {
-            return this.$store.getters.user;
+        return this.$store.getters.user;
       }
     },
 }
