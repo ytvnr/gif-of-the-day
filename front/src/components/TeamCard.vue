@@ -32,10 +32,6 @@
 
 <script>
 
- import firebase from 'firebase';
-
-  const db = firebase.firestore();
-
 export default {
     props: ['team'],
     data() {
@@ -52,27 +48,11 @@ export default {
         return this.$store.getters.assignedTeamId;
       }
     },
-    mounted() {
-      db.collection('usersMetadata')
-      .doc(this.user.uid)
-      .get()
-      .then(snapshot => {
-        this.userMetadata = snapshot.data();
-        this.$store.dispatch('assignTeamAction', this.userMetadata.assignedTeamId);
-      });
-
-    },
     methods: {
       joinTeam() {
-        db.collection("usersMetadata").doc(this.user.uid).set({
-          assignedTeamId: this.team.id
-        }, { merge: true });
         this.$store.dispatch('assignTeamAction', this.team.id);
       },
       leaveTeam() {
-        this.userMetadata = db.collection("usersMetadata").doc(this.user.uid).update({
-          assignedTeamId: firebase.firestore.FieldValue.delete()
-        });
         this.$store.dispatch('assignTeamAction', null);
       }
     },
