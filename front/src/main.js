@@ -1,14 +1,11 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import firebase from 'firebase';
 import { firestorePlugin } from 'vuefire';
 import App from './App.vue';
 import router from './router';
 import store from '@/store';
 import vuetify from './plugins/vuetify';
-
-firebase.initializeApp(require('./firebaseConfig.json'));
-firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
+import firebase from './firebase/init';
 
 Vue.config.productionTip = false;
 

@@ -16,7 +16,7 @@ export default {
   created() {
     this.$store.subscribe((mutation) => {
       if (mutation.type === 'setUser') {
-        this.$router.push('home');
+        this.$router.push('/');
       }
     });
   }

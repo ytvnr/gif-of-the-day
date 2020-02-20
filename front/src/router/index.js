@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import store from '../store/index';
 import Home from '../views/Home.vue';
 import Login from '../views/Login.vue';
 import About from '../views/About.vue';
 import Logout from '../views/Logout.vue';
+import firebase from '@/firebase/init';
 
 Vue.use(VueRouter);
 
@@ -45,6 +45,13 @@ const routes = [
     name: 'gifs',
     meta: { requireAuth: true },
     component: () => import(/* webpackChunkName: "about" */ '../views/Gifs.vue')
+  },
+  {
+    path: '/schedule',
+    name: 'schedule',
+    meta: { requireAuth: true },
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../views/Schedule.vue')
   }
 ];
 
@@ -52,13 +59,10 @@ const router = new VueRouter({
   routes
 });
 
-router.beforeEach((to, from, next) => {
-  const currentUser = store.getters.user;
-
+router.beforeEach(async (to, from, next) => {
   const requireAuth = to.matched.some(record => record.meta.requireAuth);
-
-  if (requireAuth && !currentUser) {
-    next({ name: 'login' });
+  if (requireAuth && !(await firebase.getCurrentUser())) {
+    next('login');
   } else {
     next();
   }
