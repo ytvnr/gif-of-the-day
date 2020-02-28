@@ -34,25 +34,31 @@ export default new Vuex.Store({
   },
   actions: {
     assignTeamAction({ commit, state }, teamId) {
-
       if (teamId) {
-        firebase.firestore().collection("usersMetadata")
+        firebase
+          .firestore()
+          .collection('usersMetadata')
           .doc(state.user.uid)
-          .set({
-            assignedTeamId: teamId
-          }, { merge: true });
+          .set(
+            {
+              assignedTeamId: teamId
+            },
+            { merge: true }
+          );
       } else {
-        firebase.firestore().collection("usersMetadata")
+        firebase
+          .firestore()
+          .collection('usersMetadata')
           .doc(state.user.uid)
           .update({
-          assignedTeamId: firebase.firestore.FieldValue.delete()
-        });
+            assignedTeamId: firebase.firestore.FieldValue.delete()
+          });
       }
 
       commit('setAssignedTeamId', teamId);
     },
 
-    autoLoginAction({commit}, user) {
+    autoLoginAction({ commit }, user) {
       commit('setUser', user);
       commit('setStatus', 'success');
     },
@@ -62,8 +68,7 @@ export default new Vuex.Store({
 
       firebase
         .auth()
-        .currentUser
-        .updateProfile(user)
+        .currentUser.updateProfile(user)
         .then(() => {
           commit('setUser', user);
           commit('setStatus', 'success');
@@ -73,6 +78,35 @@ export default new Vuex.Store({
         .catch(error => {
           commit('setStatus', 'failure');
           commit('setError', error.message);
+        });
+    },
+
+
+    createUserWithEmailAndPassword({ commit }, user) {
+      commit('setStatus', 'loading');
+
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(user.email, user.password)
+        .catch(function(error) {
+          console.log(error);
+        })
+        .then(response => {
+          console.log(response);
+        });
+    },
+
+    signInWithEmailAndPassword({ commit }, user) {
+      commit('setStatus', 'loading');
+
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(user.email, user.password)
+        .catch(function(error) {
+          console.log(error);
+        })
+        .then(response => {
+          console.log(response);
         });
     },
 
@@ -88,14 +122,15 @@ export default new Vuex.Store({
           commit('setStatus', 'success');
           commit('setError', null);
 
-          firebase.firestore().collection('usersMetadata')
+          firebase
+            .firestore()
+            .collection('usersMetadata')
             .doc(response.user.uid)
             .get()
             .then(snapshot => {
               this.userMetadata = snapshot.data();
               commit('setAssignedTeamId', this.userMetadata.assignedTeamId);
             });
-
         })
         .catch(error => {
           commit('setStatus', 'failure');

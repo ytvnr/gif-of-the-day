@@ -2,27 +2,8 @@
   <v-row align="center" justify="center" class="full-height">
     <v-col cols="12" sm="8" md="6" lg="6" class="text-center">
       <v-card class="login">
-        <v-card-actions class="text-center">
-          <v-btn disabled @click="signInWithGoogle()" color="lime">
-            Login with
-            <v-icon color="error">mdi-google</v-icon>
-          </v-btn>
-          <v-btn disabled color="lime">
-            Login with
-            <v-icon color="error">mdi-twitter</v-icon>
-          </v-btn>
-          <v-btn v-if="0" disabled color="lime">
-            Login with
-            <v-icon color="error">mdi-github</v-icon>
-          </v-btn>
-        </v-card-actions>
-        <div class="text-center or-spacer">
-          <div class="line"></div>
-          <div>or</div>
-          <div class="line"></div>
-        </div>
         <v-card-text>
-          <v-form @submit="signInWithEmailAndPassword()">
+          <v-form @submit="createUserWithEmailAndPassword()">
             <v-text-field
               required
               label="Email"
@@ -41,10 +22,20 @@
               type="password"
               v-model="user.password"
             />
+
+            <v-text-field
+              required
+              id="password"
+              label="Password confirm"
+              name="password2"
+              prepend-icon="mdi-lock"
+              type="password"
+              v-model="user.password2"
+            />
           </v-form>
         </v-card-text>
         <v-card-actions class="text-center">
-          <v-btn color="primary" @click="signInWithEmailAndPassword()">Login</v-btn>
+          <v-btn @click="createUserWithEmailAndPassword()" color="red">Register for beta 👨‍🔬🧪</v-btn>
         </v-card-actions>
 
         <div class="text-center or-spacer">
@@ -53,8 +44,9 @@
           <div class="line"></div>
         </div>
 
+        <strong>You already have a account ?!</strong>
         <v-card-actions class="text-center">
-          <v-btn to="register" color="red">Register for beta 👨‍🔬🧪</v-btn>
+          <v-btn to="login" color="primary">Login 📮</v-btn>
         </v-card-actions>
       </v-card>
     </v-col>
@@ -68,15 +60,15 @@ export default {
       user: {
         "email": "",
         "password": "",
+        "password2": "",
       }
     }
   },
   methods: {
-    signInWithGoogle() {
-      this.$store.dispatch('signInWithGoogleAction');
-    },
-    signInWithEmailAndPassword() {
-      this.$store.dispatch('signInWithEmailAndPassword', this.user);
+    createUserWithEmailAndPassword() {
+      if(this.user.email && this.user.password.length > 6 && this.user.password === this.user.password2){
+        this.$store.dispatch('createUserWithEmailAndPassword', this.user);
+      }
     }
   },
   created() {

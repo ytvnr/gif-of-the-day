@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Login from '../views/Login.vue';
+import Register from '../views/Register.vue';
 import About from '../views/About.vue';
 import Logout from '../views/Logout.vue';
 import firebase from '@/firebase/init';
@@ -26,6 +27,12 @@ const routes = [
     name: 'login',
     meta: { requireAuth: false },
     component: Login
+  },
+  {
+    path: '/register',
+    name: 'register',
+    meta: { requireAuth: false },
+    component: Register
   },
   {
     path: '/about',

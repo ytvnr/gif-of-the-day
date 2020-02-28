@@ -9,10 +9,10 @@
   >
     <v-list-item class="px-2" v-if="user">
       <v-list-item-avatar>
-        <v-img :src="user.photoURL"></v-img>
+        <v-img :src="userPicture"></v-img>
       </v-list-item-avatar>
 
-      <v-list-item-title>{{user.displayName}}</v-list-item-title>
+      <v-list-item-title>{{user.displayName || user.email}}</v-list-item-title>
     </v-list-item>
 
     <v-divider></v-divider>
@@ -63,6 +63,9 @@ export default {
     computed: {
       user() {
         return this.$store.getters.user;
+      },
+      userPicture() {
+        return this.user.photoURL || `https://eu.ui-avatars.com/api/?name=${this.user.email}`
       }
     },
 }
