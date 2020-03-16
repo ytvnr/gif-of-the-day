@@ -81,19 +81,20 @@ export default new Vuex.Store({
         });
     },
 
-
     createUserWithEmailAndPassword({ commit }, user) {
       commit('setStatus', 'loading');
 
       firebase
         .auth()
         .createUserWithEmailAndPassword(user.email, user.password)
-        .catch(function(error) {
-          console.log(error);
+        .then(() => {
+          commit('setStatus', 'success');
+          commit('setError', null);
         })
-        .then(response => {
-          console.log(response);
-        });
+        .catch(function(error) {
+          commit('setStatus', 'failure');
+          commit('setError', error.message);
+        })
     },
 
     signInWithEmailAndPassword({ commit }, user) {

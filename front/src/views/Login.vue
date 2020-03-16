@@ -1,5 +1,5 @@
 <template>
-  <v-row align="center" justify="center" class="full-height">
+  <v-row align="center" justify="center" class="full-screen">
     <v-col cols="12" sm="8" md="6" lg="6" class="text-center">
       <v-card class="login">
         <v-card-actions class="text-center">
@@ -75,7 +75,7 @@ export default {
     signInWithGoogle() {
       this.$store.dispatch('signInWithGoogleAction');
     },
-    signInWithEmailAndPassword() {
+    signInWithEmailAndPassword()  {
       this.$store.dispatch('signInWithEmailAndPassword', this.user);
     }
   },
@@ -90,6 +90,13 @@ export default {
 </script>
 
 <style lang="scss">
+.full-screen {
+  width: calc(100% + 24px);
+  height: calc(100vh - 96px);
+  overflow-y: scroll;
+  margin-top: -12px;
+}
+
 .login {
   padding: 20px 10px;
   width: 500px;
