@@ -54,7 +54,7 @@
         </div>
 
         <v-card-actions class="text-center">
-          <v-btn to="register" color="red">Register for beta 👨‍🔬🧪</v-btn>
+          <v-btn to="register" color="red">Register for alpha 👨‍🔬🧪</v-btn>
         </v-card-actions>
       </v-card>
     </v-col>
@@ -93,7 +93,7 @@ export default {
 .full-screen {
   width: calc(100% + 24px);
   height: calc(100vh - 96px);
-  overflow-y: scroll;
+  overflow-y: auto;
   margin-top: -12px;
 }
 

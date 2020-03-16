@@ -104,11 +104,8 @@ export default new Vuex.Store({
         .auth()
         .signInWithEmailAndPassword(user.email, user.password)
         .catch(function(error) {
-          console.log(error);
+          console.error(error);
         })
-        .then(response => {
-          console.log(response);
-        });
     },
 
     signInWithGoogleAction({ commit }) {

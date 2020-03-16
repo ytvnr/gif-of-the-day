@@ -54,7 +54,7 @@
             :disabled="$v.$invalid"
             @click="createUserWithEmailAndPassword()"
             color="red"
-          >Register for beta 👨‍🔬🧪</v-btn>
+          >Register for alpha 👨‍🔬🧪</v-btn>
         </v-card-actions>
 
         <div class="text-center or-spacer">
@@ -128,7 +128,7 @@ export default {
 .full-screen {
   width: calc(100% + 24px);
   height: calc(100vh - 96px);
-  overflow-y: scroll;
+  overflow-y: auto;
   margin-top: -12px;
 }
 
