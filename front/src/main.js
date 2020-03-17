@@ -6,9 +6,11 @@ import router from './router';
 import store from '@/store';
 import vuetify from './plugins/vuetify';
 import firebase from './firebase/init';
+import Vuelidate from 'vuelidate'
 
 Vue.config.productionTip = false;
 
+Vue.use(Vuelidate);
 Vue.use(Vuex);
 Vue.use(firestorePlugin);
 
