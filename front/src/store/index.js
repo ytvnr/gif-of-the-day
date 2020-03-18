@@ -85,16 +85,34 @@ export default new Vuex.Store({
       commit('setStatus', 'loading');
 
       firebase
-        .auth()
-        .createUserWithEmailAndPassword(user.email, user.password)
-        .then(() => {
-          commit('setStatus', 'success');
-          commit('setError', null);
-        })
-        .catch(function(error) {
-          commit('setStatus', 'failure');
-          commit('setError', error.message);
-        })
+        .firestore()
+        .collection('authorizedDomains')
+        .get()
+        .then( querySnapshot => {
+          let isDomainAuthorized = querySnapshot
+            .docs
+            .filter( domain => user.email.includes(domain.data().domain))
+            .length > 0;
+
+          if (isDomainAuthorized) {
+            firebase
+              .auth()
+              .createUserWithEmailAndPassword(user.email, user.password)
+              .then(() => {
+                commit('setStatus', 'success');
+                commit('setError', null);
+              })
+              .catch(function (error) {
+                commit('setStatus', 'failure');
+                commit('setError', error.message);
+              });
+          } else {
+            commit('setStatus', 'failure');
+            commit('setError', 'Your mail domain is not authorized');
+          }
+        });
+
+
     },
 
     signInWithEmailAndPassword({ commit }, user) {
