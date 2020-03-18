@@ -1,6 +1,12 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+
+  	match /authorizedDomain/{document} {
+	  allow read: if true;
+	  allow write: if false;
+	}
+
     // Allow only authenticated content owners access
     match /usersMetadata/{document} {
       allow read, write: if request.auth.uid == document
