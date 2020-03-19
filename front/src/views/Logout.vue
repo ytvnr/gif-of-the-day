@@ -6,6 +6,8 @@
 export default {
     beforeCreate() {
       this.$store.dispatch('signOutAction');
+
+      this.$router.push('/login');
     },
     computed: {
       user() {
