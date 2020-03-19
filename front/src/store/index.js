@@ -121,7 +121,25 @@ export default new Vuex.Store({
       firebase
         .auth()
         .signInWithEmailAndPassword(user.email, user.password)
+        .then(response => {
+          commit('setUser', response.user);
+          commit('setStatus', 'success');
+          commit('setError', null);
+
+          // TODO: dupplicated code in signInWithGoogleAction. To refactor
+          firebase
+            .firestore()
+            .collection('usersMetadata')
+            .doc(response.user.uid)
+            .get()
+            .then(snapshot => {
+              this.userMetadata = snapshot.data();
+              commit('setAssignedTeamId', this.userMetadata.assignedTeamId);
+            });
+        })
         .catch(function(error) {
+          commit('setStatus', 'failure');
+          commit('setError', error.message);
           console.error(error);
         })
     },
@@ -145,7 +163,7 @@ export default new Vuex.Store({
             .get()
             .then(snapshot => {
               this.userMetadata = snapshot.data();
-              commit('setAssignedTeamId', this.userMetadata.assignedTeamId);
+              commit('setAssignedTeamId', this.userMetadata?.assignedTeamId);
             });
         })
         .catch(error => {
