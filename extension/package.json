@@ -1,0 +1,10 @@
+{
+  "name": "extension",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "echo \"Soon a script to build extension and upload it 🥳\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

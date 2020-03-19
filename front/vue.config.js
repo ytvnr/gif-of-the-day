@@ -1,17 +1,17 @@
+const fs = require('fs');
+const webpack = require('webpack');
+const packageJson = fs.readFileSync('./package.json');
+const version = JSON.parse(packageJson).version || 0;
+
 module.exports = {
-  "pages": {
-    "index": {
-      "entry": "src/main.js",
-      "template": "public/index.html",
-      "filename": "index.html"
+    configureWebpack: {
+        plugins: [
+            new webpack.DefinePlugin({
+                'process.env': {
+                    PACKAGE_VERSION: '"' + version + '"'
+                }
+            })
+        ]
     },
-    "extension": {
-      "entry": "public/extension/index.js",
-      "template": "public/extension/index.html",
-      "filename": "extension/index.html"
-    }
-  },
-  "transpileDependencies": [
-    "vuetify"
-  ]
-}
+    transpileDependencies: ['vuetify']
+};

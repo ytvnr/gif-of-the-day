@@ -132,7 +132,7 @@ export default new Vuex.Store({
 
       firebase
         .auth()
-        .signInWithPopup(provider)
+        .signInWithRedirect(provider)
         .then(response => {
           commit('setUser', response.user);
           commit('setStatus', 'success');

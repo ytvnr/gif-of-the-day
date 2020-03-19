@@ -6,7 +6,7 @@ const firebaseConfig = require('./config.json');
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
+firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
 firebase.getCurrentUser = () => {
   return new Promise((resolve, reject) => {

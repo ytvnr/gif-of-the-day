@@ -1,7 +1,9 @@
 <template>
-  <div class="about">
-    #about
-  </div>
+    <div class="about">
+        <ul>
+            <li>version: {{ mode }}.{{ version }}</li>
+        </ul>
+    </div>
 </template>
 
 <script>
@@ -9,8 +11,14 @@
 // import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
-  name: 'about',
-  components: {
-  }
+    name: 'about',
+    data() {return {
+        version:  process.env.PACKAGE_VERSION,
+        mode:  process.env.VUE_APP_MODE
+    }},
+    components: {
+    },
+    created(){
+    }
 }
 </script>
