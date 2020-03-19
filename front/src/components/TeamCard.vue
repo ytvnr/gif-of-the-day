@@ -41,20 +41,20 @@ export default {
         }
     },
     computed: {
-      user() {
-        return this.$store.getters.user;
-      },
-      assignedTeamId() {
-        return this.$store.getters.assignedTeamId;
-      }
+        user() {
+            return this.$store.getters.user;
+        },
+        assignedTeamId() {
+            return this.$store.getters.assignedTeamId;
+        }
     },
     methods: {
-      joinTeam() {
-        this.$store.dispatch('assignTeamAction', this.team.id);
-      },
-      leaveTeam() {
-        this.$store.dispatch('assignTeamAction', null);
-      }
+        joinTeam() {
+            this.$store.dispatch('assignTeamAction', this.team.id);
+        },
+        leaveTeam() {
+            this.$store.dispatch('assignTeamAction', null);
+        }
     },
 }
 </script>

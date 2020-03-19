@@ -18,14 +18,14 @@
 <script>
 
 export default {
-  name: 'home',
-  components: {
-  },
-  computed: {
-    assignedTeamId() {
-      return this.$store.getters.assignedTeamId;
+    name: 'home',
+    components: {
+    },
+    computed: {
+        assignedTeamId() {
+            return this.$store.getters.assignedTeamId;
+        }
     }
-  }
 }
 </script>
 
