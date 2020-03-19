@@ -5,14 +5,14 @@
 <script>
 export default {
     beforeCreate() {
-      this.$store.dispatch('signOutAction');
+        this.$store.dispatch('signOutAction');
 
-      this.$router.push('/login');
+        this.$router.push('/login');
     },
     computed: {
-      user() {
-        return this.$store.getters.user;
-      }
+        user() {
+            return this.$store.getters.user;
+        }
     },
 }
 </script>

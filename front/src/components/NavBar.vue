@@ -72,18 +72,18 @@ export default {
         };
     },
     computed: {
-      user() {
-        return this.$store.getters.user;
-      }
+        user() {
+            return this.$store.getters.user;
+        }
     },
     methods: {
         signInWithGoogle() {
-          this.$store.dispatch('signInWithGoogleAction');
+            this.$store.dispatch('signInWithGoogleAction');
         },
         signOut() {
-          this.$store.dispatch('signOutAction');
+            this.$store.dispatch('signOutAction');
         }
-  }
+    }
 }
 </script>
 

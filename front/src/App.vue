@@ -24,21 +24,21 @@
 
 <script>
 
-  import Footer from '@/components/Footer.vue';
-  import Drawer from '@/components/Drawer.vue';
+import Footer from '@/components/Footer.vue';
+import Drawer from '@/components/Drawer.vue';
 
-  export default {
+export default {
     components: {
-      'god-footer': Footer,
-      'god-drawer': Drawer,
+        'god-footer': Footer,
+        'god-drawer': Drawer,
     },
     data: () => ({
-      isDrawerMini: true,
+        isDrawerMini: true,
     }),
     created() {
-      this.$vuetify.theme.dark = true;
+        this.$vuetify.theme.dark = true;
     }
-  }
+}
 </script>
 
 <style lang="scss">

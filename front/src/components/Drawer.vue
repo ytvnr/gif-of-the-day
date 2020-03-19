@@ -50,23 +50,23 @@ export default {
         'isDrawerMini'
     ],
     data () {
-      return {
-        items: [
-          { title: 'Dashboard', icon: 'mdi-view-dashboard', href: '/', needAuth: false },
-          { title: 'Gifs', icon: 'mdi-gif', href: '/gifs', needAuth: true },
-          { title: 'Schedule', icon: 'mdi-calendar', href: '/schedule', needAuth: true },
-          { title: 'Teams', icon: 'mdi-account-group', href: '/teams', needAuth: true },
-          { title: 'About', icon: 'mdi-help-box', href: '/about', needAuth: false }
-        ],
-      }
+        return {
+            items: [
+                { title: 'Dashboard', icon: 'mdi-view-dashboard', href: '/', needAuth: false },
+                { title: 'Gifs', icon: 'mdi-gif', href: '/gifs', needAuth: true },
+                { title: 'Schedule', icon: 'mdi-calendar', href: '/schedule', needAuth: true },
+                { title: 'Teams', icon: 'mdi-account-group', href: '/teams', needAuth: true },
+                { title: 'About', icon: 'mdi-help-box', href: '/about', needAuth: false }
+            ],
+        }
     },
     computed: {
-      user() {
-        return this.$store.getters.user;
-      },
-      userPicture() {
-        return this.user.photoURL || `https://eu.ui-avatars.com/api/?name=${this.user.email}`
-      }
+        user() {
+            return this.$store.getters.user;
+        },
+        userPicture() {
+            return this.user.photoURL || `https://eu.ui-avatars.com/api/?name=${this.user.email}`
+        }
     },
 }
 </script>

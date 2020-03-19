@@ -76,50 +76,50 @@
 import { required, email, minLength, sameAs } from 'vuelidate/lib/validators'
 
 export default {
-  data() {
-    return {
-      email: "",
-      password: "",
-      repeatPassword: "",
-    }
-  },
-  validations: {
-    email: {
-      required,
-      email,
+    data() {
+        return {
+            email: "",
+            password: "",
+            repeatPassword: "",
+        }
     },
-    password: {
-      required,
-      minLength: minLength(5),
+    validations: {
+        email: {
+            required,
+            email,
+        },
+        password: {
+            required,
+            minLength: minLength(5),
+        },
+        repeatPassword: {
+            required,
+            sameAsPassword: sameAs('password'), 
+            minLength: minLength(5),
+        }
     },
-    repeatPassword: {
-      required,
-      sameAsPassword: sameAs('password'), 
-      minLength: minLength(5),
-    }
-  },
-  methods: {
-    createUserWithEmailAndPassword() {
-      if(!this.$v.$invalid){
-        this.$store.dispatch('createUserWithEmailAndPassword', {
-          email: this.email,
-          password: this.password,
-          password2: this.password2
+    methods: {
+        createUserWithEmailAndPassword() {
+            if(!this.$v.$invalid){
+                this.$store.dispatch('createUserWithEmailAndPassword', {
+                    email: this.email,
+                    password: this.password,
+                    password2: this.password2
+                });
+            }
+        }
+    },
+    created() {
+        this.$store.subscribe((mutation) => {
+            if (mutation.type === 'setUser') {
+                this.$router.push('/');
+            }
         });
-      }
-    }
-  },
-  created() {
-    this.$store.subscribe((mutation) => {
-      if (mutation.type === 'setUser') {
-        this.$router.push('/');
-      }
-    });
-  },
-  computed: {
-      error() {
-        return this.$store.getters.error;
-      }
+    },
+    computed: {
+        error() {
+            return this.$store.getters.error;
+        }
     },
 };
 </script>

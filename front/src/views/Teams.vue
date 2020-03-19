@@ -23,16 +23,16 @@
 
 <script>
 
-  import firebase from 'firebase';
-  import TeamCard from '@/components/TeamCard';
+import firebase from 'firebase';
+import TeamCard from '@/components/TeamCard';
 
-  const db = firebase.firestore();
+const db = firebase.firestore();
 
-  export default {
-		name: "teams",
-		components: {
-		'god-cardteam': TeamCard,
-		},
+export default {
+    name: "teams",
+    components: {
+        'god-cardteam': TeamCard,
+    },
     firestore: {
         teams: db.collection('teams')
     },
@@ -42,13 +42,13 @@
     created() {
     },
     computed: {
-      user() {
-        return this.$store.getters.user;
-      }
+        user() {
+            return this.$store.getters.user;
+        }
     },
     methods: {
     }
-  }
+}
 </script>
 
 <style lang="scss" scoped>

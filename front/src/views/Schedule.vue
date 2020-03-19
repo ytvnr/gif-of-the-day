@@ -55,66 +55,66 @@
 // import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
-  name: 'schedule',
-  components: {
-  },
-  data() {
-    return {
-      disableFiltering: true,
-      pagination: {},
-      headers: [
-        {
-          text: 'Day of week',
-          align: 'left',
-          sortable: false,
-          value: 'day',
-        },
-        { text: 'Gif Theme', value: 'theme' },
-        { text: 'Preview', value: 'preview' }
-      ],
-      gifs: [
-        {
-          day: 'Monday',
-          theme: 'Monday Theme',
-          preview: 'Preview',
-        },
-        {
-          day: 'Tuesday',
-          theme: 'Tuesday Theme',
-          preview: 'Preview',
-        },
-        {
-          day: 'Wednesday',
-          theme: 'Wednesday Theme',
-          preview: 'Preview',
-        },
-        {
-          day: 'Thursday',
-          theme: 'Thursday Theme',
-          preview: 'Preview',
-        },
-        {
-          day: 'Friday',
-          theme: 'Friday Theme',
-          preview: 'Preview',
-        },
-      ]
-    };
-  },
-  methods: {
-    save() {
-      console.log('Dialog saved');
+    name: 'schedule',
+    components: {
     },
-    cancel() {
-      console.log('Dialog cancelled');
+    data() {
+        return {
+            disableFiltering: true,
+            pagination: {},
+            headers: [
+                {
+                    text: 'Day of week',
+                    align: 'left',
+                    sortable: false,
+                    value: 'day',
+                },
+                { text: 'Gif Theme', value: 'theme' },
+                { text: 'Preview', value: 'preview' }
+            ],
+            gifs: [
+                {
+                    day: 'Monday',
+                    theme: 'Monday Theme',
+                    preview: 'Preview',
+                },
+                {
+                    day: 'Tuesday',
+                    theme: 'Tuesday Theme',
+                    preview: 'Preview',
+                },
+                {
+                    day: 'Wednesday',
+                    theme: 'Wednesday Theme',
+                    preview: 'Preview',
+                },
+                {
+                    day: 'Thursday',
+                    theme: 'Thursday Theme',
+                    preview: 'Preview',
+                },
+                {
+                    day: 'Friday',
+                    theme: 'Friday Theme',
+                    preview: 'Preview',
+                },
+            ]
+        };
     },
-    open() {
-      console.log('Dialog opened');
-    },
-    close() {
-      console.log('Dialog closed');
+    methods: {
+        save() {
+            console.log('Dialog saved');
+        },
+        cancel() {
+            console.log('Dialog cancelled');
+        },
+        open() {
+            console.log('Dialog opened');
+        },
+        close() {
+            console.log('Dialog closed');
+        }
     }
-  }
 }
 </script>
 
