@@ -1,8 +1,12 @@
 <template>
   <div class="home">
     <div v-if="assignedTeamId" class="content">
-      <h1>The gif of the day is <b class="todo">to be defined</b> for team</h1>
-      {{assignedTeamId}}
+      <h1>⭐️ Welcome <b class="todo">{{user.displayName || user.email}}</b> ! 💪</h1>
+
+    </div>
+    <div v-if="assignedTeamId" class="content">
+      <h1>The gif of the day is <strong class="todo">to be defined</strong> for team</h1>
+      <h2>✨✨ <strong class="team">{{assignedTeamId}}</strong> ✨✨</h2>
     </div>
 
     <div v-if="!assignedTeamId" class="content">
@@ -24,6 +28,9 @@ export default {
     computed: {
         assignedTeamId() {
             return this.$store.getters.assignedTeamId;
+        },
+        user() {
+            return this.$store.getters.user;
         }
     }
 }
@@ -48,5 +55,10 @@ export default {
 
   .todo {
     color: orange;
+    text-transform: uppercase;
+  }
+
+  .team {
+    color: lime;
   }
 </style>
