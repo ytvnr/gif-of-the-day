@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    {{user.uid}}
     <div v-if="assignedTeamId" class="content">
       <h1>The gif of the day is <b class="todo">to be defined</b> for team</h1>
       {{assignedTeamId}}
@@ -24,6 +25,9 @@ export default {
     computed: {
         assignedTeamId() {
             return this.$store.getters.assignedTeamId;
+        },
+        user() {
+            return this.$store.getters.user;
         }
     }
 }
