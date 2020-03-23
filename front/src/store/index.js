@@ -6,9 +6,11 @@ import createPersistedState from 'vuex-persistedstate';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-    plugins: [createPersistedState({
-        storage: window.sessionStorage
-    })],
+    plugins: [
+        createPersistedState({
+            storage: window.sessionStorage
+        })
+    ],
     state: {
         user: null,
         status: null,
@@ -37,6 +39,21 @@ export default new Vuex.Store({
         }
     },
     actions: {
+        getAssignedTeamId({ commit }, userId) {
+            firebase
+                .firestore()
+                .collection('usersMetadata')
+                .doc(userId)
+                .get()
+                .then(snapshot => {
+                    this.userMetadata = snapshot.data();
+                    commit(
+                        'setAssignedTeamId',
+                        this.userMetadata?.assignedTeamId
+                    );
+                });
+        },
+
         assignTeamAction({ commit, state }, teamId) {
             if (teamId) {
                 firebase
@@ -62,9 +79,10 @@ export default new Vuex.Store({
             commit('setAssignedTeamId', teamId);
         },
 
-        autoLoginAction({ commit }, user) {
+        autoLoginAction({ commit, dispatch }, user) {
             commit('setUser', user);
             commit('setStatus', 'success');
+            dispatch('getAssignedTeamId', user.uid);
         },
 
         updateUserAction({ commit }, user) {
@@ -93,15 +111,18 @@ export default new Vuex.Store({
                 .collection('authorizedDomains')
                 .get()
                 .then(querySnapshot => {
-                    let isDomainAuthorized = querySnapshot
-                        .docs
-                        .filter(domain => user.email.includes(domain.data().domain))
-                        .length > 0;
+                    let isDomainAuthorized =
+                        querySnapshot.docs.filter(domain =>
+                            user.email.includes(domain.data().domain)
+                        ).length > 0;
 
                     if (isDomainAuthorized) {
                         firebase
                             .auth()
-                            .createUserWithEmailAndPassword(user.email, user.password)
+                            .createUserWithEmailAndPassword(
+                                user.email,
+                                user.password
+                            )
                             .then(() => {
                                 commit('setStatus', 'success');
                                 commit('setError', null);
@@ -112,14 +133,15 @@ export default new Vuex.Store({
                             });
                     } else {
                         commit('setStatus', 'failure');
-                        commit('setError', 'Your mail domain is not authorized');
+                        commit(
+                            'setError',
+                            'Your mail domain is not authorized'
+                        );
                     }
                 });
-
-
         },
 
-        signInWithEmailAndPassword({ commit }, user) {
+        signInWithEmailAndPassword({ commit, dispatch }, user) {
             commit('setStatus', 'loading');
 
             firebase
@@ -129,17 +151,7 @@ export default new Vuex.Store({
                     commit('setUser', response.user);
                     commit('setStatus', 'success');
                     commit('setError', null);
-
-                    // TODO: dupplicated code in signInWithGoogleAction. To refactor
-                    firebase
-                        .firestore()
-                        .collection('usersMetadata')
-                        .doc(response.user.uid)
-                        .get()
-                        .then(snapshot => {
-                            this.userMetadata = snapshot.data();
-                            commit('setAssignedTeamId', this.userMetadata.assignedTeamId);
-                        });
+                    dispatch('getAssignedTeamId', response.user.uid);
                 })
                 .catch(function(error) {
                     commit('setStatus', 'failure');
@@ -148,7 +160,7 @@ export default new Vuex.Store({
                 });
         },
 
-        signInWithGoogleAction({ commit }) {
+        signInWithGoogleAction({ commit, dispatch }) {
             commit('setStatus', 'loading');
             const provider = new firebase.auth.GoogleAuthProvider();
 
@@ -159,16 +171,7 @@ export default new Vuex.Store({
                     commit('setUser', response.user);
                     commit('setStatus', 'success');
                     commit('setError', null);
-
-                    firebase
-                        .firestore()
-                        .collection('usersMetadata')
-                        .doc(response.user.uid)
-                        .get()
-                        .then(snapshot => {
-                            this.userMetadata = snapshot.data();
-                            commit('setAssignedTeamId', this.userMetadata?.assignedTeamId);
-                        });
+                    dispatch('getAssignedTeamId', response.user.uid);
                 })
                 .catch(error => {
                     commit('setStatus', 'failure');
@@ -185,6 +188,7 @@ export default new Vuex.Store({
                     commit('setStatus', 'success');
                     commit('setError', null);
                     commit('setAssignedTeamId', null);
+
                     sessionStorage.clear();
                 })
                 .catch(error => {
