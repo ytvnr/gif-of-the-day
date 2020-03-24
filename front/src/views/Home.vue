@@ -1,40 +1,53 @@
 <template>
-    <div class="home">
-        <div v-if="assignedTeam" class="content">
-            <h1>
-                ⭐️ Welcome
-                <b class="todo">{{user.displayName || user.email}}</b> ! 💪
-            </h1>
-        </div>
-        <div v-if="assignedTeam" class="content">
-            <h1>
-                The gif of the day is
-                <br />
-                <strong class="todo">to be defined</strong>
-                <br />for team
-            </h1>
-            <h2>
-                ✨✨
-                <strong v-if="team" class="team">{{team.name}}</strong> ✨✨
-            </h2>
-        </div>
+  <div class="home">
+    <v-container>
+      <v-row dense>
+        <v-col cols="12">
+          <v-card
+                  color="green darken-3"
+                  dark
+          >
+            <v-card-title class="headline">Welcome, {{user.displayName || user.email}}</v-card-title>
 
-        <div v-if="!assignedTeam && user" class="content">
-            <h1>You are not assigned to a team. Please join one:</h1>
+            <v-card-subtitle v-if="team" >Random phrase of the day !</v-card-subtitle>
+          </v-card>
+        </v-col>
 
-            <router-link :to="{ name: 'teams'}">
-                <v-btn class="ma-2" outlined color="lime">Join a team!</v-btn>
-            </router-link>
-        </div>
+        <v-col cols="12">
+          <v-card
+                  color="amber darken-3"
+                  dark
+          >
+            <v-card-title class="headline">Your team</v-card-title>
 
-		<div v-if="!user" class="content">
-            <h1>You are not logged in !</h1>
+            <v-card-subtitle v-if="team">Your team is {{team.name}}</v-card-subtitle>
 
-            <router-link :to="{ name: 'login'}">
-                <v-btn class="ma-2" color="lime">Login</v-btn>
-            </router-link>
-        </div>
-    </div>
+            <v-card-subtitle v-if="!team">Your are not assigned to a team. Please join one.</v-card-subtitle>
+
+            <v-card-actions v-if="!team">
+              <router-link :to="{ name: 'teams'}">
+                <v-btn text>Join a team!</v-btn>
+              </router-link>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+
+        <v-col cols="12">
+          <v-card
+                  color="blue lighten-1"
+                  dark
+          >
+            <v-card-title class="headline">The Gif of the Day</v-card-title>
+
+            <v-card-subtitle>The theme for today is: <strong>Frenchie</strong></v-card-subtitle>
+          </v-card>
+        </v-col>
+      </v-row>
+      <div class="gif-frame-container">
+        <iframe src="https://giphy.com/embed/3o7abAHdYvZdBNnGZq" width="480" height="480" title="gifoftheday" class="gif-frame" allowFullScreen></iframe>
+      </div>
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -75,31 +88,26 @@ export default {
 </script>
 
 <style>
-.home {
-    width: calc(100%);
-    height: calc(100vh - 96px);
-    overflow-y: auto;
-    margin-top: -12px;
+  .home {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-}
+  }
 
-.content {
-    text-align: center;
-}
+  .home .container {
+    max-width: 600px;
+  }
 
-a {
+  .gif-frame-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .gif-frame {
+    border: none;
+  }
+
+  a {
     text-decoration: none;
-}
-
-.todo {
-    color: orange;
-    text-transform: uppercase;
-}
-
-.team {
-    color: lime;
-}
+  }
 </style>
