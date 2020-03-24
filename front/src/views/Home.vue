@@ -1,57 +1,69 @@
 <template>
-  <div class="home">
-    <v-container>
-      <v-row dense>
-        <v-col cols="12">
-          <v-card
-                  color="green darken-3"
-                  dark
-          >
-            <v-card-title class="headline">Welcome, {{user.displayName || user.email}}</v-card-title>
+    <div class="home">
+        <v-container>
+            <v-row dense>
+                <v-col cols="12">
+                    <v-card color="green darken-3" dark>
+                        <v-card-title class="headline"
+                            >Welcome,
+                            {{ user.displayName || user.email }}</v-card-title
+                        >
 
-            <v-card-subtitle v-if="team" >Random phrase of the day !</v-card-subtitle>
-          </v-card>
-        </v-col>
+                        <v-card-subtitle v-if="assignedTeam"
+                            >Random phrase of the day !</v-card-subtitle
+                        >
+                    </v-card>
+                </v-col>
 
-        <v-col cols="12">
-          <v-card
-                  color="amber darken-3"
-                  dark
-          >
-            <v-card-title class="headline">Your team</v-card-title>
+                <v-col cols="12">
+                    <v-card color="amber darken-3" dark>
+                        <v-card-title class="headline">Your team</v-card-title>
 
-            <v-card-subtitle v-if="team">Your team is {{team.name}}</v-card-subtitle>
+                        <v-card-subtitle v-if="assignedTeam"
+                            >Your team is {{ team.name }}</v-card-subtitle
+                        >
 
-            <v-card-subtitle v-if="!team">Your are not assigned to a team. Please join one.</v-card-subtitle>
+                        <v-card-subtitle v-if="!assignedTeam"
+                            >Your are not assigned to a team. Please join
+                            one.</v-card-subtitle
+                        >
 
-            <v-card-actions v-if="!team">
-              <router-link :to="{ name: 'teams'}">
-                <v-btn text>Join a team!</v-btn>
-              </router-link>
-            </v-card-actions>
-          </v-card>
-        </v-col>
+                        <v-card-actions v-if="!assignedTeam">
+                            <router-link :to="{ name: 'teams' }">
+                                <v-btn text>Join a team!</v-btn>
+                            </router-link>
+                        </v-card-actions>
+                    </v-card>
+                </v-col>
 
-        <v-col cols="12">
-          <v-card
-                  color="blue lighten-1"
-                  dark
-          >
-            <v-card-title class="headline">The Gif of the Day</v-card-title>
+                <v-col cols="12">
+                    <v-card color="blue lighten-1" dark>
+                        <v-card-title class="headline"
+                            >The Gif of the Day</v-card-title
+                        >
 
-            <v-card-subtitle>The theme for today is: <strong>Frenchie</strong></v-card-subtitle>
-          </v-card>
-        </v-col>
-      </v-row>
-      <div class="gif-frame-container">
-        <iframe src="https://giphy.com/embed/3o7abAHdYvZdBNnGZq" width="480" height="480" title="gifoftheday" class="gif-frame" allowFullScreen></iframe>
-      </div>
-    </v-container>
-  </div>
+                        <v-card-subtitle
+                            >The theme for today is:
+                            <strong>Frenchie</strong></v-card-subtitle
+                        >
+                    </v-card>
+                </v-col>
+            </v-row>
+            <div class="gif-frame-container">
+                <iframe
+                    src="https://giphy.com/embed/3o7abAHdYvZdBNnGZq"
+                    width="480"
+                    height="480"
+                    title="gifoftheday"
+                    class="gif-frame"
+                    allowFullScreen
+                ></iframe>
+            </div>
+        </v-container>
+    </div>
 </template>
 
 <script>
-
 import firebase from 'firebase';
 
 export default {
@@ -59,16 +71,16 @@ export default {
     data() {
         return {
             team: null,
-        }
+        };
     },
     methods: {
-        getTeamById(id){
+        getTeamById(id) {
             const db = firebase.firestore();
             db.collection('teams')
                 .doc(id)
                 .get()
-                .then(snapshot => {
-                    this.team =  snapshot.data();
+                .then((snapshot) => {
+                    this.team = snapshot.data();
                 });
         },
     },
@@ -78,36 +90,36 @@ export default {
         },
         assignedTeam() {
             const id = this.$store.getters.assignedTeamId;
-            if(id) {
-                this.getTeamById(id)
+            if (id) {
+                this.getTeamById(id);
             }
             return id;
-        }
-    }
-}
+        },
+    },
+};
 </script>
 
 <style>
-  .home {
+.home {
     display: flex;
     flex-direction: column;
     justify-content: center;
-  }
+}
 
-  .home .container {
+.home .container {
     max-width: 600px;
-  }
+}
 
-  .gif-frame-container {
+.gif-frame-container {
     display: flex;
     justify-content: center;
-  }
+}
 
-  .gif-frame {
+.gif-frame {
     border: none;
-  }
+}
 
-  a {
+a {
     text-decoration: none;
-  }
+}
 </style>
