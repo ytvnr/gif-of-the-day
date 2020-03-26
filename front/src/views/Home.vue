@@ -42,10 +42,15 @@
                             >The Gif of the Day</v-card-title
                         >
 
-                        <v-card-subtitle
+                        <v-card-subtitle v-if="todayTheme && theme"
                             >The theme for today is:
-                            <strong>Frenchie</strong></v-card-subtitle
+                            <strong>{{theme}}</strong></v-card-subtitle
                         >
+                        <v-card-actions v-if="!(todayTheme && theme)">
+                            <router-link :to="{ name: 'schedule' }">
+                                <v-btn text>Choose a theme!</v-btn>
+                            </router-link>
+                        </v-card-actions>
                     </v-card>
                 </v-col>
             </v-row>
@@ -66,11 +71,14 @@
 <script>
 import firebase from 'firebase';
 
+//TODO: ideally, we should use the TeamsService here, but firebase.initializeApp is not finished then we have no access to db
+
 export default {
     name: 'home',
     data() {
         return {
             team: null,
+            theme: null
         };
     },
     methods: {
@@ -83,6 +91,29 @@ export default {
                     this.team = snapshot.data();
                 });
         },
+        getTheme(teamId) {
+
+            const db = firebase.firestore();
+            let start = new Date();
+            start.setUTCHours(0,0,0,0);
+            let end = new Date();
+            end.setUTCHours(23,59,59,0);
+
+            db.collection('themes')
+                .where('team', '==', db.collection('teams').doc(teamId))
+                .where('date', '>=', start)
+                .where('date', '<=', end)
+                .get()
+                .then(snapshots => {
+                    if (snapshots.size !== 1) {
+                        throw new Error('Cannot have multiple result');
+                    }
+                    snapshots.forEach((doc) => {
+                        const item = doc.data();
+                        this.theme = item.theme;
+                    });
+                });
+        }
     },
     computed: {
         user() {
@@ -92,6 +123,13 @@ export default {
             const id = this.$store.getters.assignedTeamId;
             if (id) {
                 this.getTeamById(id);
+            }
+            return id;
+        },
+        todayTheme() {
+            const id = this.$store.getters.assignedTeamId;
+            if(id) {
+                this.getTheme(id);
             }
             return id;
         },
