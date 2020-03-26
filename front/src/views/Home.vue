@@ -19,7 +19,7 @@
                     <v-card color="amber darken-3" dark>
                         <v-card-title class="headline">Your team</v-card-title>
 
-                        <v-card-subtitle v-if="assignedTeam"
+                        <v-card-subtitle v-if="team"
                             >Your team is {{ team.name }}</v-card-subtitle
                         >
 
