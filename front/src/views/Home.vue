@@ -66,11 +66,15 @@
 <script>
 import firebase from 'firebase';
 
+//TODO: ideally, we should use the TeamsService here, but firebase.initializeApp is not finished then we have no access to db
+
+
 export default {
     name: 'home',
     data() {
         return {
             team: null,
+            theme: null
         };
     },
     methods: {
@@ -83,6 +87,29 @@ export default {
                     this.team = snapshot.data();
                 });
         },
+        getTheme(teamId) {
+
+            const db = firebase.firestore();
+            let start = new Date();
+            start.setUTCHours(0,0,0,0);
+            let end = new Date();
+            end.setUTCHours(23,59,59,0);
+
+            db.collection('themes')
+                .where('team', '==', db.collection('teams').doc(teamId))
+                .where('date', '>=', start)
+                .where('date', '<=', end)
+                .get()
+                .then(snapshots => {
+                    if (snapshots.size !== 1) {
+                        throw new Error('Cannot have multiple result');
+                    }
+                    snapshots.forEach((doc) => {
+                        const item = doc.data();
+                        this.theme = item.theme;
+                    });
+                });
+        }
     },
     computed: {
         user() {
@@ -93,6 +120,15 @@ export default {
             if (id) {
                 this.getTeamById(id);
             }
+            return id;
+        },
+        todayTheme() {
+            const id = this.$store.getters.assignedTeamId;
+            console.log('theme')
+            if(id) {
+                this.getTheme(id);
+            }
+            console.log('theme', id)
             return id;
         },
     },

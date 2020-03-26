@@ -37,6 +37,9 @@
                     :disable-sort="true"
                     :hide-default-footer="true"
                 >
+                    <template v-slot:item.day="props">
+                        <div>{{ props.item.day }}</div>
+                    </template>
                     <template v-slot:item.theme="props">
                         <v-edit-dialog
                             :return-value.sync="props.item.theme"
@@ -68,9 +71,9 @@
 
 <script>
 
-import firebase from 'firebase';
+import TeamsService from '../services/teams.service';
 
-const db = firebase.firestore();
+const teamsService = new TeamsService();
 
 export default {
     name: 'schedule',
@@ -143,32 +146,37 @@ export default {
                 diff = d.getDate() - day + (day == 0 ? -6 : 1);
             return new Date(d.setDate(diff));
         },
-        loadDefaultWeek() {
-            this.defaultGifs.forEach(d => {
+        loadDefaultWeek(startDate) {
+            this.gifs = [];
+            this.defaultGifs.forEach((d, index) => {
+
+                const dayDate = new Date();
+                dayDate.setDate(startDate.getDate() + index);
+
                 this.gifs.push({
-                    day: d.day,
-                    theme : d.theme
+                    day: `${startDate.getDate() + index}, ${d.day}`,
+                    theme : d.theme,
+                    date: dayDate
                 })
             });
         },
         loadWeek() {
-            this.loadDefaultWeek();
-			
-            const start = this.getMonday(this.date); 
+
+            const start = this.getMonday(this.date);
             const end = new Date();
             end.setDate(start.getDate() + 7);
+
+            this.loadDefaultWeek(start);
 			
             if(this.assignedTeamId) {
-                db.collection('themes')
-                    .where('team', '==', db.collection('teams').doc(this.assignedTeamId))
-                    .where('date', '>=', start)
-                    .where('date', '<=', end)
-                    .get()
+                teamsService.getThemesBetweenDates(this.assignedTeamId, start, end)
                     .then(snapshots => {
                         snapshots.forEach((doc) => {
                             const item = doc.data();
                             const day = item.date.toDate().getDay();
+                            this.gifs[day - 1].id = doc.id;
                             this.gifs[day - 1].theme = item.theme;
+                            this.gifs[day - 1].date = item.date;
                         });
                     })
                     .catch(error => {
@@ -177,8 +185,7 @@ export default {
             }
         },
         save(event) {
-            console.log('Dialog saved');
-            console.log(event);
+            teamsService.saveTheme(event.id, event.theme, this.assignedTeamId, event.date);
         },
     },
     computed: {
