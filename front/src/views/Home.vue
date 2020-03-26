@@ -42,10 +42,15 @@
                             >The Gif of the Day</v-card-title
                         >
 
-                        <v-card-subtitle
+                        <v-card-subtitle v-if="todayTheme && theme"
                             >The theme for today is:
-                            <strong>Frenchie</strong></v-card-subtitle
+                            <strong>{{theme}}</strong></v-card-subtitle
                         >
+                        <v-card-actions v-if="!(todayTheme && theme)">
+                            <router-link :to="{ name: 'schedule' }">
+                                <v-btn text>Choose a theme!</v-btn>
+                            </router-link>
+                        </v-card-actions>
                     </v-card>
                 </v-col>
             </v-row>
@@ -67,7 +72,6 @@
 import firebase from 'firebase';
 
 //TODO: ideally, we should use the TeamsService here, but firebase.initializeApp is not finished then we have no access to db
-
 
 export default {
     name: 'home',
@@ -124,11 +128,9 @@ export default {
         },
         todayTheme() {
             const id = this.$store.getters.assignedTeamId;
-            console.log('theme')
             if(id) {
                 this.getTheme(id);
             }
-            console.log('theme', id)
             return id;
         },
     },
