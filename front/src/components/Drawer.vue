@@ -1,47 +1,47 @@
 <template>
-  <v-navigation-drawer
-    :clipped="true"
-    :floating="false"
-    :mini-variant="isDrawerMini"
-    :permanent="true"
-    app
-    overflow
-  >
-    <v-list-item class="px-2" v-if="user">
-      <v-list-item-avatar>
-        <v-img :src="userPicture"></v-img>
-      </v-list-item-avatar>
+    <v-navigation-drawer
+        :clipped="true"
+        :floating="false"
+        :mini-variant="isDrawerMini"
+        :permanent="true"
+        app
+        overflow
+    >
+        <v-list-item class="px-2" v-if="user">
+            <v-list-item-avatar>
+                <v-img :src="userPicture"></v-img>
+            </v-list-item-avatar>
 
-      <v-list-item-title>{{user.displayName || user.email}}</v-list-item-title>
-    </v-list-item>
-
-    <v-divider></v-divider>
-    <v-list dense nav>
-      <template v-for="item in items">
-        <v-list-item :key="item.title" v-if="!item.needAuth || user" link :to="item.href">
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
+            <v-list-item-title>{{user.displayName || user.email}}</v-list-item-title>
         </v-list-item>
-      </template>
-    </v-list>
 
-    <template v-slot:append v-if="user">
-      <v-list-item link to="/logout">
-        <v-list-item-icon>
-          <v-icon color="error">mdi-logout</v-icon>
-        </v-list-item-icon>
+        <v-divider></v-divider>
+        <v-list dense nav>
+            <template v-for="item in items">
+                <v-list-item :key="item.title" v-if="!item.needAuth || user" link :to="item.href">
+                    <v-list-item-icon>
+                        <v-icon>{{ item.icon }}</v-icon>
+                    </v-list-item-icon>
 
-        <v-list-item-content>
-          <v-list-item-title>Logout</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-    </template>
-  </v-navigation-drawer>
+                    <v-list-item-content>
+                        <v-list-item-title>{{ item.title }}</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+            </template>
+        </v-list>
+
+        <template v-slot:append>
+            <v-list-item link to="/logout" v-if="user">
+                <v-list-item-icon>
+                    <v-icon color="error">mdi-logout</v-icon>
+                </v-list-item-icon>
+
+                <v-list-item-content>
+                    <v-list-item-title>Logout</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
+        </template>
+    </v-navigation-drawer>
 </template>
 
 <script>
