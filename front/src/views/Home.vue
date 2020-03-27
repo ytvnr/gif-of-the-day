@@ -54,15 +54,8 @@
                     </v-card>
                 </v-col>
             </v-row>
-            <div class="gif-frame-container">
-                <iframe
-                    src="https://giphy.com/embed/3o7abAHdYvZdBNnGZq"
-                    width="480"
-                    height="480"
-                    title="gifoftheday"
-                    class="gif-frame"
-                    allowFullScreen
-                ></iframe>
+            <div class="gif-frame-container" v-if="gif">
+                <img :src="gif.images.downsized.url" :alt="gif.title" />
             </div>
         </v-container>
     </div>
@@ -70,6 +63,7 @@
 
 <script>
 import firebase from 'firebase';
+import GiphyService from '@/services/giphy.service';
 
 //TODO: ideally, we should use the TeamsService here, but firebase.initializeApp is not finished then we have no access to db
 
@@ -78,7 +72,9 @@ export default {
     data() {
         return {
             team: null,
-            theme: null
+            theme: null,
+            gif: null,
+            giphyService: new GiphyService()
         };
     },
     methods: {
@@ -106,11 +102,16 @@ export default {
                 .get()
                 .then(snapshots => {
                     if (snapshots.size !== 1) {
-                        throw new Error('Cannot have multiple result');
+                        throw new Error('Cannot have 0 or multiple result');
                     }
                     snapshots.forEach((doc) => {
                         const item = doc.data();
                         this.theme = item.theme;
+                        this.giphyService.randomByTag(this.theme)
+                            .then(resp => JSON.parse(JSON.stringify(resp.data)))
+                            .then(result => {
+                                this.gif = result.data;
+                            });
                     });
                 });
         }
