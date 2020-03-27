@@ -68,7 +68,7 @@ export default {
             gif: null,
             giphyService: new GiphyService(),
             teamsService: null,
-            assignedTeam2: null
+            assignedTeamLocal: null
         };
     },
     created() {
@@ -109,7 +109,7 @@ export default {
         }
     },
     watch: {
-        assignedTeam2(id){
+        assignedTeamLocal(id){
             if(id){
                 this.getTeamById(id);
                 this.getThemeByTeamId(id);
@@ -122,7 +122,7 @@ export default {
         },
         assignedTeam() {
             // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-            this.assignedTeam2 = this.$store.getters.assignedTeamId;
+            this.assignedTeamLocal = this.$store.getters.assignedTeamId;
             return this.$store.getters.assignedTeamId;
         },
     },

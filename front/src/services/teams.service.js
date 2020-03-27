@@ -12,7 +12,7 @@ export default class TeamsService {
         return this.db.collection('teams').doc(teamId).get();
     }
 
-    getTheme(teamId, date) {
+    getTheme(teamId) {
 
         let start = new Date();
         start.setUTCHours(0,0,0,0);
