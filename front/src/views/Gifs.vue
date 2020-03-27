@@ -27,6 +27,7 @@
 import GiphyService from '@/services/giphy.service.js';
 import debounce from 'lodash.debounce';
 import Masonry from 'masonry-layout';
+import TeamsService from '../services/teams.service';
 
 export default {
     data() {
@@ -35,11 +36,24 @@ export default {
             gifs: [],
             pagination: null,
             masonry: null,
-            giphyService: new GiphyService()
+            giphyService: new GiphyService(),
+            teamsService: new TeamsService()
         }
     },
     mounted() {
         this.initInfiniteScroll();
+
+        this.teamsService.getTheme(this.$store.getters.assignedTeamId)
+            .then(snapshots => {
+                if (snapshots.size > 1) {
+                    throw new Error('Cannot have multiple results');
+                }
+                snapshots.forEach((doc) => {
+                    const item = doc.data();
+                    this.searchValue = item.theme;
+                    this.search(true);
+                })
+            });
     },
     methods: {
         search: debounce(function (needReset = false) {
