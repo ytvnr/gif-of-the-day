@@ -155,7 +155,7 @@ export default {
                 dayDate.setDate(startDate.getDate() + index);
 
                 this.gifs.push({
-                    day: `${startDate.getDate() + index}, ${d.day}`,
+                    day: `${d.day} ${startDate.getDate() + index}`,
                     theme : d.theme,
                     date: dayDate
                 })
