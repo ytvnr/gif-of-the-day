@@ -4,13 +4,11 @@ const db = firebase.firestore();
 
 export default class TeamsService {
 
-    getTheme(teamId, date) {
+    getTheme(teamId) {
 
         let start = new Date();
-        start.setDate(date);
         start.setUTCHours(0,0,0,0);
         let end = new Date();
-        end.setDate(date);
         end.setUTCHours(23,59,59,0);
 
         return db.collection('themes')
