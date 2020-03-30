@@ -71,12 +71,14 @@ let isFirstTransition = true;
 
 router.beforeEach(async (to, from, next) => {
     const lastRouteName = localStorage.getItem('lastToPath');
-
+    
     const shouldRedirect = Boolean(
         to.name === 'home' && lastRouteName && isFirstTransition
     );
 
-    if (shouldRedirect) next({ name: lastRouteName });
+    if (shouldRedirect) {
+        next({ name: lastRouteName });
+    }
 
     const requireAuth = to.matched.some((record) => record.meta.requireAuth);
     if (requireAuth && !(await firebase.getCurrentUser())) {
@@ -89,7 +91,11 @@ router.beforeEach(async (to, from, next) => {
 });
 
 router.afterEach((to) => {
-    window.localStorage.setItem('lastToPath', to.name);
+    if(to.name === 'home') {
+        window.localStorage.removeItem('lastToPath');
+    }else {
+        window.localStorage.setItem('lastToPath', to.name);
+    }
 });
 
 export default router;

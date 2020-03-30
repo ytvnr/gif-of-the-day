@@ -2,14 +2,14 @@
     <div class="home">
         <v-container>
             <v-row dense>
-                <v-col cols="12" v-if="user">
+                <v-col cols="12">
                     <v-card color="green darken-3" dark>
                         <v-card-title class="headline">
                             Welcome,
                             {{ user.displayName || user.email }}
                         </v-card-title>
 
-                        <v-card-subtitle v-if="assignedTeam">Random phrase of the day !</v-card-subtitle>
+                        <v-card-subtitle v-if="storedAssignedTeamId">Random phrase of the day !</v-card-subtitle>
                     </v-card>
                 </v-col>
 
@@ -19,12 +19,12 @@
 
                         <v-card-subtitle v-if="team">Your team is {{ team.name }}</v-card-subtitle>
 
-                        <v-card-subtitle v-if="!assignedTeam">
+                        <v-card-subtitle v-if="!storedAssignedTeamId">
                             Your are not assigned to a team. Please join
                             one.
                         </v-card-subtitle>
 
-                        <v-card-actions v-if="!assignedTeam">
+                        <v-card-actions v-if="!storedAssignedTeamId">
                             <router-link :to="{ name: 'teams' }">
                                 <v-btn text>Join a team!</v-btn>
                             </router-link>
@@ -68,7 +68,7 @@ export default {
             gif: null,
             giphyService: new GiphyService(),
             teamsService: null,
-            assignedTeamLocal: null
+            storedAssignedTeamId: null
         };
     },
     created() {
@@ -109,7 +109,7 @@ export default {
         }
     },
     watch: {
-        assignedTeamLocal(id){
+        storedAssignedTeamId(id){
             if(id){
                 this.getTeamById(id);
                 this.getThemeByTeamId(id);
@@ -120,9 +120,9 @@ export default {
         user() {
             return this.$store.getters.user;
         },
-        assignedTeam() {
+        assignedTeamId() {
             // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-            this.assignedTeamLocal = this.$store.getters.assignedTeamId;
+            this.storedAssignedTeamId = this.$store.getters.assignedTeamId;
             return this.$store.getters.assignedTeamId;
         },
     },
