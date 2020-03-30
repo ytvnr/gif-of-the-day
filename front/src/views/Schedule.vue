@@ -47,7 +47,7 @@
                             persistent
                             @save="save(props.item)"
                         >
-                            <div>{{ props.item.theme }}</div>
+                            <div>{{ props.item.theme || '✏️' }}</div>
                             <template v-slot:input>
                                 <div class="mt-4 title">Update Theme</div>
                             </template>
@@ -58,6 +58,7 @@
                                     single-line
                                     counter
                                     autofocus
+                                    maxlength="30"
                                 ></v-text-field>
                             </template>
                         </v-edit-dialog>
@@ -71,7 +72,7 @@
 
 <script>
 
-import TeamsService from '../services/teams.service';
+import TeamsService from '@/services/teams.service';
 
 const teamsService = new TeamsService();
 
@@ -97,31 +98,31 @@ export default {
             defaultGifs: [
                 {
                     day: 'Monday',
-                    theme: '---',
+                    theme: '',
                 },
                 { 
                     day: 'Tuesday',
-                    theme: '---',
+                    theme: '',
                 },
                 {
                     day: 'Wednesday',
-                    theme: '---',
+                    theme: '',
                 },
                 {
                     day: 'Thursday',
-                    theme: '---',
+                    theme: '',
                 },
                 {
                     day: 'Friday',
-                    theme: '---',
+                    theme: '',
                 },
                 {
                     day: 'Saturday',
-                    theme: '---',
+                    theme: '',
                 },
                 {
                     day: 'Sunday',
-                    theme: '---',
+                    theme: '',
                 }
             ],
             gifs: [],
@@ -154,7 +155,7 @@ export default {
                 dayDate.setDate(startDate.getDate() + index);
 
                 this.gifs.push({
-                    day: `${startDate.getDate() + index}, ${d.day}`,
+                    day: `${d.day} ${startDate.getDate() + index}`,
                     theme : d.theme,
                     date: dayDate
                 })
