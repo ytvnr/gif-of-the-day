@@ -43,8 +43,9 @@ export default {
         }
     },
     computed: mapState(['assignedTeamId' ]),
-    created() {
+    mounted() {
         this.initInfiniteScroll();
+        this.getTeamTheme();
     },
     methods: {
         getTeamTheme()  {
