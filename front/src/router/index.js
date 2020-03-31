@@ -4,6 +4,7 @@ import Home from '../views/Home.vue';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
 import About from '../views/About.vue';
+import Faq from '../views/Faq.vue';
 import Logout from '../views/Logout.vue';
 import firebase from '@/firebase/init';
 
@@ -33,6 +34,12 @@ const routes = [
         name: 'register',
         meta: { requireAuth: false },
         component: Register,
+    },
+    {
+        path: '/faq',
+        name: 'faq',
+        meta: { requireAuth: false },
+        component: Faq,
     },
     {
         path: '/about',
