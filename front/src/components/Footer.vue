@@ -1,6 +1,6 @@
 <template>
   <v-footer :inset="false" app>
-    <span>&copy; 2019 - {{ new Date().getFullYear() }}</span>
+    <router-link to="about">&copy; 2019 - {{ new Date().getFullYear() }}</router-link>
 
     <v-spacer></v-spacer>
 
