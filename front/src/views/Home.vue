@@ -9,7 +9,7 @@
                             {{ user.displayName || user.email }}
                         </v-card-title>
 
-                        <v-card-subtitle v-if="storedAssignedTeamId">Random phrase of the day !</v-card-subtitle>
+                        <v-card-subtitle v-if="assignedTeamId && storedAssignedTeamId">Random phrase of the day !</v-card-subtitle>
                     </v-card>
                 </v-col>
 
