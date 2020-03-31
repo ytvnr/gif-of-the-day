@@ -19,32 +19,33 @@
                     <div>or</div>
                     <div class="line"></div>
                 </div>
-                <v-card-text>
-                    <v-form @submit="signInWithEmailAndPassword()">
-                        <v-text-field
-                            required
-                            label="Email"
-                            name="email"
-                            prepend-icon="mdi-account"
-                            type="email"
-                            v-model="user.email"
-                        />
+                <v-form @submit="signInWithEmailAndPassword()">
+                    <v-card-text>
 
-                        <v-text-field
-                            required
-                            id="password"
-                            label="Password"
-                            name="password"
-                            prepend-icon="mdi-lock"
-                            type="password"
-                            v-model="user.password"
-                        />
-                    </v-form>
-                </v-card-text>
-                <v-card-actions class="text-center">
-                    <v-btn color="primary" @click="signInWithEmailAndPassword()">Login</v-btn>
-                </v-card-actions>
+                            <v-text-field
+                                required
+                                label="Email"
+                                name="email"
+                                prepend-icon="mdi-account"
+                                type="email"
+                                v-model="user.email"
+                            />
 
+                            <v-text-field
+                                required
+                                id="password"
+                                label="Password"
+                                name="password"
+                                prepend-icon="mdi-lock"
+                                type="password"
+                                v-model="user.password"
+                            />
+
+                    </v-card-text>
+                    <v-card-actions class="text-center">
+                        <v-btn color="primary" type="submit">Login</v-btn>
+                    </v-card-actions>
+                </v-form>
                 <div class="text-center or-spacer">
                     <div class="line"></div>
                     <div>or</div>
