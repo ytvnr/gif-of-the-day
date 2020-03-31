@@ -56,7 +56,7 @@ export default {
                 { title: 'Gifs', icon: 'mdi-gif', href: '/gifs', needAuth: true },
                 { title: 'Schedule', icon: 'mdi-calendar', href: '/schedule', needAuth: true },
                 { title: 'Teams', icon: 'mdi-account-group', href: '/teams', needAuth: true },
-                { title: 'About', icon: 'mdi-help-box', href: '/about', needAuth: false }
+                { title: 'Faq', icon: 'mdi-help-box', href: '/faq', needAuth: false }
             ],
         }
     },
