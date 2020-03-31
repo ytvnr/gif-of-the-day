@@ -9,7 +9,7 @@
                             {{ user.displayName || user.email }}
                         </v-card-title>
 
-                        <v-card-subtitle v-if="assignedTeamId && storedAssignedTeamId">Random phrase of the day !</v-card-subtitle>
+                        <v-card-subtitle v-if="assignedTeamId">Random phrase of the day !</v-card-subtitle>
                     </v-card>
                 </v-col>
 
@@ -19,12 +19,12 @@
 
                         <v-card-subtitle v-if="team">Your team is {{ team.name }}</v-card-subtitle>
 
-                        <v-card-subtitle v-if="!storedAssignedTeamId">
+                        <v-card-subtitle v-if="!assignedTeamId">
                             Your are not assigned to a team. Please join
                             one.
                         </v-card-subtitle>
 
-                        <v-card-actions v-if="!storedAssignedTeamId">
+                        <v-card-actions v-if="!assignedTeamId">
                             <router-link :to="{ name: 'teams' }">
                                 <v-btn text>Join a team!</v-btn>
                             </router-link>
@@ -56,6 +56,8 @@
 </template>
 
 <script>
+
+import { mapState } from 'vuex';
 import GiphyService from '@/services/giphy.service';
 import TeamsService from '@/services/teams.service';
 
@@ -68,11 +70,19 @@ export default {
             gif: null,
             giphyService: new GiphyService(),
             teamsService: null,
-            storedAssignedTeamId: null
         };
     },
     created() {
         this.teamsService = new TeamsService();
+    },
+    computed: mapState(['user', 'assignedTeamId' ]),
+    watch: {
+        assignedTeamId(id){
+            if(id){
+                this.getTeamById(id);
+                this.getThemeByTeamId(id);
+            }
+        }
     },
     methods: {
         getTeamById(teamId) {
@@ -107,25 +117,7 @@ export default {
                     });
                 });
         }
-    },
-    watch: {
-        storedAssignedTeamId(id){
-            if(id){
-                this.getTeamById(id);
-                this.getThemeByTeamId(id);
-            }
-        }
-    },
-    computed: {
-        user() {
-            return this.$store.getters.user;
-        },
-        assignedTeamId() {
-            // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-            this.storedAssignedTeamId = this.$store.getters.assignedTeamId;
-            return this.$store.getters.assignedTeamId;
-        },
-    },
+    }
 };
 </script>
 
