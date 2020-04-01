@@ -73,8 +73,7 @@
 <script>
 
 import TeamsService from '@/services/teams.service';
-
-const teamsService = new TeamsService();
+import { mapState } from 'vuex';
 
 export default {
     name: 'schedule',
@@ -86,6 +85,7 @@ export default {
             pagination: {},
             date: new Date().toISOString().substr(0, 10),
             modal: false,
+            teamsService: null,
             headers: [
                 {
                     text: 'Day of week',
@@ -129,9 +129,14 @@ export default {
         };
     },
     created() {
+        this.teamsService = new TeamsService();
         this.loadWeek();
     },
+    computed: mapState(['user', 'assignedTeamId' ]),
     watch: {
+        assignedTeamId() {
+            this.loadWeek();
+        },
         date() {
             this.loadWeek();
         }
@@ -148,6 +153,7 @@ export default {
             return new Date(d.setDate(diff));
         },
         loadDefaultWeek(startDate) {
+            
             this.gifs = [];
             this.defaultGifs.forEach((d, index) => {
 
@@ -170,7 +176,7 @@ export default {
             this.loadDefaultWeek(start);
 			
             if(this.assignedTeamId) {
-                teamsService.getThemesBetweenDates(this.assignedTeamId, start, end)
+                this.teamsService.getThemesBetweenDates(this.assignedTeamId, start, end)
                     .then(snapshots => {
                         snapshots.forEach((doc) => {
                             const item = doc.data();
@@ -183,20 +189,14 @@ export default {
                     .catch(error => {
                         console.error(error);
                     })
+            } else {
+                console.error('No assignedTeamId for the moment 😢');
             }
         },
         save(event) {
-            teamsService.saveTheme(event.id, event.theme, this.assignedTeamId, event.date);
+            this.teamsService.saveTheme(event.id, event.theme, this.assignedTeamId, event.date);
         },
-    },
-    computed: {
-        user() {
-            return this.$store.getters.user;
-        },
-        assignedTeamId() {
-            return this.$store.getters.assignedTeamId;
-        }
-    },
+    }
 }
 </script>
 
