@@ -1,6 +1,5 @@
 # Contributing to Gif Of The Day
 
-  * [Code of Conduct](#code-of-conduct)
   * [GitHubFlow](#githubflow)
   * [Question and Problems](#question-and-problems)
   * [Issues and Bugs](#issues-and-bugs)
@@ -19,12 +18,6 @@
     + [After your pull request is merged](#after-your-pull-request-is-merged)
   * [Commits](#commits)
     + [Examples of good pratices](#examples-of-good-pratices)
-
-## Code of Conduct
-
-### Our Pledge
-
-In the interest of fostering an open and welcoming environment, we as contributors and maintainers pledge to making participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion, or sexual identity and orientation.
 
 ## GitHubFlow
 
@@ -200,7 +193,7 @@ Before you submit your pull request consider the following guidelines:
 
 That's it! Thank you for your contribution!
 
-### CI/CD
+### CI-CD
 
 We're using GitHub actions for automated stuff.
 
