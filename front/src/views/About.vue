@@ -54,7 +54,6 @@ export default {
         this.githubService.getContributors()
             .then(resp => JSON.parse(JSON.stringify(resp.data)))
             .then(result => {
-                console.log(result);
                 this.contributors = result;
             });
     }
