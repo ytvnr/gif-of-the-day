@@ -75,6 +75,12 @@ export default {
     created() {
         this.teamsService = new TeamsService();
     },
+    mounted() {  
+        if(this.assignedTeamId) {
+            this.getTeamById(this.assignedTeamId);
+            this.getThemeByTeamId(this.assignedTeamId);
+        }
+    },
     computed: mapState(['user', 'assignedTeamId' ]),
     watch: {
         assignedTeamId(id){
