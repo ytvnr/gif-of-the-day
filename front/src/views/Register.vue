@@ -39,7 +39,7 @@
                 </v-sheet>
 
                 <v-card-text>
-                    <v-form @submit="createUserWithEmailAndPassword()">
+                    <v-form @submit.prevent="createUserWithEmailAndPassword()">
                         <v-text-field
                             required
                             label="Email"
