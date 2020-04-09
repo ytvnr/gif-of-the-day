@@ -14,16 +14,19 @@ export default class TeamsService {
 
     getTheme(teamId) {
 
-        let start = new Date();
-        start.setUTCHours(0,0,0,0);
-        let end = new Date();
-        end.setUTCHours(23,59,59,0);
+        if (teamId) {
+            let start = new Date();
+            start.setUTCHours(0,0,0,0);
+            let end = new Date();
+            end.setUTCHours(23,59,59,0);
 
-        return this.db.collection('themes')
-            .where('team', '==', this.db.collection('teams').doc(teamId))
-            .where('date', '>=', start)
-            .where('date', '<=', end)
-            .get();
+            return this.db.collection('themes')
+                .where('team', '==', this.db.collection('teams').doc(teamId))
+                .where('date', '>=', start)
+                .where('date', '<=', end)
+                .get();
+        }
+        return Promise.resolve([]);
     }
 
     getThemesBetweenDates(teamId, start, end) {

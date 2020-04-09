@@ -18,6 +18,24 @@
                         class="error"
                         v-if="!$v.repeatPassword.sameAsPassword"
                     >Passwords must be identical.</div>
+                    <div
+                            class="error"
+                            v-if="!$v.firstName.required"
+                    >First name is required.</div>
+
+                    <div
+                            class="error"
+                            v-if="!$v.firstName.maxLength"
+                    >First name max length is {{ $v.firstName.$params.maxLength.max }} letters.</div>
+                    <div
+                            class="error"
+                            v-if="!$v.lastName.required"
+                    >Last name is required.</div>
+
+                    <div
+                            class="error"
+                            v-if="!$v.lastName.maxLength"
+                    >Last name max length is {{ $v.lastName.$params.maxLength.max }} letters.</div>
                 </v-sheet>
 
                 <v-card-text>
@@ -50,6 +68,26 @@
                             type="password"
                             v-model="$v.repeatPassword.$model"
                         />
+
+                        <v-text-field
+                                required
+                                id="firstName"
+                                label="First Name"
+                                name="firstName"
+                                prepend-icon="mdi-emoticon"
+                                type="text"
+                                v-model="$v.firstName.$model"
+                        />
+
+                        <v-text-field
+                                required
+                                id="lastName"
+                                label="Last Name"
+                                name="lastName"
+                                prepend-icon="mdi-emoticon-cool"
+                                type="text"
+                                v-model="$v.lastName.$model"
+                        />
                     </v-form>
                 </v-card-text>
                 <v-card-actions class="text-center">
@@ -76,7 +114,7 @@
 </template>
 
 <script>
-import { required, email, minLength, sameAs } from 'vuelidate/lib/validators'
+import { required, email, minLength, maxLength, sameAs } from 'vuelidate/lib/validators'
 
 export default {
     data() {
@@ -84,6 +122,8 @@ export default {
             email: "",
             password: "",
             repeatPassword: "",
+            lastName: "",
+            firstName: ""
         }
     },
     validations: {
@@ -99,6 +139,14 @@ export default {
             required,
             sameAsPassword: sameAs('password'), 
             minLength: minLength(5),
+        },
+        lastName: {
+            required,
+            maxLength: maxLength(30),
+        },
+        firstName: {
+            required,
+            maxLength: maxLength(30),
         }
     },
     methods: {
@@ -107,7 +155,9 @@ export default {
                 this.$store.dispatch('createUserWithEmailAndPassword', {
                     email: this.email,
                     password: this.password,
-                    password2: this.password2
+                    password2: this.password2,
+                    lastName: this.lastName,
+                    firstName: this.firstName
                 });
             }
         }

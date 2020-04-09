@@ -123,9 +123,19 @@ export default new Vuex.Store({
                                 user.email,
                                 user.password
                             )
-                            .then(() => {
-                                commit('setStatus', 'success');
-                                commit('setError', null);
+                            .then(registered => {
+                                registered.user.updateProfile({
+                                    displayName: `${user.firstName} ${user.lastName}`
+                                })
+                                .then(() => {
+                                    commit('setStatus', 'success');
+                                    commit('setError', null);
+                                })
+                                .catch(error => {
+                                    commit('setStatus', 'failure');
+                                    commit('setError', error.message);
+                                });
+
                             })
                             .catch(function(error) {
                                 commit('setStatus', 'failure');
