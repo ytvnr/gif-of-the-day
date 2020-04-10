@@ -19,7 +19,7 @@
                     <div>or</div>
                     <div class="line"></div>
                 </div>
-                <v-form @submit="signInWithEmailAndPassword()">
+                <v-form @submit.prevent="signInWithEmailAndPassword()">
                     <v-card-text>
 
                             <v-text-field
