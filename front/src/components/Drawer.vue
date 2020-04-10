@@ -18,7 +18,7 @@
         <v-divider></v-divider>
         <v-list dense nav>
             <template v-for="item in items">
-                <v-list-item :key="item.title" v-if="!item.needAuth || user" link :to="item.href">
+                <v-list-item :key="item.title" v-if="!item.needAuth || user && organizationId" link :to="item.href">
                     <v-list-item-icon>
                         <v-icon>{{ item.icon }}</v-icon>
                     </v-list-item-icon>
@@ -45,6 +45,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
     props: [
         'isDrawerMini'
@@ -61,6 +63,7 @@ export default {
         }
     },
     computed: {
+        ...mapState([ 'organizationId' ]),
         user() {
             return this.$store.getters.user;
         },

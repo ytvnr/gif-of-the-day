@@ -21,5 +21,10 @@ service cloud.firestore {
       allow read: if true;
       allow write, create: if get(/databases/$(database)/documents/usersMetadata/$(request.auth.uid)).data.assignedTeamId == request.resource.data.teamId 
     }
+
+    match /organizations/{documentId} {
+	  allow read: if true;
+	  allow write, create: if false;
+	}
   }
 }
