@@ -37,34 +37,37 @@
                     :disable-sort="true"
                     :hide-default-footer="true"
                 >
-                    <template v-slot:item.day="props">
-                        <div>{{ props.item.day }}</div>
-                    </template>
-                    <template v-slot:item.theme="props">
-                        <v-edit-dialog
-                            :return-value.sync="props.item.theme"
-                            large
-                            persistent
-                            @save="save(props.item)"
-                        >
-                            <div>{{ props.item.theme || '✏️' }}</div>
-                            <template v-slot:input>
-                                <div class="mt-4 title">Update Theme</div>
-                            </template>
-                            <template v-slot:input>
-                                <v-text-field
-                                    v-model="props.item.theme"
-                                    label="Edit"
-                                    single-line
-                                    counter
-                                    autofocus
-                                    maxlength="30"
-                                ></v-text-field>
-                            </template>
-                        </v-edit-dialog>
+                    <template v-slot:item="props">
+                        <tr :class="{ highlight: props.item.isHighlight }">
+                            <td>
+                                <div>{{ props.item.day }}</div>
+                            </td>
+                            <td>
+                                <v-edit-dialog
+                                    :return-value.sync="props.item.theme"
+                                    large
+                                    persistent
+                                    @save="save(props.item)"
+                                >
+                                    <div>{{ props.item.theme || '✏️' }}</div>
+                                    <template v-slot:input>
+                                        <div class="mt-4 title">Update Theme</div>
+                                    </template>
+                                    <template v-slot:input>
+                                        <v-text-field
+                                            v-model="props.item.theme"
+                                            label="Edit"
+                                            single-line
+                                            counter
+                                            autofocus
+                                            maxlength="30"
+                                        ></v-text-field>
+                                    </template>
+                                </v-edit-dialog>
+                            </td>
+                        </tr>
                     </template>
                 </v-data-table>
-                <v-card-actions></v-card-actions>
             </v-card>
         </v-col>
     </v-row>
@@ -98,31 +101,24 @@ export default {
             defaultGifs: [
                 {
                     day: 'Monday',
-                    theme: '',
                 },
                 { 
                     day: 'Tuesday',
-                    theme: '',
                 },
                 {
                     day: 'Wednesday',
-                    theme: '',
                 },
                 {
                     day: 'Thursday',
-                    theme: '',
                 },
                 {
                     day: 'Friday',
-                    theme: '',
                 },
                 {
                     day: 'Saturday',
-                    theme: '',
                 },
                 {
                     day: 'Sunday',
-                    theme: '',
                 }
             ],
             gifs: [],
@@ -148,8 +144,8 @@ export default {
         },
         getMonday(d) {
             d = new Date(d);
-            var day = d.getDay(),
-                diff = d.getDate() - day + (day == 0 ? -6 : 1);
+            const day = d.getDay();
+            const diff = d.getDate() - day + (day == 0 ? -6 : 1);
             return new Date(d.setDate(diff));
         },
         loadDefaultWeek(startDate) {
@@ -163,7 +159,8 @@ export default {
                 this.gifs.push({
                     day: `${d.day} ${startDate.getDate() + index}`,
                     theme : d.theme,
-                    date: dayDate
+                    date: dayDate,
+                    isHighlight:  new Date(this.date).getDate() === dayDate.getDate()
                 })
             });
         },
@@ -209,6 +206,10 @@ export default {
 
     .v-card {
         margin-bottom: 12px;
+    }
+
+    .highlight {
+        background: #1f7087;
     }
 }
 </style>

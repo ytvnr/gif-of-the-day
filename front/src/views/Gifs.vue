@@ -16,7 +16,13 @@
         <div class="gifs__container">
             <div class="gifs__container__list">
                 <div class="gifs__container__list__item" v-for="gif in gifs" :key="gif.id">
-                    <img :src="gif.images.fixed_width.url" :alt="gif.title" />
+                    <img
+                        :src="gif.images.fixed_width.url"
+                        :alt="gif.title"
+                        @load="loadComplete(gif.id)"
+                        :hidden="!loadedGifs.includes(gif.id)"
+                    />
+                    <v-skeleton-loader v-if="!loadedGifs.includes(gif.id)" class="mx-auto" type="image"></v-skeleton-loader>
                 </div>
             </div>
         </div>
@@ -36,6 +42,7 @@ export default {
         return {
             searchValue: '',
             gifs: [],
+            loadedGifs: [],
             pagination: null,
             masonry: null,
             giphyService: new GiphyService(),
@@ -45,9 +52,20 @@ export default {
     computed: mapState(['assignedTeamId' ]),
     mounted() {
         this.initInfiniteScroll();
+
+        this.masonry = new Masonry( document.querySelector('.gifs__container__list'), {
+            itemSelector: '.gifs__container__list__item',
+            transitionDuration: '0',
+            percentPosition: true
+        });
+
         this.getTeamTheme();
     },
     methods: {
+        loadComplete(id) {
+            this.loadedGifs.push(id);
+            this.applyMasonry();
+        },
         getTeamTheme()  {
             this.teamsService.getTheme(this.$store.getters.assignedTeamId)
                 .then(snapshots => {
@@ -82,14 +100,11 @@ export default {
 				
         }, 500),
         applyMasonry() {
-            const time2wait = this.pagination ? 500 : 1500;	
-            setTimeout(()=> {
-                this.masonry = new Masonry( document.querySelector('.gifs__container__list'), {
-                    itemSelector: '.gifs__container__list__item',
-                    transitionDuration: '20',
-                    percentPosition: true
-                });
-            }, time2wait);
+            this.masonry = new Masonry( document.querySelector('.gifs__container__list'), {
+                itemSelector: '.gifs__container__list__item',
+                transitionDuration: '20',
+                percentPosition: true
+            });
         },
         initInfiniteScroll () {
             const container = document.querySelector('.gifs__container');
