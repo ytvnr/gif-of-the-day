@@ -9,13 +9,16 @@
             <div class="list" v-if="!user">
                 <h2 class="subtitle has-text-danger">You do not have access to this page !</h2>
             </div>
-            <div class="list" v-if="user">
+            <div class="list" v-if="user && teams.length > 0">
                 <god-cardteam
                     class="item"
                     v-for="(team, index) in teams"
                     :key="`team-${index}`"
                     :team="team"
                 ></god-cardteam>
+            </div>
+            <div v-if="user && teams.length === 0">
+                <p>⚠️ There is no team for this organization 😭</p>
             </div>
         </div>
     </section>
