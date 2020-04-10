@@ -8,6 +8,14 @@ export default class TeamsService {
         this.db = firebase.firestore();
     }
 
+    getTeamsByOrganizationId(organizationId) {
+        return this.db.collection('teams')
+            .where('organization',
+                '==',
+                this.db.collection('organizations').doc(organizationId))
+            .get();
+    }
+
     getTeamById(teamId) {
         return this.db.collection('teams').doc(teamId).get();
     }

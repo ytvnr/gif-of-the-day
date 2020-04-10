@@ -7,6 +7,7 @@
     + [Configuring your Firebase project](#configuring-your-firebase-project)
       - [Database structure](#database-structure)
         * [Collection authorizedDomains](#collection-authorizeddomains)
+        * [Collection organizations](#collection-organizations)
         * [Collection teams](#collection-teams)
         * [Collection themes](#collection-themes)
         * [Collection usersMetadata](#collection-usersmetadata)
@@ -61,7 +62,7 @@ Here is the description of the database structure. Create these collections if y
 
 ##### Collection authorizedDomains
 
-The list of authorized domain for sing-in by email authentication.
+The list of authorized domain for sign-in by email authentication.
 
 ℹ️ You **have to** populate manually this collection. There is no domain authorization management feature in the app.
 
@@ -71,6 +72,19 @@ Each document is structured like this:
 | :---: |:---:| :---:|
 | domain | string | "gmail.com" |
 
+##### Collection organizations
+
+The list of organizations. As a user, you need to belong to an organization to be able to use the application.
+A field in usersMetadata is available to do this (🚧 manually for the moment 🚧)
+
+ℹ️ You **have to** populate manually this collection.
+
+Each document is structured like this:
+
+| attribute | type | example |
+| :---: |:---:| :---:|
+| name | string | "GifOfTheDay Inc" |
+
 ##### Collection teams
 
 The list of the teams. As a user, you can join a team and select a Gif for the day you want.
@@ -79,10 +93,11 @@ The list of the teams. As a user, you can join a team and select a Gif for the d
 
 Each document is structured like this:
 
-| attribute | type | example |
-| :---: |:---:| :---:|
-| avatar | string | "💪 💀" |
-| name | string | "💪 Strong Skulls 💀" |
+| attribute | type | example | comment |
+| :---: |:---:| :---:| :---:|
+| avatar | string | "💪 💀" | |
+| name | string | "💪 Strong Skulls 💀" | |
+| organization | reference | /organizations/5dikjenJj9kJH2 | Reference to the organization owning this team. We base on this field to get the list of teams for an organization |
 
 ##### Collection themes
 
@@ -108,9 +123,10 @@ The list of usersMetadata.
 
 Each document is structured like this:
 
-| attribute | type | example |
-| :---: |:---:| :---:|
-| assignedTeamId | string | "5dikjenJj9kJH2" | 
+| attribute | type | example | comment |
+| :---: |:---:| :---:| :---:|
+| assignedTeamId | string | "5dikjenJj9kJH2" | |
+| organization | string | "5dikjenJj9kJH2" | The organization id to which user belong. It has to be set manually by an admin to the user use the app.|
 
 ### Installing Dependencies
 

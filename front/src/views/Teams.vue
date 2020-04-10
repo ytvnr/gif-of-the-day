@@ -2,9 +2,9 @@
     <section class="teams">
         <div class="container">
             <h1 class="title">Teams</h1>
-            <h2 class="subtitle">
+            <h2 class="subtitle" v-if="organization">
                 This is the list of
-                <strong>YourOrganization</strong> teams
+                <strong class="organization">{{organization.name}}</strong>'s teams
             </h2>
             <div class="list" v-if="!user">
                 <h2 class="subtitle has-text-danger">You do not have access to this page !</h2>
@@ -23,30 +23,58 @@
 
 <script>
 
-import firebase from 'firebase';
 import TeamCard from '@/components/TeamCard';
-
-const db = firebase.firestore();
+import { mapState } from 'vuex';
+import TeamsService from '@/services/teams.service';
+import OrganizationsService from '../services/organizations.service';
 
 export default {
     name: "teams",
     components: {
         'god-cardteam': TeamCard,
     },
-    firestore: {
-        teams: db.collection('teams')
-    },
     data() {
-        return {teams:[]};
+        return {
+            teams:[],
+            organization: null
+        };
     },
-    created() {
+    beforeCreate() {
+        this.teamsService = new TeamsService();
+        this.organizationsService = new OrganizationsService();
     },
-    computed: {
-        user() {
-            return this.$store.getters.user;
+    computed: mapState(['user', 'organizationId' ]),
+    watch: {
+        organizationId: {
+            immediate: true,
+            handler(newVal) {
+                if (newVal) {
+                    this.getOrganization(newVal);
+                    this.getTeams(newVal);
+                }
+            },
         }
     },
     methods: {
+        getOrganization(organizationId) {
+            if (organizationId) {
+                this.organizationsService.getOrganizationById(organizationId)
+                    .then(snapshot => {
+                        this.organization = snapshot.data();
+                    });
+            }
+        },
+
+        getTeams(organizationId) {
+            if (organizationId) {
+                this.teamsService.getTeamsByOrganizationId(organizationId)
+                    .then(snapshots => {
+                        snapshots.forEach(team => {
+                            this.teams.push({...team.data(), id: team.id})
+                        });
+                    });
+            }
+        }
     }
 }
 </script>
@@ -61,5 +89,8 @@ export default {
     .item {
         margin-bottom: 20px;
     }
+}
+.organization {
+    text-transform: uppercase;
 }
 </style>

@@ -15,7 +15,8 @@ export default new Vuex.Store({
         user: null,
         status: null,
         error: null,
-        assignedTeamId: null
+        assignedTeamId: null,
+        organizationId: null
     },
     mutations: {
         setUser(state, payload) {
@@ -36,20 +37,28 @@ export default new Vuex.Store({
 
         setAssignedTeamId(state, payload) {
             state.assignedTeamId = payload;
+        },
+
+        setOrganizationId(state, payload) {
+            state.organizationId = payload;
         }
     },
     actions: {
-        getAssignedTeamId({ commit }, userId) {
+        getUserMetadata({ commit }, userId) {
             firebase
                 .firestore()
                 .collection('usersMetadata')
                 .doc(userId)
-                .get()
-                .then(snapshot => {
+                .onSnapshot(snapshot => {
                     this.userMetadata = snapshot.data();
                     commit(
                         'setAssignedTeamId',
                         this.userMetadata?.assignedTeamId
+                    );
+                    commit(
+                        'setOrganizationId',
+                        this.userMetadata?.organization ?
+                            this.userMetadata?.organization : ''
                     );
                 });
         },
@@ -82,7 +91,7 @@ export default new Vuex.Store({
         autoLoginAction({ commit, dispatch }, user) {
             commit('setUser', user);
             commit('setStatus', 'success');
-            dispatch('getAssignedTeamId', user.uid);
+            dispatch('getUserMetadata', user.uid);
         },
 
         updateUserAction({ commit }, user) {
@@ -161,7 +170,7 @@ export default new Vuex.Store({
                     commit('setUser', response.user);
                     commit('setStatus', 'success');
                     commit('setError', null);
-                    dispatch('getAssignedTeamId', response.user.uid);
+                    dispatch('getUserMetadata', response.user.uid);
                 })
                 .catch(function(error) {
                     commit('setStatus', 'failure');
@@ -181,7 +190,7 @@ export default new Vuex.Store({
                     commit('setUser', response.user);
                     commit('setStatus', 'success');
                     commit('setError', null);
-                    dispatch('getAssignedTeamId', response.user.uid);
+                    dispatch('getUserMetadata', response.user.uid);
                 })
                 .catch(error => {
                     commit('setStatus', 'failure');
@@ -198,6 +207,7 @@ export default new Vuex.Store({
                     commit('setStatus', 'success');
                     commit('setError', null);
                     commit('setAssignedTeamId', null);
+                    commit('setOrganizationId', null);
 
                     sessionStorage.clear();
                 })
@@ -223,6 +233,10 @@ export default new Vuex.Store({
 
         assignedTeamId(state) {
             return state.assignedTeamId;
+        },
+
+        organizationId(state) {
+            return state.organizationId;
         }
     }
 });
