@@ -32,7 +32,7 @@
                     </v-card>
                 </v-col>
 
-                <v-col cols="12">
+                <v-col cols="12" v-if="team">
                     <v-card color="blue lighten-1" dark>
                         <v-card-title class="headline">The Gif of the Day</v-card-title>
 
@@ -48,7 +48,7 @@
                     </v-card>
                 </v-col>
             </v-row>
-            <div class="gif-frame-container" v-if="gif">
+            <div class="gif-frame-container" v-if="gif && team && theme">
                 <img :src="gif.images.downsized.url" :alt="gif.title" />
             </div>
         </v-container>

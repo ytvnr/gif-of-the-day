@@ -23,7 +23,7 @@
           icon
           dark
           v-on="on"
-          href="https://github.com/ytvnr/gif-of-the-day/issues/new"
+          href="https://github.com/ytvnr/gif-of-the-day/issues/new/choose"
           target="_blank"
         >🐛</v-btn>
       </template>

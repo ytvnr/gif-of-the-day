@@ -45,19 +45,21 @@ export default class TeamsService {
             .get();
     }
 
-    saveTheme(id, theme, teamId, date) {
+    saveTheme(id, theme, teamId, date, chooser) {
 
         if (id) {
             return this.db.collection('themes')
                 .doc(id)
                 .set({
                     theme,
+                    chooser
                 }, { merge: true });
 
         } else {
             return this.db.collection('themes')
                 .add({
                     theme,
+                    chooser,
                     team: this.db.collection('teams').doc(teamId),
                     date
                 });

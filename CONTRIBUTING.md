@@ -112,6 +112,7 @@ Each document is structured like this:
 | date | timestamp | March, 30 2020 11:11:11AM | Use `Date` object in js |
 | team | reference | /teams/5dikjenJj9kJH2 | Reference to the team document |
 | theme | string | "Pandas" |  |
+| chooser | string | "Michael Jordan" | The person who's chosen the theme |
 
 ##### Collection usersMetadata
 
