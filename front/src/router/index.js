@@ -18,6 +18,7 @@ const routes = [
         meta: {
             requireAuth: true,
             requireOrganization: true,
+            requireTeam: false,
         },
         component: Home,
     },
@@ -27,6 +28,7 @@ const routes = [
         meta: {
             requireAuth: true,
             requireOrganization: false,
+            requireTeam: false,
         },
         component: Logout,
     },
@@ -36,6 +38,7 @@ const routes = [
         meta: {
             requireAuth: false,
             requireOrganization: false,
+            requireTeam: false,
         },
         component: Login,
     },
@@ -45,6 +48,7 @@ const routes = [
         meta: {
             requireAuth: false,
             requireOrganization: false,
+            requireTeam: false,
         },
         component: Register,
     },
@@ -54,6 +58,7 @@ const routes = [
         meta: {
             requireAuth: false,
             requireOrganization: false,
+            requireTeam: false,
         },
         component: Faq,
     },
@@ -63,6 +68,7 @@ const routes = [
         meta: {
             requireAuth: false,
             requireOrganization: false,
+            requireTeam: false,
         },
         component: About,
     },
@@ -72,6 +78,7 @@ const routes = [
         meta: {
             requireAuth: true,
             requireOrganization: true,
+            requireTeam: false,
         },
         component: () =>
             import(/* webpackChunkName: "about" */ '../views/Teams.vue'),
@@ -82,6 +89,7 @@ const routes = [
         meta: {
             requireAuth: true,
             requireOrganization: true,
+            requireTeam: false,
         },
         component: () =>
             import(/* webpackChunkName: "about" */ '../views/Gifs.vue'),
@@ -92,6 +100,7 @@ const routes = [
         meta: {
             requireAuth: true,
             requireOrganization: true,
+            requireTeam: true,
         },
         component: () =>
             import(/* webpackChunkName: "about" */ '../views/Schedule.vue'),
@@ -102,6 +111,7 @@ const routes = [
         meta: {
             requireAuth: true,
             requireOrganization: false,
+            requireTeam: false,
         },
         component: () =>
             import(/* webpackChunkName: "about" */ '../views/ProfileNotAccepted.vue'),
@@ -120,6 +130,11 @@ router.beforeEach(async (to, from, next) => {
 
     const requireAuth = to.matched.some((record) => record.meta.requireAuth);
     const requireOrganization = to.matched.some((record) => record.meta.requireOrganization);
+    const requireTeam = to.matched.some((record) => record.meta.requireTeam);
+
+    if (requireTeam && !store.state.assignedTeamId) {
+        next('/');
+    }
 
     const shouldRedirect = Boolean(
         to.name === 'home' && lastRouteName && isFirstTransition
