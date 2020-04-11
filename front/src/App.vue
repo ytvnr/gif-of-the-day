@@ -13,6 +13,9 @@
         </v-app-bar>
 
         <v-content>
+            <v-overlay opacity="1" absolute v-if="status === 'loading'">
+                <v-progress-circular indeterminate size="64" color="lime"></v-progress-circular>
+            </v-overlay>
             <v-container fluid>
                 <router-view/>
             </v-container>
@@ -33,7 +36,7 @@ export default {
         'god-footer': Footer,
         'god-drawer': Drawer
     },
-    computed: mapState(['organizationId']),
+    computed: mapState(['organizationId', 'status']),
     watch: {
         organizationId: {
             immediate: true,

@@ -45,6 +45,7 @@ export default new Vuex.Store({
     },
     actions: {
         getUserMetadata({ commit }, userId) {
+            commit('setStatus', 'loading');
             firebase
                 .firestore()
                 .collection('usersMetadata')
@@ -60,10 +61,12 @@ export default new Vuex.Store({
                         this.userMetadata?.organization ?
                             this.userMetadata?.organization : ''
                     );
+                    commit('setStatus', 'success');
                 });
         },
 
         assignTeamAction({ commit, state }, teamId) {
+            commit('setStatus', 'loading');
             if (teamId) {
                 firebase
                     .firestore()
@@ -74,7 +77,7 @@ export default new Vuex.Store({
                             assignedTeamId: teamId
                         },
                         { merge: true }
-                    );
+                    ).then(() => commit('setStatus', 'success'));
             } else {
                 firebase
                     .firestore()
@@ -82,7 +85,7 @@ export default new Vuex.Store({
                     .doc(state.user.uid)
                     .update({
                         assignedTeamId: firebase.firestore.FieldValue.delete()
-                    });
+                    }).then(() => commit('setStatus', 'success'));
             }
 
             commit('setAssignedTeamId', teamId);
