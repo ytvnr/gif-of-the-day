@@ -47,10 +47,12 @@
                         </v-card-actions>
                     </v-card>
                 </v-col>
+                <v-col cols="12" v-if="gif && team && theme">
+                    <v-card class="gif-frame-container" color="transparent" dark>
+                        <img :src="gif.images.downsized.url" :alt="gif.title" />
+                    </v-card>
+                </v-col>
             </v-row>
-            <div class="gif-frame-container" v-if="gif && team && theme">
-                <img :src="gif.images.downsized.url" :alt="gif.title" />
-            </div>
         </v-container>
     </div>
 </template>
@@ -139,12 +141,8 @@ export default {
 }
 
 .gif-frame-container {
-    display: flex;
+    display: flex !important;
     justify-content: center;
-}
-
-.gif-frame {
-    border: none;
 }
 
 a {
