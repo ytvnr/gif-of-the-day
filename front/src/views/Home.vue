@@ -6,29 +6,8 @@
                     <v-card color="green darken-3" dark>
                         <v-card-title class="headline">
                             Welcome,
-                            {{ user.displayName || user.email }}
+                            {{ user.displayName || user.email }}!
                         </v-card-title>
-
-                        <v-card-subtitle v-if="assignedTeamId">Random phrase of the day !</v-card-subtitle>
-                    </v-card>
-                </v-col>
-
-                <v-col cols="12">
-                    <v-card color="amber darken-3" dark>
-                        <v-card-title class="headline">Your team</v-card-title>
-
-                        <v-card-subtitle v-if="team">Your team is {{ team.name }}</v-card-subtitle>
-
-                        <v-card-subtitle v-if="!assignedTeamId">
-                            Your are not assigned to a team. Please join
-                            one.
-                        </v-card-subtitle>
-
-                        <v-card-actions v-if="!assignedTeamId">
-                            <router-link :to="{ name: 'teams' }">
-                                <v-btn text>Join a team!</v-btn>
-                            </router-link>
-                        </v-card-actions>
                     </v-card>
                 </v-col>
 
@@ -47,9 +26,43 @@
                         </v-card-actions>
                     </v-card>
                 </v-col>
+
                 <v-col cols="12" v-if="gif && team && theme">
-                    <v-card class="gif-frame-container" color="transparent" dark>
-                        <img :src="gif.images.downsized.url" :alt="gif.title" />
+                    <v-card class="gif-frame-container" color="indigo" dark>
+                        <img class="gif" :src="gif.images.downsized.url" :alt="gif.title" />
+                    </v-card>
+                </v-col>
+
+                <v-col cols="12">
+                    <v-card color="deep-purple darken-4" dark>
+                        <v-card-title class="headline">Your team</v-card-title>
+
+                        <v-card-subtitle v-if="team">Your team is <strong>{{ team.name }}</strong></v-card-subtitle>
+
+                        <v-card-subtitle v-if="!assignedTeamId">
+                            Your are not assigned to a team. Please join
+                            one.
+                        </v-card-subtitle>
+
+                        <v-card-actions v-if="!assignedTeamId">
+                            <router-link :to="{ name: 'teams' }">
+                                <v-btn text>Join a team!</v-btn>
+                            </router-link>
+                        </v-card-actions>
+                    </v-card>
+                </v-col>
+
+                <v-col cols="12">
+                    <v-card color="blue-grey darken-1" dark>
+                        <v-card-title class="headline">Your team</v-card-title>
+
+                        <v-card-subtitle>Some questions ?</v-card-subtitle>
+
+                        <v-card-actions>
+                            <router-link :to="{ name: 'faq' }">
+                                <v-btn text>Go to our FAQ!</v-btn>
+                            </router-link>
+                        </v-card-actions>
                     </v-card>
                 </v-col>
             </v-row>
@@ -143,6 +156,11 @@ export default {
 .gif-frame-container {
     display: flex !important;
     justify-content: center;
+}
+
+.gif {
+    max-width: 100%;
+    padding: 12px 0;
 }
 
 a {
