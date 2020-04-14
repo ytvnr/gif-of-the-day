@@ -54,9 +54,7 @@
 
                 <v-col cols="12">
                     <v-card color="blue-grey darken-1" dark>
-                        <v-card-title class="headline">Your team</v-card-title>
-
-                        <v-card-subtitle>Some questions ?</v-card-subtitle>
+                        <v-card-title class="headline">Some questions ?</v-card-title>
 
                         <v-card-actions>
                             <router-link :to="{ name: 'faq' }">
