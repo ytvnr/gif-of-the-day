@@ -39,10 +39,10 @@
                 >
                     <template v-slot:item="props">
                         <tr :class="{ highlight: props.item.isHighlight }">
-                            <td>
+                            <td width="30%">
                                 <div>{{ props.item.day }}</div>
                             </td>
-                            <td>
+                            <td width="35%">
                                 <div v-if="!props.item.chooser">❓</div>
                                 <v-tooltip left z-index="10" v-if="props.item.chooser">
                                     <template v-slot:activator="{ on }">
@@ -51,7 +51,7 @@
                                     <span>{{ props.item.chooser }}</span>
                                 </v-tooltip>
                             </td>
-                            <td>
+                            <td width="35%">
                                 <v-edit-dialog
                                     :return-value.sync="props.item.theme"
                                     large
