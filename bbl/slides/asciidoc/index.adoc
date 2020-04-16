@@ -1,0 +1,34 @@
+:revealjsdir: https://cdn.rawgit.com/hakimel/reveal.js/3.8.0/
+:revnumber: {project-version}
+:example-caption!:
+ifndef::imagesdir[:imagesdir: images]
+:docinfo: shared
+:navigation:
+:menu:
+:header_footer: true
+:status:
+:slideNumber: true
+:showSlideNumber: true
+:title-slide-background-image: ./../../img/bg.jpeg
+:title-slide-transition: zoom
+:title-slide-transition-speed: fast
+:icons: font
+:revealjs_history: true
+
+
+= god bbl presentation
+
+image::./../../img/logo.png[Logo,200]
+
+👨🏻‍💻 🌲 Hack in the wood 2019
+ +
+ +
+Le framework évolutif pour construire des interfaces utilisateur rapidement. +
+Conçu et pensé pour être adopté de manière incrémentale.
+
+include::./speaker.adoc[]
+
+include::chapters/introduction.adoc[]
+include::chapters/andmore.adoc[]
+
+ 

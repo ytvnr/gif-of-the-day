@@ -1,0 +1,16 @@
+== Petite Présentation
+
+=== La stack
+
+[.align-group]
+--
+image::./vuejs.png[A,340]
+image::./bulma.png[A,340]
+image::./firebase.png[A,340]
+--
+
+=== La suite ?  
+
+Une todolist de plus pour remplir internet 😅
+
+=== Live Coding
