@@ -17,7 +17,7 @@ jobs:
             - name: Install firebase tools
               run: npm i -g firebase-tools
             - name: Build Front
-              run: echo "VARiables" && echo ${{ secrets.VUE_APP_EXTENSION_BASE_URL }} && npm --prefix front install && npm --prefix front run build
+              run: npm --prefix front install && npm --prefix front run build
               env:
                 VUE_APP_EXTENSION_BASE_URL: ${{ secrets.VUE_APP_EXTENSION_BASE_URL }}
                 VUE_APP_MODE: p
