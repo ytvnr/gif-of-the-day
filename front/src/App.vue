@@ -29,22 +29,11 @@
 
 import Footer from '@/components/Footer.vue';
 import Drawer from '@/components/Drawer.vue';
-import { mapState } from 'vuex';
 
 export default {
     components: {
         'god-footer': Footer,
         'god-drawer': Drawer
-    },
-    computed: mapState(['organizationId', 'status']),
-    watch: {
-        organizationId: {
-            handler(newId, oldId) {
-                if (newId && !oldId) {
-                    this.$router.push('/');
-                }
-            }
-        }
     },
     data: () => ({
         isDrawerMini: true

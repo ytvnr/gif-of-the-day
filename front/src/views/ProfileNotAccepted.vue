@@ -3,14 +3,30 @@
         <div class="message">
             <h2>🥳 Just one more step! 💪️</h2>
             <div>
-                <h2 class="subtitle has-text-danger">You have not been accepted by an administrator. Please contact one.</h2>
+                <h2
+                    class="subtitle has-text-danger"
+                >You have not been accepted by an administrator. Please contact one.</h2>
             </div>
         </div>
     </section>
 </template>
 
 <script>
-export default {};
+import { mapState } from 'vuex';
+
+export default {
+    computed: mapState(['organizationId', 'status']),
+    watch: {
+        organizationId: {
+            immediate: true,
+            handler(newId, oldId) {
+                if (newId && !oldId) {
+                    this.$router.push('/');
+                }
+            }
+        }
+    }
+};
 </script>
 
 <style scoped lang="scss">

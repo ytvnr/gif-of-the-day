@@ -114,7 +114,9 @@ const routes = [
             requireTeam: false,
         },
         component: () =>
-            import(/* webpackChunkName: "about" */ '../views/ProfileNotAccepted.vue'),
+            import(
+                /* webpackChunkName: "about" */ '../views/ProfileNotAccepted.vue'
+            ),
     },
 ];
 
@@ -125,16 +127,19 @@ const router = new VueRouter({
 let isFirstTransition = true;
 
 router.beforeEach(async (to, from, next) => {
-
     const lastRouteName = localStorage.getItem('lastToPath');
 
     const requireAuth = to.matched.some((record) => record.meta.requireAuth);
-    const requireOrganization = to.matched.some((record) => record.meta.requireOrganization);
+    const requireOrganization = to.matched.some(
+        (record) => record.meta.requireOrganization
+    );
     const requireTeam = to.matched.some((record) => record.meta.requireTeam);
 
     if (requireTeam && !store.state.assignedTeamId) {
         next('/');
     }
+
+    isFirstTransition = false;
 
     const shouldRedirect = Boolean(
         to.name === 'home' && lastRouteName && isFirstTransition
@@ -149,21 +154,18 @@ router.beforeEach(async (to, from, next) => {
     if (requireAuth && !(await firebase.getCurrentUser())) {
         next('login');
     } else {
-
         if (requireOrganization && !store.state.organizationId) {
             next('not-accepted');
         } else {
             next();
         }
     }
-
-    isFirstTransition = false;
 });
 
 router.afterEach((to) => {
-    if(to.name === 'home') {
+    if (to.name === 'home') {
         window.localStorage.removeItem('lastToPath');
-    }else {
+    } else {
         window.localStorage.setItem('lastToPath', to.name);
     }
 });
