@@ -39,7 +39,6 @@ export default {
     computed: mapState(['organizationId', 'status']),
     watch: {
         organizationId: {
-            immediate: true,
             handler(newId, oldId) {
                 if (newId && !oldId) {
                     this.$router.push('/');
