@@ -1,6 +1,6 @@
 <template>
   <v-footer :inset="false" app>
-    <router-link to="about">&copy; 2019 - {{ new Date().getFullYear() }}</router-link>
+    <router-link class="link" to="about">&copy; 2019 - {{ new Date().getFullYear() }}</router-link>
 
     <v-spacer></v-spacer>
 
@@ -45,5 +45,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped lang="scss">
+.link {
+  color: white;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
 </style>

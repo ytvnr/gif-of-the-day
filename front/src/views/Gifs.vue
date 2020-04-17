@@ -119,7 +119,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .gifs {
     &__container {
         height: calc(100vh - 200px);
