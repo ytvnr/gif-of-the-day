@@ -39,10 +39,19 @@
                 >
                     <template v-slot:item="props">
                         <tr :class="{ highlight: props.item.isHighlight }">
-                            <td>
+                            <td width="30%">
                                 <div>{{ props.item.day }}</div>
                             </td>
-                            <td>
+                            <td width="35%">
+                                <div v-if="!props.item.chooser">❓</div>
+                                <v-tooltip left z-index="10" v-if="props.item.chooser">
+                                    <template v-slot:activator="{ on }">
+                                        <span v-on="on">{{ getInitials(props.item.chooser) }}</span>
+                                    </template>
+                                    <span>{{ props.item.chooser }}</span>
+                                </v-tooltip>
+                            </td>
+                            <td width="35%">
                                 <v-edit-dialog
                                     :return-value.sync="props.item.theme"
                                     large
@@ -96,6 +105,7 @@ export default {
                     sortable: false,
                     value: 'day',
                 },
+                { text: 'Chooser', value: 'chooser' },
                 { text: 'Gif Theme', value: 'theme' },
             ],
             defaultGifs: [
@@ -128,7 +138,7 @@ export default {
         this.teamsService = new TeamsService();
         this.loadWeek();
     },
-    computed: mapState(['user', 'assignedTeamId' ]),
+    computed: mapState(['user', 'assignedTeamId']),
     watch: {
         assignedTeamId() {
             this.loadWeek();
@@ -156,13 +166,19 @@ export default {
                 const dayDate = new Date();
                 dayDate.setDate(startDate.getDate() + index);
 
+                const dayNumber = (startDate.getDate() + index) % this.numberOfDaysInMonth(startDate)
+
                 this.gifs.push({
-                    day: `${d.day} ${startDate.getDate() + index}`,
+                    day: `${d.day} ${ dayNumber !== 0 ? dayNumber : startDate.getDate() + index }`,
                     theme : d.theme,
                     date: dayDate,
-                    isHighlight:  new Date(this.date).getDate() === dayDate.getDate()
+                    isHighlight:  new Date(this.date).getDate() === dayDate.getDate(),
+                    chooser: d.chooser
                 })
             });
+        },
+        numberOfDaysInMonth(date) {
+            return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
         },
         loadWeek() {
 
@@ -181,6 +197,7 @@ export default {
                             this.gifs[day - 1].id = doc.id;
                             this.gifs[day - 1].theme = item.theme;
                             this.gifs[day - 1].date = item.date;
+                            this.gifs[day - 1].chooser = item.chooser;
                         });
                     })
                     .catch(error => {
@@ -191,8 +208,13 @@ export default {
             }
         },
         save(event) {
-            this.teamsService.saveTheme(event.id, event.theme, this.assignedTeamId, event.date);
+            this.teamsService.saveTheme(event.id, event.theme, this.assignedTeamId, event.date, this.user.displayName)
+                .then(() => event.chooser = this.user.displayName);
         },
+        getInitials(displayName) {
+            const initials = displayName.match(/\b\w/g) || [];
+            return ((initials.shift() || '') + '.' + (initials.pop() || '')).toUpperCase();
+        }
     }
 }
 </script>
