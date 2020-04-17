@@ -65,7 +65,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .selected {
     background-color: rgba(30, 30, 30, 0.12) !important;
     box-shadow: 0 0 30px 5px lime;

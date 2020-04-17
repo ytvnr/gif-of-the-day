@@ -140,7 +140,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .home {
     display: flex;
     flex-direction: column;
@@ -158,7 +158,7 @@ export default {
 
 .gif {
     max-width: 100%;
-    padding: 12px 0;
+    padding: 12px;
 }
 
 a {
