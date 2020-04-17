@@ -19,7 +19,6 @@ firebase.analytics();
 firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
 firebase.getCurrentUser = () => {
-    console.log('apiKey', process.env.VUE_APP_FIREBASE_API_KEY)
     return new Promise((resolve, reject) => {
         const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
             unsubscribe();
