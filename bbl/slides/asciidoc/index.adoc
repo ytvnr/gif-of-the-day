@@ -9,26 +9,30 @@ ifndef::imagesdir[:imagesdir: images]
 :status:
 :slideNumber: true
 :showSlideNumber: true
-:title-slide-background-image: ./../../img/bg.jpeg
 :title-slide-transition: zoom
 :title-slide-transition-speed: fast
 :icons: font
 :revealjs_history: true
 
 
-= god bbl presentation
+== Gif of the day!
 
-image::./../../img/logo.png[Logo,200]
+image::./../../img/source.gif[Logo,300]
 
-👨🏻‍💻 🌲 Hack in the wood 2019
+🙀🐶🐧
  +
  +
-Le framework évolutif pour construire des interfaces utilisateur rapidement. +
-Conçu et pensé pour être adopté de manière incrémentale.
+The solution to decide what is the GIF theme of the day! +
+
 
 include::./speaker.adoc[]
 
-include::chapters/introduction.adoc[]
+include::chapters/why.adoc[]
+
+include::chapters/what.adoc[]
+
+include::chapters/when.adoc[]
+
 include::chapters/andmore.adoc[]
 
  

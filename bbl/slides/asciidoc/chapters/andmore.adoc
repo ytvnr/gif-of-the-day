@@ -1,3 +1,5 @@
-== Merci 🙏
+== Thanks 🙏
+
+image::./thanks.gif[A,540]
 
 @AurelienLoyer | @ytvrnr

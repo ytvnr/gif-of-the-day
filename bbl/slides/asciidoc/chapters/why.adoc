@@ -1,0 +1,15 @@
+== Why?
+
+Gif in Pull Request description and comments/approve/request.
+
+Whiteboard is not powerful when team is distributed.
+
+=== !
+
+image::./pr.gif[Logo,700]
+
+=== !
+
+image::./approve.gif[Logo,700]
+
+

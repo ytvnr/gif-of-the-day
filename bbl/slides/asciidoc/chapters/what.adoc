@@ -1,0 +1,22 @@
+== What?
+
+=== The stack
+
+[.align-group]
+--
+image::./logo.png[A,340]
+image::./vuetify.png[A,340]
+image::./firebase.png[A,340]
+--
+
+=== A Webapp
+
+image::./webapp.png[A,900]
+
+=== An Extension
+
+image::./extension.png[A,500]
+
+=== Demo! 😀
+
+

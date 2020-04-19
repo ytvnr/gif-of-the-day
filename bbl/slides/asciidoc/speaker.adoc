@@ -24,6 +24,8 @@
 </style>
 ++++
 
+== Who ?
+
 [.speaker]
 === !
 
@@ -36,21 +38,15 @@
 
 image::https://pbs.twimg.com/profile_images/1172490832861126659/la3Yek9d_200x200.jpg[]
 
-[.notes]
---
---
 [.speaker]
 === !
 
 [id="speaker-bio"]
 --
-Yann Tavernier
+🏋️‍♂️ ️Yann Tavernier
 
 @ytvrnr
 --
 
 image::https://pbs.twimg.com/profile_images/1184780669467217921/ml2ZUtcy_200x200.jpg[]
 
-[.notes]
---
---

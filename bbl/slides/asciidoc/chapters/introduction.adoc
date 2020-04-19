@@ -1,4 +1,6 @@
-== Petite Présentation
+:data-background: #282828
+
+== Why
 
 === La stack
 
