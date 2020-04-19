@@ -36,6 +36,8 @@
                     :disable-pagination="true"
                     :disable-sort="true"
                     :hide-default-footer="true"
+                    :fixed-header="true"
+                    :mobile-breakpoint="300"
                 >
                     <template v-slot:item="props">
                         <tr :class="{ highlight: props.item.isHighlight }">
