@@ -180,7 +180,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .full-screen {
     width: calc(100% + 24px);
     height: calc(100vh - 96px);

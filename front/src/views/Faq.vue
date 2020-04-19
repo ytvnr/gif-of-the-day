@@ -33,7 +33,7 @@
 </template>
 
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 li {
     padding: 10px 0px;
 }

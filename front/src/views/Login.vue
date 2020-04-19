@@ -10,7 +10,7 @@
                         Login with
                         <v-icon color="error">mdi-twitter</v-icon>
                     </v-btn>
-                    <v-btn disabled color="white">
+                    <v-btn v-if="0" disabled color="white">
                         <img width="85" src="img/github.png" alt="Login with Gihub" />
                     </v-btn>
                 </v-card-actions>

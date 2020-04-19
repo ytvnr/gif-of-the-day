@@ -87,7 +87,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .title {
   color: #42b983 !important;
   margin-bottom: 0px !important;

@@ -69,7 +69,7 @@
                                             single-line
                                             counter
                                             autofocus
-                                            maxlength="30"
+                                            maxlength="20"
                                         ></v-text-field>
                                     </template>
                                 </v-edit-dialog>
@@ -219,7 +219,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .schedule {
     width: calc(100% + 24px);
     height: calc(100vh - 96px);

@@ -13,7 +13,7 @@
 export default {};
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 h2 {
     text-align: center;
 }
