@@ -1,4 +1,4 @@
-:revealjsdir: https://cdn.rawgit.com/hakimel/reveal.js/3.8.0/
+:revealjsdir: https://cdn.jsdelivr.net/npm/reveal.js@3.9.2
 :revnumber: {project-version}
 :example-caption!:
 ifndef::imagesdir[:imagesdir: images]
