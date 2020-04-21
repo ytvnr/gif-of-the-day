@@ -1,5 +1,5 @@
 Feature 🎉: ['feature/*', 'feat/*']
-Bug 🐜: ['bug/*', 'bugfix/*']
+Bug 🐜: ['bug/*', 'bugfix/*', 'fix/*']
 Documentation 📒: ['docs/*', 'documentation/*']
 Technical task 👨🏻‍🔧: ['chore/*', 'tech/*']
 Nice to have 🦞: 'nice/*'
