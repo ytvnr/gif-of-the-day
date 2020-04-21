@@ -2,6 +2,16 @@
 
 === The stack
 
+++++
+<style>
+
+img {
+  border: none !important;
+  box-shadow: none !important;
+}
+</style>
+++++
+
 [.align-group]
 --
 image::./logo.png[A,340]

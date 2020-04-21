@@ -1,15 +1,29 @@
 == Why?
 
-Gif in Pull Request description and comments/approve/request.
+Lille's teammates used to define a gif theme to make the Github Pull request funnier.
 
-Whiteboard is not powerful when team is distributed.
+image::./team.gif[Logo,700]
 
 === !
+
+Pull Request
 
 image::./pr.gif[Logo,700]
 
 === !
 
+Comments / Approval / Request changes
+
 image::./approve.gif[Logo,700]
 
+=== !
 
+Whiteboard is not powerful when team is distributed...
+
+image::./whiteboard.png[Logo,540]
+
+=== !
+
+...and it's worst during lockdown
+
+image::./lockdown.png[Logo,700]
