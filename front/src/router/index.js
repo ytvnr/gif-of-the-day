@@ -105,19 +105,6 @@ const routes = [
         component: () =>
             import(/* webpackChunkName: "about" */ '../views/Schedule.vue'),
     },
-    {
-        path: '/not-accepted',
-        name: 'not-accepted',
-        meta: {
-            requireAuth: true,
-            requireOrganization: false,
-            requireTeam: false,
-        },
-        component: () =>
-            import(
-                /* webpackChunkName: "about" */ '../views/ProfileNotAccepted.vue'
-            ),
-    },
 ];
 
 const router = new VueRouter({
@@ -139,8 +126,6 @@ router.beforeEach(async (to, from, next) => {
         next('/');
     }
 
-    isFirstTransition = false;
-
     const shouldRedirect = Boolean(
         to.name === 'home' && lastRouteName && isFirstTransition
     );
@@ -155,11 +140,13 @@ router.beforeEach(async (to, from, next) => {
         next('login');
     } else {
         if (requireOrganization && !store.state.organizationId) {
-            next('not-accepted');
+            next();
         } else {
             next();
         }
     }
+
+    isFirstTransition = false;
 });
 
 router.afterEach((to) => {
