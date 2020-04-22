@@ -13,6 +13,7 @@
                 ></v-text-field>
             </v-col>
         </div>
+        <god-giphy-powered class="gifs__giphy"/>
         <div class="gifs__container">
             <div class="gifs__container__list">
                 <div class="gifs__container__list__item" v-for="gif in gifs" :key="gif.id">
@@ -43,6 +44,7 @@ import { mapState } from 'vuex';
 import GiphyService from '@/services/giphy.service.js';
 import TeamsService from '@/services/teams.service';
 import FullScreenGifVue from '@/components/FullScreenGif.vue';
+import GiphyPowered from '@/components/GiphyPowered.vue';
 
 export default {
     data() {
@@ -60,6 +62,7 @@ export default {
     computed: mapState(['assignedTeamId' ]),
     components: {
         'god-gif': FullScreenGifVue,
+        'god-giphy-powered': GiphyPowered
     },
     mounted() {
         this.initInfiniteScroll();
@@ -149,6 +152,10 @@ export default {
                 }
             }
         }
+    }
+
+    &__giphy {
+        padding-left: 5px;
     }
 
     &__loader {

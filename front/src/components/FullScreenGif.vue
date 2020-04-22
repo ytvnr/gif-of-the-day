@@ -9,11 +9,17 @@
             :hidden="!isImageLoad"
         />
         <v-skeleton-loader v-if="!isImageLoad" type="image" class="gif__skeleton"></v-skeleton-loader>
+        <god-giphy-powered class="gif__giphy" />
     </div>
 </template>
 
 <script>
+import GiphyPowered from '@/components/GiphyPowered.vue';
+
 export default {
+    components: {
+        'god-giphy-powered': GiphyPowered
+    },
     data() {
         return {
             isImageLoad: false,
@@ -50,6 +56,12 @@ export default {
 
     &__skeleton {
         width: 80%;
+    }
+
+    &__giphy {
+        position: absolute;
+        bottom: 10px;
+        right: 20px;
     }
 }
 </style>
