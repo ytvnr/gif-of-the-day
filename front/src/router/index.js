@@ -111,10 +111,7 @@ const router = new VueRouter({
     routes,
 });
 
-let isFirstTransition = true;
-
 router.beforeEach(async (to, from, next) => {
-    const lastRouteName = localStorage.getItem('lastToPath');
 
     const requireAuth = to.matched.some((record) => record.meta.requireAuth);
     const requireTeam = to.matched.some((record) => record.meta.requireTeam);
@@ -123,30 +120,11 @@ router.beforeEach(async (to, from, next) => {
         next('/');
     }
 
-    const shouldRedirect = Boolean(
-        to.name === 'home' && lastRouteName && isFirstTransition
-    );
-
-    // When opening the app, go to last visited page
-    if (shouldRedirect) {
-        next({ name: lastRouteName });
-    }
-
     // When accessing a page that need an organization and no user, then login
     if (requireAuth && !(await firebase.getCurrentUser())) {
         next('login');
     } else {
         next();
-    }
-
-    isFirstTransition = false;
-});
-
-router.afterEach((to) => {
-    if (to.name === 'home') {
-        window.localStorage.removeItem('lastToPath');
-    } else {
-        window.localStorage.setItem('lastToPath', to.name);
     }
 });
 
