@@ -117,9 +117,6 @@ router.beforeEach(async (to, from, next) => {
     const lastRouteName = localStorage.getItem('lastToPath');
 
     const requireAuth = to.matched.some((record) => record.meta.requireAuth);
-    const requireOrganization = to.matched.some(
-        (record) => record.meta.requireOrganization
-    );
     const requireTeam = to.matched.some((record) => record.meta.requireTeam);
 
     if (requireTeam && !store.state.assignedTeamId) {
@@ -139,11 +136,7 @@ router.beforeEach(async (to, from, next) => {
     if (requireAuth && !(await firebase.getCurrentUser())) {
         next('login');
     } else {
-        if (requireOrganization && !store.state.organizationId) {
-            next();
-        } else {
-            next();
-        }
+        next();
     }
 
     isFirstTransition = false;
