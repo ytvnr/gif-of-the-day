@@ -37,7 +37,10 @@
                     <v-card color="deep-purple darken-4" dark>
                         <v-card-title class="headline">Your team</v-card-title>
 
-                        <v-card-subtitle v-if="team">Your team is <strong>{{ team.name }}</strong></v-card-subtitle>
+                        <v-card-subtitle v-if="team">
+                            Your team is
+                            <strong>{{ team.name }}</strong>
+                        </v-card-subtitle>
 
                         <v-card-subtitle v-if="!assignedTeamId">
                             Your are not assigned to a team. Please join
@@ -140,28 +143,28 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .home {
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
 
-.home .container {
-    max-width: 600px;
-}
+    .container {
+        max-width: 600px;
+    }
 
-.gif-frame-container {
-    display: flex !important;
-    justify-content: center;
-}
+    .gif-frame-container {
+        display: flex !important;
+        justify-content: center;
+    }
 
-.gif {
-    max-width: 100%;
-    padding: 12px;
-}
+    .gif {
+        max-width: 100%;
+        padding: 12px;
+    }
 
-a {
-    text-decoration: none;
+    a {
+        text-decoration: none;
+    }
 }
 </style>

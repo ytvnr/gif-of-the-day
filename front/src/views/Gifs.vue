@@ -21,11 +21,17 @@
                         :alt="gif.title"
                         @load="loadComplete(gif.id)"
                         :hidden="!loadedGifs.includes(gif.id)"
+                        @click="displayedGif = gif"
                     />
-                    <v-skeleton-loader v-if="!loadedGifs.includes(gif.id)" class="mx-auto" type="image"></v-skeleton-loader>
+                    <v-skeleton-loader
+                        v-if="!loadedGifs.includes(gif.id)"
+                        class="mx-auto"
+                        type="image"
+                    ></v-skeleton-loader>
                 </div>
             </div>
         </div>
+        <god-gif v-if="displayedGif" :gif="displayedGif" @close="displayedGif = null"></god-gif>
     </div>
 </template>
 
@@ -36,12 +42,14 @@ import Masonry from 'masonry-layout';
 import { mapState } from 'vuex';
 import GiphyService from '@/services/giphy.service.js';
 import TeamsService from '@/services/teams.service';
+import FullScreenGifVue from '@/components/FullScreenGif.vue';
 
 export default {
     data() {
         return {
             searchValue: '',
             gifs: [],
+            displayedGif: null,
             loadedGifs: [],
             pagination: null,
             masonry: null,
@@ -50,6 +58,9 @@ export default {
         }
     },
     computed: mapState(['assignedTeamId' ]),
+    components: {
+        'god-gif': FullScreenGifVue,
+    },
     mounted() {
         this.initInfiniteScroll();
 
