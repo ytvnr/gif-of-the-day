@@ -30,6 +30,7 @@
                 <v-col cols="12" v-if="gif && team && theme">
                     <v-card class="gif-frame-container" color="indigo" dark>
                         <img class="gif" :src="gif.images.downsized.url" :alt="gif.title" />
+                        <god-giphy-powered />
                     </v-card>
                 </v-col>
 
@@ -76,9 +77,13 @@
 import { mapState } from 'vuex';
 import GiphyService from '@/services/giphy.service';
 import TeamsService from '@/services/teams.service';
+import GiphyPowered from '@/components/GiphyPowered.vue';
 
 export default {
     name: 'home',
+    components: {
+        'god-giphy-powered': GiphyPowered
+    },
     data() {
         return {
             team: null,
@@ -156,11 +161,12 @@ export default {
     .gif-frame-container {
         display: flex !important;
         justify-content: center;
+        flex-direction: column;
+        padding: 12px 12px 0 12px;
     }
 
     .gif {
         max-width: 100%;
-        padding: 12px;
     }
 
     a {
