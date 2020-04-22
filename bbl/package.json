@@ -1,0 +1,22 @@
+{
+	"name": "bbl",
+	"version": "1.0.0",
+	"description": "A BBL about GOD project: WHY / WHO / WHAT / WHEN",
+	"directories": {
+		"doc": "docs"
+	},
+	"scripts": {
+		"start": "npm run generate",
+		"generate": "speaker-cli generate",
+		"generate:slides": "speaker-cli generate --slides",
+		"watch:slides": "speaker-cli generate --slides --watch",
+		"generate:labs": "speaker-cli generate --labs",
+		"watch:labs": "speaker-cli generate --labs --watch"
+	},
+	"author": "@AurelienLoyer @ytvrnr",
+	"license": "MIT",
+	"devDependencies": {
+		"speaker-cli": "git+https://github.com/DX-DeveloperExperience/speaker-cli.git"
+	},
+	"dependencies": {}
+}

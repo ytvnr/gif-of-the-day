@@ -1,0 +1,10 @@
+{
+    "directoryName": "bbl",
+    "projectName": "god bbl presentation",
+    "projectDescription": "A BBL about GOD project: WHY / WHO / WHAT / WHEN",
+    "projectAuthorsTwitter": "@AurelienLoyer @ytvrnr",
+    "types": [
+        "slides"
+    ],
+    "gitinit": false
+}
