@@ -146,6 +146,7 @@ export default {
             &__item {
                 width: calc(100% / 3);
                 padding: 5px;
+                cursor: pointer;
 
                 img {
                     width: 100%;

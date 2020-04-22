@@ -116,15 +116,15 @@ router.beforeEach(async (to, from, next) => {
     const requireAuth = to.matched.some((record) => record.meta.requireAuth);
     const requireTeam = to.matched.some((record) => record.meta.requireTeam);
 
-    if (requireTeam && !store.state.assignedTeamId) {
-        next('/');
-    }
-
     // When accessing a page that need an organization and no user, then login
     if (requireAuth && !(await firebase.getCurrentUser())) {
         next('login');
     } else {
-        next();
+        if (requireTeam && !store.state.assignedTeamId) {
+            next('/');
+        } else {
+            next();
+        }
     }
 });
 
