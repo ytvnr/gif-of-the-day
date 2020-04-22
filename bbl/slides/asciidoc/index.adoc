@@ -1,0 +1,38 @@
+:revealjsdir: https://cdn.jsdelivr.net/npm/reveal.js@3.9.2
+:revnumber: {project-version}
+:example-caption!:
+ifndef::imagesdir[:imagesdir: images]
+:docinfo: shared
+:navigation:
+:menu:
+:header_footer: true
+:status:
+:slideNumber: true
+:showSlideNumber: true
+:title-slide-transition: zoom
+:title-slide-transition-speed: fast
+:icons: font
+:revealjs_history: true
+
+
+== Gif of the day!
+
+image::./../../img/source.gif[Logo,300]
+
+🙀🐶🐧
+ +
+ +
+The solution to decide what is the GIF theme of the day! +
+
+
+include::./speaker.adoc[]
+
+include::chapters/why.adoc[]
+
+include::chapters/what.adoc[]
+
+include::chapters/when.adoc[]
+
+include::chapters/andmore.adoc[]
+
+ 

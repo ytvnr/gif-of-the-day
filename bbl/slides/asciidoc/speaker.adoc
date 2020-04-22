@@ -1,0 +1,52 @@
+++++
+<style>
+
+.speaker {
+  width: 50%;
+  margin: auto;
+  text-align: left;
+  display: flex !important;
+  flex-flow: row wrap;
+}
+
+#speaker-bio {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  padding-right: 100px;
+  flex-grow: 2;
+}
+
+.speaker img {
+  border-radius: 50%;
+  width: 50%;
+}
+</style>
+++++
+
+== Who ?
+
+[.speaker]
+=== !
+
+[id="speaker-bio"]
+--
+🐧 Aurélien Loyer
+
+@AurelienLoyer
+--
+
+image::https://pbs.twimg.com/profile_images/1172490832861126659/la3Yek9d_200x200.jpg[]
+
+[.speaker]
+=== !
+
+[id="speaker-bio"]
+--
+🏋️‍♂️ ️Yann Tavernier
+
+@ytvrnr
+--
+
+image::https://pbs.twimg.com/profile_images/1184780669467217921/ml2ZUtcy_200x200.jpg[]
+
