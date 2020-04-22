@@ -105,17 +105,6 @@ const routes = [
         component: () =>
             import(/* webpackChunkName: "about" */ '../views/Schedule.vue'),
     },
-    {
-        path: '/not-accepted',
-        name: 'not-accepted',
-        meta: {
-            requireAuth: true,
-            requireOrganization: false,
-            requireTeam: false,
-        },
-        component: () =>
-            import(/* webpackChunkName: "about" */ '../views/ProfileNotAccepted.vue'),
-    },
 ];
 
 const router = new VueRouter({
@@ -125,11 +114,12 @@ const router = new VueRouter({
 let isFirstTransition = true;
 
 router.beforeEach(async (to, from, next) => {
-
     const lastRouteName = localStorage.getItem('lastToPath');
 
     const requireAuth = to.matched.some((record) => record.meta.requireAuth);
-    const requireOrganization = to.matched.some((record) => record.meta.requireOrganization);
+    const requireOrganization = to.matched.some(
+        (record) => record.meta.requireOrganization
+    );
     const requireTeam = to.matched.some((record) => record.meta.requireTeam);
 
     if (requireTeam && !store.state.assignedTeamId) {
@@ -149,9 +139,8 @@ router.beforeEach(async (to, from, next) => {
     if (requireAuth && !(await firebase.getCurrentUser())) {
         next('login');
     } else {
-
         if (requireOrganization && !store.state.organizationId) {
-            next('not-accepted');
+            next();
         } else {
             next();
         }
@@ -161,9 +150,9 @@ router.beforeEach(async (to, from, next) => {
 });
 
 router.afterEach((to) => {
-    if(to.name === 'home') {
+    if (to.name === 'home') {
         window.localStorage.removeItem('lastToPath');
-    }else {
+    } else {
         window.localStorage.setItem('lastToPath', to.name);
     }
 });
