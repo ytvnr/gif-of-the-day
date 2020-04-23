@@ -22,7 +22,7 @@
                             <v-btn text color="primary" @click="setToday()">Today</v-btn>
                             <v-spacer></v-spacer>
                             <v-btn text color="primary" @click="modal = false">Cancel</v-btn>
-                            <v-btn text color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
+                            <v-btn text color="primary" @click="selectDate(date)">OK</v-btn>
                         </v-date-picker>
                     </v-dialog>
                 </v-card-actions>
@@ -154,6 +154,10 @@ export default {
             this.date = new Date().toISOString().substr(0, 10);
             this.$refs.dialog.save(this.date);
         },
+        selectDate(date) {
+            this.date = new Date(date).toISOString().substr(0, 10);
+            this.$refs.dialog.save(this.date);
+        },
         getMonday(d) {
             d = new Date(d);
             const day = d.getDay();
@@ -186,7 +190,7 @@ export default {
 
             const start = this.getMonday(this.date);
             const end = new Date();
-            end.setDate(start.getDate() + 7);
+            end.setDate(start.getDate() + 6);
 
             this.loadDefaultWeek(start);
 			
