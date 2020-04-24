@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "gif-of-the-day-8e507"
+    "default": "gif-of-the-day-8e507",
+    "gif-of-the-day-staging": "gif-of-the-day-staging-8c880"
   }
 }

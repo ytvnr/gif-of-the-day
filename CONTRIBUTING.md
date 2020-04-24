@@ -14,6 +14,8 @@
     + [Installing Dependencies](#installing-dependencies)
     + [Building Gif of the Day](#building-gif-of-the-day)
       - [Running the app](#running-the-app)
+    + [Setup the extension in dev and staging mode](#setup-extension)
+    
   * [Pull Request Submission Guidelines](#pull-request-submission-guidelines)
     + [CI/CD](#ci-cd)
     + [After your pull request is merged](#after-your-pull-request-is-merged)
@@ -160,6 +162,25 @@ Run the following command to launch the app.
 ```shell
     npm start
 ```
+
+### Setup Extension
+
+You can find extensions for local and staging environment in [extension folder](./extension)
+
+- local extension is used with localhost:1337
+
+- staging extension is used with your staging firebase project
+
+### Install an extension from a folder
+
+>1. Open the Extension Management page by navigating to `chrome://extensions`
+>    - The Extension Management page can also be opened by clicking on the Chrome menu, hovering over **More Tools** then selecting **Extensions** 
+>  
+>2. Enable Developer Mode by clicking the toggle switch next to **Developper mode**
+>
+>3. Click the **LOAD UNPACKED** button and select the extension directory.
+
+For information, see [Google documentation](https://developer.chrome.com/extensions/getstarted)
 
 ## Pull Request Submission Guidelines
 

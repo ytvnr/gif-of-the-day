@@ -7,7 +7,7 @@
                     <li>
                         Download and unzip the last version of extension here:
                         <a
-                            href="https://github.com/ytvnr/gif-of-the-day/raw/master/extension/release.zip"
+                            href="https://github.com/ytvnr/gif-of-the-day/raw/master/extension/extension_1.0.0.release.zip"
                             target="_blank"
                             rel="noopener noreferrer"
                         >GOD last release 🗂</a>
