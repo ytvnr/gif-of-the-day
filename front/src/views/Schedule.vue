@@ -1,8 +1,11 @@
 <template>
     <v-row class="schedule" justify="center">
         <v-col cols="12">
-            <v-card color="#1F7087">
-                <v-card-actions>
+            <v-card color="#1F7087" class="header">
+                <v-card-actions class="header__actions">
+                    <v-btn icon fab dark small color="white" @click="selectDate(previousWeekDate)">
+                        <v-icon dark>mdi-arrow-left</v-icon>
+                    </v-btn>
                     <v-dialog
                         ref="dialog"
                         v-model="modal"
@@ -12,10 +15,11 @@
                     >
                         <template v-slot:activator="{ on }">
                             <v-text-field
+                                class="centered-input"
                                 v-model="date"
-                                prepend-icon="mdi-calendar"
                                 readonly
                                 v-on="on"
+                                dense
                             ></v-text-field>
                         </template>
                         <v-date-picker v-model="date" scrollable first-day-of-week="1">
@@ -25,6 +29,9 @@
                             <v-btn text color="primary" @click="selectDate(date)">OK</v-btn>
                         </v-date-picker>
                     </v-dialog>
+                    <v-btn icon fab dark small color="white" @click="selectDate(nextWeekDate)">
+                        <v-icon dark>mdi-arrow-right</v-icon>
+                    </v-btn>
                 </v-card-actions>
             </v-card>
 
@@ -140,7 +147,17 @@ export default {
         this.teamsService = new TeamsService();
         this.loadWeek();
     },
-    computed: mapState(['user', 'assignedTeamId']),
+    computed: {
+        ...mapState(['user', 'assignedTeamId']),
+        previousWeekDate() {
+            const date = new Date(this.date);
+            return date.setDate(date.getDate() - 7);
+        },
+        nextWeekDate() {
+            const date = new Date(this.date);
+            return date.setDate(date.getDate() + 7);
+        },
+    },
     watch: {
         assignedTeamId() {
             this.loadWeek();
@@ -225,12 +242,28 @@ export default {
 }
 </script>
 
+<style lang="css">
+.centered-input input {
+    text-align: center;
+}
+</style>
+
 <style scoped lang="scss">
 .schedule {
     width: calc(100% + 24px);
     height: calc(100vh - 96px);
     overflow-y: auto;
     margin-top: -12px;
+
+    .header {
+        &__actions {
+            display: flex;
+
+            .centered-input {
+                padding: 0px 20px;
+            }
+        }
+    }
 
     .v-card {
         margin-bottom: 12px;
