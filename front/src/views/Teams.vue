@@ -87,7 +87,7 @@ export default {
     padding-top: 20px;
 }
 .list {
-    padding: 10%;
+    padding: 20px 0px;
 
     .item {
         margin-bottom: 20px;
