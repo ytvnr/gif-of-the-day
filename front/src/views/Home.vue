@@ -162,7 +162,8 @@ export default {
         display: flex !important;
         justify-content: center;
         flex-direction: column;
-        padding: 12px 12px 0 12px;
+        padding: 12px;
+        min-height: 70px;
     }
 
     .gif {
