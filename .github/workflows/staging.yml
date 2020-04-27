@@ -32,6 +32,6 @@ jobs:
                 VUE_APP_FIREBASE_APP_ID: ${{ secrets.STAGING_FIREBASE_APP_ID }}
                 VUE_APP_FIREBASE_MEASUREMENT_ID: ${{ secrets.STAGING_FIREBASE_MEASUREMENT_ID }}
             - name: Deploy to Firebase
-              run: firebase deploy --only hosting
+              run: firebase use gif-of-the-day-staging && firebase deploy --only hosting
               env:
                   FIREBASE_TOKEN: ${{ secrets.STAGING_FIREBASE_TOKEN }}
