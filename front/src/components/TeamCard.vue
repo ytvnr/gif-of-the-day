@@ -1,9 +1,5 @@
 <template>
-    <v-card
-            class="mx-auto"
-            :class="{ 'selected': this.assignedTeamId === team.id }"
-            max-width="85%"
-            outlined >
+    <v-card class="mx-auto team" :class="{ 'selected': this.assignedTeamId === team.id }" outlined>
         <v-list-item three-line>
             <v-list-item-content>
                 <div class="overline mb-4">Teams</div>
@@ -15,7 +11,7 @@
             </v-list-item-avatar>
         </v-list-item>
 
-        <v-card-actions>
+        <v-card-actions class="team__actions">
             <v-btn
                 v-if="this.assignedTeamId !== team.id"
                 class="ma-2"
@@ -65,12 +61,20 @@ export default {
 }
 </script>
 
-<style scoped>
-.selected {
-    background-color: rgba(30, 30, 30, 0.12) !important;
-    box-shadow: 0 0 30px 5px lime;
-}
-a {
-    text-decoration: none;
+<style scoped lang="scss">
+.team {
+    &.selected {
+        background-color: rgba(30, 30, 30, 0.12) !important;
+        box-shadow: 0 0 30px 5px lime;
+    }
+
+    &__actions {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    a {
+        text-decoration: none;
+    }
 }
 </style>
