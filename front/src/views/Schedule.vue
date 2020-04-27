@@ -231,7 +231,6 @@ export default {
             }
         },
         save(event) {
-            console.log('save', event)
             this.teamsService.saveTheme(event.id, event.theme, this.assignedTeamId, event.date, this.user.displayName)
                 .then(() => event.chooser = this.user.displayName);
         },
