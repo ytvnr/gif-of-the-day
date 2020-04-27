@@ -20,7 +20,6 @@ jobs:
               run: npm --prefix front install && npm --prefix front run build
               env:
                 VUE_APP_EXTENSION_BASE_URL: ${{ secrets.STAGING_EXTENSION_BASE_URL }}
-#                VUE_APP_MODE: s.$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
                 VUE_APP_MODE: s.pr-${{ github.event.pull_request.number }}
                 VUE_APP_GIPHY_API_KEY: ${{ secrets.STAGING_GIPHY_API_KEY }}
                 VUE_APP_FIREBASE_API_KEY: ${{ secrets.STAGING_FIREBASE_API_KEY }}
