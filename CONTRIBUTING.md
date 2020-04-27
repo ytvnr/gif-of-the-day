@@ -18,6 +18,7 @@
     
   * [Pull Request Submission Guidelines](#pull-request-submission-guidelines)
     + [CI/CD](#ci-cd)
+      - [Generate Firebase token](#how-to-generate-firebase-token-)
     + [After your pull request is merged](#after-your-pull-request-is-merged)
   * [Commits](#commits)
     + [Examples of good pratices](#examples-of-good-pratices)
@@ -248,6 +249,15 @@ You can find the scripts [here](../.github/workflows)
       ```
 - **Build before merge / Build**: Check that the project build correctly before merging to master. **Required check**
 - **Build and Deploy / Deploy**: When merged on master, build and deploy automatically on firebase environment
+- **Deploy to staging environment / Build and deploy**: Adding `deploy-to-staging 🚜` label trigger a deployment to staging environment
+
+#### How to generate Firebase token ?
+
+`FIREBASE_TOKEN` and `STAGING_FIREBASE_TOKEN` can be generated using:
+
+- `firebase use`: Choose on which project you work
+
+- `firebase login:ci`: Generate a token for your CI. In the following scripts, we use Github secrets (`${{ secrets.FIREBASE_TOKEN }}`)
 
 ### After your pull request is merged
 
