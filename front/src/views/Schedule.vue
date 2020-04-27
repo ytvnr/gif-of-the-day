@@ -186,7 +186,7 @@ export default {
             this.gifs = [];
             this.defaultGifs.forEach((d, index) => {
 
-                const dayDate = new Date();
+                const dayDate = new Date(startDate);
                 dayDate.setDate(startDate.getDate() + index);
 
                 const dayNumber = (startDate.getDate() + index) % this.numberOfDaysInMonth(startDate)
@@ -206,7 +206,7 @@ export default {
         loadWeek() {
 
             const start = this.getMonday(this.date);
-            const end = new Date();
+            const end = new Date(start);
             end.setDate(start.getDate() + 6);
 
             this.loadDefaultWeek(start);
