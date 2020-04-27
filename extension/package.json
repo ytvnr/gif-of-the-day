@@ -5,8 +5,8 @@
   "scripts": {
     "zip": "npm-build-zip",
     "zip:local": "npm run zip -- --source=local/ --name=local",
-    "zip:staging": "npm run zip -- --source=local/ --name=staging",
-    "zip:release": "npm run zip -- --source=local/ --name=release"
+    "zip:staging": "npm run zip -- --source=staging/ --name=staging",
+    "zip:release": "npm run zip -- --source=release/ --name=release"
   },
   "author": "",
   "license": "ISC",
