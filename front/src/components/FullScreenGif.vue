@@ -9,16 +9,16 @@
             :hidden="!isImageLoad"
         />
         <v-skeleton-loader v-if="!isImageLoad" type="image" class="gif__skeleton"></v-skeleton-loader>
-        <god-giphy-powered class="gif__giphy" />
+        <god-url-copier class="gif__copier" :url="gif.images.original.url" />
     </div>
 </template>
 
 <script>
-import GiphyPowered from '@/components/GiphyPowered.vue';
+import UrlCopier from '@/components/UrlCopier.vue';
 
 export default {
     components: {
-        'god-giphy-powered': GiphyPowered
+        'god-url-copier': UrlCopier
     },
     data() {
         return {
@@ -59,6 +59,12 @@ export default {
     }
 
     &__giphy {
+        position: absolute;
+        bottom: 10px;
+        right: 20px;
+    }
+
+    &__copier {
         position: absolute;
         bottom: 10px;
         right: 20px;
