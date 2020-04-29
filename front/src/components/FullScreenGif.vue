@@ -67,7 +67,7 @@ export default {
     &__copier {
         position: absolute;
         bottom: 10px;
-        right: 20px;
+        right: 25px;
     }
 }
 </style>

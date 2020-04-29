@@ -2,7 +2,6 @@
     <div class="copier">
         <input id="urlInput" type="hidden" :value="url"/>
         <v-btn
-                class="ma-2"
                 :class="btnState.class"
                 :block="true"
                 text
