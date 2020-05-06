@@ -1,7 +1,7 @@
 {
     "name": "Gif of the day",
     "manifest_version": 2,
-    "description": "Gif of the day - alpha version",
+    "description": "[Staging] Gif of the day - alpha version",
     "version": "1.0.3",
     "icons": {
         "16": "icons/16.png"
