@@ -3,31 +3,27 @@
                 class="refresher"
                 text
                 @click="$emit('click')"
+                small
         >
-            <v-icon :class="{'loading': isLoading}" left>mdi-refresh</v-icon>
-            Refresh
+            <v-icon :class="{'loading': isLoading}">mdi-refresh</v-icon>
         </v-btn>
 </template>
 
 <script>
 export default {
     props: ['isLoading'],
-    watch: {
-        isLoading() {
-            console.log('isLoading', this.isLoading)
-        }
-    }
 }
 </script>
 
 <style scoped lang="scss">
 .refresher {
-    width: 120px;
     background-color: grey;
+    padding: 0 10px !important;
+    min-width: 0 !important;
+}
 
-    button {
-        margin: 0;
-    }
+.v-icon {
+    font-size: 20px;
 }
 
 .loading {
