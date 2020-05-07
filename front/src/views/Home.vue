@@ -36,7 +36,10 @@
                             v-on:click.native="getRandomGif()"
                             :isLoading="isGifLoading"
                         />
-                        <god-url-copier class="gif__copier" :url="gif.images.original.url" />
+                        <god-url-copier
+                            class="gif__copier"
+                            :isSmall="true"
+                            :url="gif.images.original.url" />
                     </v-card>
                 </v-col>
 
@@ -187,8 +190,8 @@ export default {
 
         &__copier {
             position: absolute;
-            bottom: 20px;
-            right: 25px;
+            top: 20px;
+            right: 15px;
 
             button {
                margin: 0;
@@ -197,8 +200,8 @@ export default {
 
         &__refresh {
             position: absolute;
-            bottom: 20px;
-            right: 150px;
+            top: 20px;
+            right: 70px;
         }
     }
 
