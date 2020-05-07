@@ -1,15 +1,15 @@
 <template>
-    <div class="copier" :class="{ small }">
+    <div class="copier" :class="{ small: isSmall }">
         <input id="urlInput" type="hidden" :value="url"/>
         <v-btn
-                v-if="!small"
+                v-if="!isSmall"
                 :class="btnState.class"
                 :block="true"
                 text
                 @click="copyLink()"
         >{{ btnState.text }}</v-btn>
         <v-btn
-                v-if="small"
+                v-if="isSmall"
                 class="copier__btn__small"
                 :class="btnState.class"
                 text
@@ -38,7 +38,7 @@ const copiedState = {
 export default {
     props: {
         url: String,
-        small: {
+        isSmall: {
             type: Boolean,
             default: false
         }

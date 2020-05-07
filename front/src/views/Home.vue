@@ -38,7 +38,7 @@
                         />
                         <god-url-copier
                             class="gif__copier"
-                            :small="true"
+                            :isSmall="true"
                             :url="gif.images.original.url" />
                     </v-card>
                 </v-col>
