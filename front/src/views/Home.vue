@@ -31,6 +31,15 @@
                     <v-card class="gif-frame-container" color="indigo" dark>
                         <img class="gif" :src="gif.images.downsized.url" :alt="gif.title" />
                         <god-giphy-powered />
+                        <god-refresher
+                            class="gif__refresh"
+                            v-on:click.native="getRandomGif()"
+                            :isLoading="isGifLoading"
+                        />
+                        <god-url-copier
+                            class="gif__copier"
+                            :isSmall="true"
+                            :url="gif.images.original.url" />
                     </v-card>
                 </v-col>
 
@@ -78,11 +87,15 @@ import { mapState } from 'vuex';
 import GiphyService from '@/services/giphy.service';
 import TeamsService from '@/services/teams.service';
 import GiphyPowered from '@/components/GiphyPowered.vue';
+import UrlCopier from '@/components/UrlCopier.vue';
+import RefreshButton from '@/components/RefreshButton.vue';
 
 export default {
     name: 'home',
     components: {
-        'god-giphy-powered': GiphyPowered
+        'god-giphy-powered': GiphyPowered,
+        'god-url-copier': UrlCopier,
+        'god-refresher': RefreshButton,
     },
     data() {
         return {
@@ -91,6 +104,7 @@ export default {
             gif: null,
             giphyService: new GiphyService(),
             teamsService: null,
+            isGifLoading: true
         };
     },
     created() {
@@ -119,7 +133,7 @@ export default {
                 });
         },
         getThemeByTeamId(teamId) {
-			
+
             let start = new Date()
             start.setUTCHours(0,0,0,0);
             let end = new Date()
@@ -136,12 +150,17 @@ export default {
                     snapshots.forEach((doc) => {
                         const item = doc.data();
                         this.theme = item.theme;
-                        this.giphyService.randomByTag(this.theme)
-                            .then(resp => JSON.parse(JSON.stringify(resp.data)))
-                            .then(result => {
-                                this.gif = result.data;
-                            });
+                        this.getRandomGif();
                     });
+                });
+        },
+        getRandomGif() {
+            this.isGifLoading = true;
+            this.giphyService.randomByTag(this.theme)
+                .then(resp => JSON.parse(JSON.stringify(resp.data)))
+                .then(result => {
+                    this.gif = result.data;
+                    this.isGifLoading = false;
                 });
         }
     }
@@ -168,6 +187,22 @@ export default {
 
     .gif {
         max-width: 100%;
+
+        &__copier {
+            position: absolute;
+            top: 20px;
+            right: 15px;
+
+            button {
+               margin: 0;
+            }
+        }
+
+        &__refresh {
+            position: absolute;
+            top: 20px;
+            right: 70px;
+        }
     }
 
     a {

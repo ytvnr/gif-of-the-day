@@ -3,8 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "echo \"Soon a script to build extension and upload it 🥳\" && exit 1"
+    "zip": "npm-build-zip",
+    "zip:local": "npm run zip -- --source=local/ --name=local",
+    "zip:staging": "npm run zip -- --source=staging/ --name=staging",
+    "zip:release": "npm run zip -- --source=release/ --name=release"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "npm-build-zip": "^1.0.2"
+  }
 }

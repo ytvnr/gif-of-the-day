@@ -1,0 +1,39 @@
+== GitHub Actions
+
+=== What is it ?
+
+Allow to automate, customize and execute your software development workflows in your repository.
+
+image::./github-actions.png[GHActions,600]
+
+=== Some wording
+
+*Action* = Individual task that you combine as steps to create a job. The smallest building block of a workflow.
+
+*Workflow* = A configurable automated process that you can set up in your repo. Composed of one or many jobs and can be scheduled or triggered by an event.
+
+*Step* = An individual task that can run command or actions
+
+*Job* = A set of steps that execute on the same runner.
+
+*More*: https://docs.github.com/en/actions/getting-started-with-github-actions/core-concepts-for-github-actions[Core concepts for GitHub Actions]
+
+=== Where to find them ?
+
+image::./gh-actions-where.png[GHActions,2000]
+
+=== Pull request labeler
+
+Using Actions from marketplace
+
+image::./gh-actions-pr-labeler.png[GHActions,2000]
+
+See https://github.com/ytvnr/gif-of-the-day/actions?query=workflow%3A%22PR+Labeler%22[PR Labeler executed workflows]
+
+=== CI
+
+Using Github API and Github's secrets
+
+image::./gh-actions-deploy-staging.png[GHActions,700]
+
+See https://github.com/ytvnr/gif-of-the-day/blob/master/.github/workflows/staging.yml[Staging workflow]

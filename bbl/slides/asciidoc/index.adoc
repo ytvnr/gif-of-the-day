@@ -33,6 +33,12 @@ include::chapters/what.adoc[]
 
 include::chapters/when.adoc[]
 
+include::chapters/technical/firebase.adoc[]
+
+include::chapters/technical/vue.adoc[]
+
+include::chapters/technical/github-actions.adoc[]
+
 include::chapters/andmore.adoc[]
 
  
