@@ -94,9 +94,10 @@ export default {
                 });
         },
         search: debounce(function (needReset = false) {
-            const offset = this.pagination ? this.pagination.offset + this.pagination.count + 1 : 0;
+            let offset = this.pagination ? this.pagination.offset + this.pagination.count + 1 : 0;
             if(needReset) {
                 this.gifs = [];
+                offset = 0;
             }
             this.giphyService.search(this.searchValue, offset)
                 .then(resp => JSON.parse(JSON.stringify(resp.data)))
