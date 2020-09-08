@@ -20,13 +20,13 @@ image::./github-actions.png[GHActions,600]
 
 === Where to find them ?
 
-image::./gh-actions-where.png[GHActions,2000]
+image::../../../images/gh-actions-where.png[GHActions,2000]
 
 === Pull request labeler
 
 Using Actions from marketplace
 
-image::./gh-actions-pr-labeler.png[GHActions,2000]
+image::../../../images/gh-actions-pr-labeler.png[GHActions,2000]
 
 See https://github.com/ytvnr/gif-of-the-day/actions?query=workflow%3A%22PR+Labeler%22[PR Labeler executed workflows]
 
@@ -34,6 +34,6 @@ See https://github.com/ytvnr/gif-of-the-day/actions?query=workflow%3A%22PR+Label
 
 Using Github API and Github's secrets
 
-image::./gh-actions-deploy-staging.png[GHActions,700]
+image::../../../images/gh-actions-deploy-staging.png[GHActions,700]
 
 See https://github.com/ytvnr/gif-of-the-day/blob/master/.github/workflows/staging.yml[Staging workflow]
