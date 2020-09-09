@@ -12,23 +12,23 @@
 - Provides backend services, sdk and ready-made UI to authenticate user to your app
 - 10 lines of code for (Email & Password, Phone numbers, Google, Facebook, ... More!)
 
-image::../../../images/firebase-authentication.png[Firebase Database,2000]
+image::./firebase-authentication.png[Firebase Database,500]
 
 === Realtime Database
 - Cloud-hosted NoSQL database
 - Just one big JSON object that the developers can manage in realtime
 - A single API that provides both current value and any update to the data
 
-image::../../../images/firebase-database.gif[Firebase Database,2000]
+image::./firebase-database.gif[Firebase Database,400]
 
 === Firestore
 
 - A NoSQL document database to store, sync and query data
 - More structured approach, data keept inside objects called *documents*, which are grouped into *collections*.
-- Different from Realtime Database (see here https://firebase.google.com/docs/firestore/rtdb-vs-firestore[what database you need])
+- Different from Realtime Database (see here https://firebase.google.com/docs/firestore/rtdb-vs-firestore[which database you need])
 - Multi-region database (data automatically copied to various regions)
 
-image::../../../images/firebase-firestore.png[Firestore,2000]
+image::./firebase-firestore.png[Firestore,600]
 
 === !
 
@@ -51,7 +51,7 @@ firebase.firestore.collection('teams')
 - Deploy new versions with one command (Firebase CLI)
 - Rollback with one click
 
-image::../../../images/firebase-hosting.jpg[Firebase Hosting,2000]
+image::./firebase-hosting.jpg[Firebase Hosting,300]
 
 === Want to know more ?
 
