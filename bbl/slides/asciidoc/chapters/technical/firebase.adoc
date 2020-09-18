@@ -1,4 +1,4 @@
-== Firebase
+== Google Firebase
 - PAAS
 - A mobile and web app development platform
 - Many tools and services to help developers
@@ -9,7 +9,7 @@
 - Earn (AdMob)
 
 === Authentication
-- Provides backend services, sdk and ready-made UI to authenticate user to your app
+- Provides backend services, SDK and ready-made UI to authenticate user to your app
 - 10 lines of code for (Email & Password, Phone numbers, Google, Facebook, ... More!)
 
 image::./firebase-authentication.png[Firebase Database,500]
@@ -32,7 +32,7 @@ image::./firebase-firestore.png[Firestore,600]
 
 === !
 
-Queries are created by chaining together one ore more filter methods.
+Queries are created by chaining together one or more filter methods.
 
 
 [source, javascript]

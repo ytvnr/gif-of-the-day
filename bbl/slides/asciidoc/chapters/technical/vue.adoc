@@ -1,15 +1,59 @@
 == VueJS
 
-=== Intro
+- **Vue** (pronounced /vjuː/, like view)
+- No claim to compete with Angular and ReactJS
+- Vue is called a **progressive** framework
+- Main : Vues, Directives, Components and Bindings 
+
+=== Getting Started
+
+- CLI / Project Skeleton
+
+//TODO: vue cli screen
+
+=== 
+
+//TODO: main project screen
+
+=== Vue
+
+- All Vue application are Vue
+- More than one vue by project 
+
+// main vue screen
+
+=== Lifecycle  
+
+// lifecycle screen
+
+=== Components
 
 Methods, Props, Lifecycle
 
-=== Store with VueX
+// components 
 
 === Router
 
+- Like Angular, component-based routing
+- Route params, query, wildcards
+- View transition effects powered by Vue.js' transition system
+- Fine-grained navigation control
+- Links with automatic active CSS classes
+- HTML5 history mode or hash mode, with auto-fallback in IE9
+- ...
+
 === Tooling
 
-Vue devtools
+===
+
+Vue devtools // Vue Ui
+
+=== 
+
+https://cli.vuejs.org/ui-configuration.png
+
+=== Deal with Firebase 🔥
+
+=== Store with VueX
 
 === Pros/Cons
