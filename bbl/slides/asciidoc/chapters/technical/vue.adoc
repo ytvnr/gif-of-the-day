@@ -1,7 +1,5 @@
 == VueJS
 
-=== Intro
-
 - **Vue** (pronounced /vjuː/, like view)
 - No claim to compete with Angular and ReactJS
 - Vue is called a **progressive** framework
@@ -11,11 +9,11 @@
 
 - CLI / Project Skeleton
 
-// vue cli screen
+//TODO: vue cli screen
 
 === 
 
-// main project screen
+//TODO: main project screen
 
 === Vue
 
@@ -36,7 +34,7 @@ Methods, Props, Lifecycle
 
 === Router
 
-- Like Angular, router based on component 
+- Like Angular, component-based routing
 - Route params, query, wildcards
 - View transition effects powered by Vue.js' transition system
 - Fine-grained navigation control

@@ -1,7 +1,5 @@
 == GitHub Actions
 
-=== What is it ?
-
 Allow to automate, customize and execute your software development workflows in your repository.
 
 image::./github-actions.png[GHActions,600]
@@ -10,11 +8,11 @@ image::./github-actions.png[GHActions,600]
 
 *Action* = Individual task that you combine as steps to create a job. The smallest building block of a workflow.
 
-*Workflow* = A configurable automated process that you can set up in your repo. Composed of one or many jobs and can be scheduled or triggered by an event.
-
 *Step* = An individual task that can run command or actions
 
 *Job* = A set of steps that execute on the same runner.
+
+*Workflow* = A configurable automated process that you can set up in your repo. Composed of one or many jobs and can be scheduled or triggered by an event.
 
 *More*: https://docs.github.com/en/actions/getting-started-with-github-actions/core-concepts-for-github-actions[Core concepts for GitHub Actions]
 

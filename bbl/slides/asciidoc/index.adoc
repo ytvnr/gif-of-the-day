@@ -33,6 +33,8 @@ include::chapters/what.adoc[]
 
 include::chapters/when.adoc[]
 
+include::chapters/technical/talk-tech-to-me.adoc[]
+
 include::chapters/technical/firebase.adoc[]
 
 include::chapters/technical/vue.adoc[]
