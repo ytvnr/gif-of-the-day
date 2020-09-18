@@ -1,9 +1,58 @@
 == Firebase
+- PAAS
+- A mobile and web app development platform
+- Many tools and services to help developers
 
-=== Intro
+=== Services
+- Develop (Realtime database, authentication, cloud functions, storage, hosting, ...)
+- Grow (Notifications, remote config, app indexing, dynamic links, ...)
+- Earn (AdMob)
 
 === Authentication
+- Provides backend services, sdk and ready-made UI to authenticate user to your app
+- 10 lines of code for (Email & Password, Phone numbers, Google, Facebook, ... More!)
 
-=== Database
+image::./firebase-authentication.png[Firebase Database,500]
+
+=== Realtime Database
+- Cloud-hosted NoSQL database
+- Just one big JSON object that the developers can manage in realtime
+- A single API that provides both current value and any update to the data
+
+image::./firebase-database.gif[Firebase Database,400]
+
+=== Firestore
+
+- A NoSQL document database to store, sync and query data
+- More structured approach, data keept inside objects called *documents*, which are grouped into *collections*.
+- Different from Realtime Database (see here https://firebase.google.com/docs/firestore/rtdb-vs-firestore[which database you need])
+- Multi-region database (data automatically copied to various regions)
+
+image::./firebase-firestore.png[Firestore,600]
+
+=== !
+
+Queries are created by chaining together one ore more filter methods.
+
+
+[source, javascript]
+----
+firebase.firestore.collection('teams')
+.where('organization', '==', this.db.collection('organizations').doc(organizationId))
+.get();
+----
 
 === Hosting
+
+- Fast and secure hosting for web app, static and dynamic content, and microservices
+- Serve content over secure connection
+- Host static and dynamic content
+- Deliver content fast (CDN around the world)
+- Deploy new versions with one command (Firebase CLI)
+- Rollback with one click
+
+image::./firebase-hosting.jpg[Firebase Hosting,300]
+
+=== Want to know more ?
+
+https://firebase.google.com/docs
