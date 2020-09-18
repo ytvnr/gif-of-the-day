@@ -16,7 +16,7 @@
         "firebase": "^7.17.2",
         "lodash.debounce": "^4.0.8",
         "masonry-layout": "^4.2.2",
-        "serialize-javascript": "^2.1.1",
+        "serialize-javascript": "^3.1.0",
         "vue": "^2.6.11",
         "vue-router": "^3.4.3",
         "vuefire": "^2.2.4",
@@ -38,7 +38,7 @@
         "prettier": "2.0.2",
         "sass": "^1.26.10",
         "sass-loader": "^8.0.2",
-        "serialize-javascript": "^2.1.1",
+        "serialize-javascript": "^3.1.0",
         "vue-cli-plugin-vuetify": "^2.0.7",
         "vue-template-compiler": "^2.6.11",
         "vuetify-loader": "^1.6.0"
