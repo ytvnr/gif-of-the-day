@@ -52,7 +52,8 @@ The solution to decide what is the GIF theme of the day!<br></p></div>
 <div class="imageblock" style=""><img src="https://pbs.twimg.com/profile_images/1172490832861126659/la3Yek9d_200x200.jpg" alt="la3Yek9d 200x200"></div></section><section class="speaker"><div class="openblock" id="speaker-bio"><div class="content"><div class="paragraph"><p>🏋️‍♂️ ️Yann Tavernier</p></div>
 <div class="paragraph"><p>@ytvrnr</p></div></div></div>
 <div class="imageblock" style=""><img src="https://pbs.twimg.com/profile_images/1184780669467217921/ml2ZUtcy_200x200.jpg" alt="ml2ZUtcy 200x200"></div></section></section>
-<section><section id="_why"><h2>Why?</h2><div class="paragraph"><p>Lille&#8217;s teammates used to define a gif theme to make the Github Pull request funnier.</p></div><div class="imageblock" style=""><img src="images/team.gif" alt="Logo" width="700"></div></section><section><div class="paragraph"><p>Pull Request</p></div>
+<section><section id="_why"><h2>Why?</h2></section><section><div class="paragraph"><p>Lille&#8217;s teammates used to define a gif theme to make the Github Pull request funnier.</p></div>
+<div class="imageblock" style=""><img src="images/team.gif" alt="Logo" width="700"></div></section><section><div class="paragraph"><p>Pull Request</p></div>
 <div class="imageblock" style=""><img src="images/pr.gif" alt="Logo" width="700"></div></section><section><div class="paragraph"><p>Comments / Approval / Request changes</p></div>
 <div class="imageblock" style=""><img src="images/approve.gif" alt="Logo" width="700"></div></section><section><div class="paragraph"><p>Whiteboard is not powerful when team is distributed&#8230;&#8203;</p></div>
 <div class="imageblock" style=""><img src="images/whiteboard.png" alt="Logo" width="540"></div></section><section><div class="paragraph"><p>&#8230;&#8203;and it&#8217;s worst during lockdown</p></div>
@@ -67,22 +68,106 @@ img {
 <div class="openblock align-group"><div class="content"><div class="imageblock" style=""><img src="images/logo.png" alt="A" width="340"></div>
 <div class="imageblock" style=""><img src="images/vuetify.png" alt="A" width="340"></div>
 <div class="imageblock" style=""><img src="images/firebase.png" alt="A" width="340"></div></div></div></section><section id="_a_webapp"><h2>A Webapp</h2><div class="imageblock" style=""><img src="images/webapp.png" alt="A" width="900"></div></section><section id="_an_extension"><h2>An Extension</h2><div class="imageblock" style=""><img src="images/extension.png" alt="A" width="500"></div></section><section id="_demo"><h2>Demo! 😀</h2></section></section>
-<section id="_when"><h2>When?</h2><div class="paragraph"><p>Lockdown = Remote context</p></div>
-<div class="imageblock" style=""><img src="images/lockdown.gif" alt="A" width="540"></div></section>
+<section><section id="_when"><h2>When?</h2></section><section><div class="paragraph"><p>Lockdown = Remote context</p></div>
+<div class="imageblock" style=""><img src="images/lockdown.gif" alt="A" width="540"></div></section></section>
 <section id="_talk_techy_to_me"><h2>Talk Techy to Me</h2><div class="imageblock" style=""><img src="images/talk-tech.gif" alt="Tech" width="500"></div></section>
 <section><section id="_google_firebase"><h2>Google Firebase</h2><div class="ulist"><ul><li><p>PAAS</p></li><li><p>A mobile and web app development platform</p></li><li><p>Many tools and services to help developers</p></li></ul></div></section><section id="_services"><h2>Services</h2><div class="ulist"><ul><li><p>Develop (Realtime database, authentication, cloud functions, storage, hosting, &#8230;&#8203;)</p></li><li><p>Grow (Notifications, remote config, app indexing, dynamic links, &#8230;&#8203;)</p></li><li><p>Earn (AdMob)</p></li></ul></div></section><section id="_authentication"><h2>Authentication</h2><div class="ulist"><ul><li><p>Provides backend services, SDK and ready-made UI to authenticate user to your app</p></li><li><p>10 lines of code for (Email &amp; Password, Phone numbers, Google, Facebook, &#8230;&#8203; More!)</p></li></ul></div>
 <div class="imageblock" style=""><img src="images/firebase-authentication.png" alt="Firebase Database" width="500"></div></section><section id="_realtime_database"><h2>Realtime Database</h2><div class="ulist"><ul><li><p>Cloud-hosted NoSQL database</p></li><li><p>Just one big JSON object that the developers can manage in realtime</p></li><li><p>A single API that provides both current value and any update to the data</p></li></ul></div>
 <div class="imageblock" style=""><img src="images/firebase-database.gif" alt="Firebase Database" width="400"></div></section><section id="_firestore"><h2>Firestore</h2><div class="ulist"><ul><li><p>A NoSQL document database to store, sync and query data</p></li><li><p>More structured approach, data keept inside objects called <strong>documents</strong>, which are grouped into <strong>collections</strong>.</p></li><li><p>Different from Realtime Database (see here <a href="https://firebase.google.com/docs/firestore/rtdb-vs-firestore">which database you need</a>)</p></li><li><p>Multi-region database (data automatically copied to various regions)</p></li></ul></div>
 <div class="imageblock" style=""><img src="images/firebase-firestore.png" alt="Firestore" width="600"></div></section><section><div class="paragraph"><p>Queries are created by chaining together one or more filter methods.</p></div>
-<pre class="highlight listingblock"><code class="javascript language-javascript">firebase.firestore.collection('teams')
+<pre class="highlight listingblock"><code data-noescape class="javascript language-javascript">firebase.firestore.collection('teams')
 .where('organization', '==', this.db.collection('organizations').doc(organizationId))
 .get();</code></pre></section><section id="_hosting"><h2>Hosting</h2><div class="ulist"><ul><li><p>Fast and secure hosting for web app, static and dynamic content, and microservices</p></li><li><p>Serve content over secure connection</p></li><li><p>Host static and dynamic content</p></li><li><p>Deliver content fast (CDN around the world)</p></li><li><p>Deploy new versions with one command (Firebase CLI)</p></li><li><p>Rollback with one click</p></li></ul></div>
 <div class="imageblock" style=""><img src="images/firebase-hosting.jpg" alt="Firebase Hosting" width="300"></div></section><section id="_want_to_know_more"><h2>Want to know more ?</h2><div class="paragraph"><p><a href="https://firebase.google.com/docs" class="bare">https://firebase.google.com/docs</a></p></div></section></section>
-<section><section id="_vuejs"><h2>VueJS</h2><div class="ulist"><ul><li><p><strong>Vue</strong> (pronounced /vjuː/, like view)</p></li><li><p>No claim to compete with Angular and ReactJS</p></li><li><p>Vue is called a <strong>progressive</strong> framework</p></li><li><p>Main : Vues, Directives, Components and Bindings</p></li></ul></div></section><section id="_getting_started"><h2>Getting Started</h2><div class="ulist"><ul><li><p>CLI / Project Skeleton</p></li></ul></div>
-<div class="paragraph"><p>===</p></div></section><section id="_vue"><h2>Vue</h2><div class="ulist"><ul><li><p>All Vue application are Vue</p></li><li><p>More than one vue by project</p></li></ul></div></section><section id="_lifecycle"><h2>Lifecycle</h2></section><section id="_components"><h2>Components</h2><div class="paragraph"><p>Methods, Props, Lifecycle</p></div></section><section id="_router"><h2>Router</h2><div class="ulist"><ul><li><p>Like Angular, component-based routing</p></li><li><p>Route params, query, wildcards</p></li><li><p>View transition effects powered by Vue.js' transition system</p></li><li><p>Fine-grained navigation control</p></li><li><p>Links with automatic active CSS classes</p></li><li><p>HTML5 history mode or hash mode, with auto-fallback in IE9</p></li><li><p>&#8230;&#8203;</p></li></ul></div></section><section id="_tooling"><h2>Tooling</h2><div class="paragraph"><p>===</p></div>
-<div class="paragraph"><p>Vue devtools // Vue Ui</p></div>
-<div class="paragraph"><p>===</p></div>
-<div class="paragraph"><p><a href="https://cli.vuejs.org/ui-configuration.png" class="bare">https://cli.vuejs.org/ui-configuration.png</a></p></div></section><section id="_deal_with_firebase"><h2>Deal with Firebase 🔥</h2></section><section id="_store_with_vuex"><h2>Store with VueX</h2></section><section id="_proscons"><h2>Pros/Cons</h2></section></section>
+<section><section id="_vuejs"><h2>VueJS</h2><div class="imageblock" style=""><img src="images/vuejs/vuejs.png" alt="A" width="300"></div></section><section id="_intro"><h2>Intro</h2><div class="ulist"><ul><li><p><strong>Vue</strong> (pronounced /vjuː/, like view)</p></li><li><p>No claim to compete with Angular and ReactJS</p></li><li><p>Vue is called a <strong>progressive</strong> framework</p></li><li><p>Main : Vues, Directives, Components and Bindings</p></li><li><p>Can use .vue files</p></li></ul></div></section><section id="_getting_started"><h2>Getting Started</h2></section><section><div class="paragraph"><p>Vue CLI</p></div>
+<div class="imageblock" style=""><img src="images/vuejs/vuecli.png" alt="A"></div>
+<div class="paragraph"><p><a href="https://cli.vuejs.org/" class="bare">https://cli.vuejs.org/</a></p></div></section><section><div class="imageblock" style=""><img src="images/vuejs/structure.png" alt="A" width="500"></div></section><section id="_vue"><h2>Vue</h2><div class="ulist"><ul><li><p>All Vue application are Vue</p></li><li><p>More than one vue by project</p></li></ul></div>
+<pre class="highlight listingblock"><code data-noescape class="javascript language-javascript">import Vue from 'vue';
+import App from './App.vue';
+
+new Vue({
+  render: h =&gt; h(App)
+}).$mount('#app');</code></pre></section><section id="_lifecycle"><h2>Lifecycle</h2><div class="imageblock" style=""><img src="images/vuejs/lifecycle.png" alt="A" width="500"></div></section><section id="_components"><h2>Components</h2><div class="imageblock" style=""><img src="images/vuejs/vuecomponent.png" alt="A"></div>
+<div class="paragraph"><p>Vue File, Methods, Props, Lifecycle</p></div></section><section id="_router"><h2>Router</h2><div class="ulist"><ul><li><p>Like Angular, component-based routing</p></li><li><p>Route params, query, wildcards</p></li><li><p>View transition effects powered by Vue.js' transition system</p></li><li><p>Fine-grained navigation control</p></li><li><p>Links with automatic active CSS classes</p></li><li><p>HTML5 history mode or hash mode, with auto-fallback in IE9</p></li><li><p>&#8230;&#8203;</p></li></ul></div></section><section id="_tooling"><h2>Tooling</h2><div class="paragraph"><p>Vue devtools // Vue Ui</p></div></section><section><div class="imageblock" style=""><img src="images/vuejs/vuedevtools.png" alt="A"></div>
+<div class="paragraph"><p>Vue devtools</p></div>
+<div class="paragraph"><p><a href="https://github.com/vuejs/vue-devtools" class="bare">https://github.com/vuejs/vue-devtools</a></p></div></section><section><div class="imageblock" style=""><img src="images/vuejs/vueui.png" alt="A"></div>
+<div class="paragraph"><p>Vue Ui</p></div></section><section id="_component_ui_framework"><h2>Component Ui Framework</h2><div class="ulist"><ul><li><p>Win development time !</p></li><li><p>Pretest component</p></li><li><p>Community 👌</p></li><li><p>Cool style like material design</p></li></ul></div></section><section><div class="imageblock" style=""><img src="images/vuejs/vuetify.jpeg" alt="A" width="300"></div>
+<div class="paragraph"><p>Vuetify</p></div>
+<div class="paragraph"><p><a href="https://vuetifyjs.com/" class="bare">https://vuetifyjs.com/</a></p></div></section><section><div class="imageblock" style=""><img src="images/vuejs/vuetify-exemple.gif" alt="A" width="300"></div>
+<pre class="highlight listingblock"><code data-noescape class="vue language-vue">&lt;v-navigation-drawer
+// ...
+&gt;&lt;/v-navigation-drawer&gt;</code></pre></section><section id="_deal_with_firebase"><h2>Deal with Firebase 🔥</h2><div class="imageblock" style=""><img src="images/vuejs/vuefire-logo.svg" alt="A" width="300"></div>
+<div class="paragraph"><p><a href="https://vuefire.vuejs.org/" class="bare">https://vuefire.vuejs.org/</a></p></div></section><section><pre class="highlight listingblock"><code data-noescape class="bash language-bash">yarn add vuefire firebase
+# or
+npm install vuefire firebase</code></pre>
+<pre class="highlight listingblock"><code data-noescape class="javascript language-javascript">// main.js
+import Vue from 'vue'
+import { firestorePlugin } from 'vuefire'
+
+Vue.use(firestorePlugin)</code></pre></section><section><pre class="highlight listingblock"><code data-noescape class="javascript language-javascript">import firebase from 'firebase/app'
+import 'firebase/firestore'
+
+const db = firebase.initializeApp({ projectId: 'MY PROJECT ID' }).firestore()
+
+new Vue({
+  // setup the reactive teams property
+  data: () =&gt; ({ teams: [] }),
+
+  firestore: {
+    teams: db.collection('teams'),
+  },
+})</code></pre></section><section id="_store"><h2>Store</h2><pre class="highlight listingblock"><code data-noescape class="javascript language-javascript">Vue.use(Vuex);
+
+export default new Vuex.Store({
+    state: {
+        assignedTeamId: null,
+    },
+    mutations: {
+        setAssignedTeamId(state, payload) {
+            state.assignedTeamId = payload;
+        }
+    },
+    actions: {
+        getUserMetadata({ commit }, assignedTeamId) {
+            commit(
+                'setAssignedTeamId',
+                assignedTeamId
+            );
+        }
+    }
+});</code></pre></section><section id="_store_with_firebase"><h2>Store with Firebase 🔥</h2><pre class="highlight listingblock"><code data-noescape class="javascript language-javascript">    export default new Vuex.Store({
+        // ...
+        actions: {
+            getUserMetadata({ commit }, userId) {
+                firebase
+                    .firestore()
+                    .collection('usersMetadata')
+                    .doc(userId)
+                    .onSnapshot(snapshot =&gt; {
+                        this.userMetadata = snapshot.data();
+                        commit(
+                            'setAssignedTeamId',
+                            this.userMetadata?.assignedTeamId
+                        );
+                    });
+            }
+        }
+    }</code></pre></section><section id="_store_with_vuexfire"><h2>Store with Vuexfire 🔥</h2><pre class="highlight listingblock"><code data-noescape class="javascript language-javascript">export default new Vuex.Store({
+  state: {
+    userMetadata: {},
+  },
+
+  mutations: vuexfireMutations,
+
+  actions: {
+    binUserMetadata: firestoreAction(({ bindFirestoreRef }) =&gt; {
+      // return the promise returned by `bindFirestoreRef`
+      return bindFirestoreRef('userMetadata', db.collection('userMetadata').doc(userId))
+    }),
+  },
+})</code></pre>
+<div class="paragraph"><p>TODO 👌 Migrate to VuexFire</p></div>
+<div class="paragraph"><p><a href="https://vuefire.vuejs.org/vuexfire/#why" class="bare">https://vuefire.vuejs.org/vuexfire/#why</a></p></div></section><section id="_pros_cons"><h2>Pros / Cons</h2><div class="ulist"><ul><li><p>👌</p></li><li><p>Lightweight</p></li><li><p>Learning curve</p></li><li><p>😢</p></li><li><p>Lack good practices</p></li><li><p>Project structure ?</p></li></ul></div></section></section>
 <section><section id="_github_actions"><h2>GitHub Actions</h2><div class="paragraph"><p>Allow to automate, customize and execute your software development workflows in your repository.</p></div><div class="imageblock" style=""><img src="images/github-actions.png" alt="GHActions" width="600"></div></section><section id="_some_wording"><h2>Some wording</h2><div class="paragraph"><p><strong>Action</strong> = Individual task that you combine as steps to create a job. The smallest building block of a workflow.</p></div>
 <div class="paragraph"><p><strong>Step</strong> = An individual task that can run command or actions</p></div>
 <div class="paragraph"><p><strong>Job</strong> = A set of steps that execute on the same runner.</p></div>
@@ -212,7 +297,7 @@ Reveal.initialize({
   // Optional libraries used to extend on reveal.js
   dependencies: [
       { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-      
+      { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
       { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/plugin/zoom-js/zoom.js', async: true },
       { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/plugin/notes/notes.js', async: true },
       
