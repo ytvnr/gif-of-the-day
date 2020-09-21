@@ -1,3 +1,0 @@
-== Technical part
-
-image::./tech-part.gif[A,500]

@@ -2,8 +2,7 @@
 
 image::vuejs/vuejs.png[A, 300]
 
-=== Intro
-
+=== !
 - **Vue** (pronounced /vjuː/, like view)
 - No claim to compete with Angular and ReactJS
 - Vue is called a **progressive** framework
@@ -26,7 +25,7 @@ image::vuejs/structure.png[A, 500]
 
 === Vue
 
-- All Vue application are Vue
+- Whole Vue application is composed of Vues
 - More than one vue by project 
 
 [source, javascript]
@@ -77,10 +76,10 @@ image::vuejs/vueui.png[A]
 
 Vue Ui
 
-=== Component Ui Framework
+=== Component Ui Library
 
 - Win development time !
-- Pretest component
+- Pre-tested components
 - Community 👌
 - Cool style like material design
 

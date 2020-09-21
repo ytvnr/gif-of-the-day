@@ -27,7 +27,7 @@ image::./firebase-database.gif[Firebase Database,400]
 === Firestore
 
 - A NoSQL document database to store, sync and query data
-- More structured approach, data keept inside objects called *documents*, which are grouped into *collections*.
+- More structured approach, data kept inside objects called *documents*, which are grouped into *collections*.
 - Different from Realtime Database (see here https://firebase.google.com/docs/firestore/rtdb-vs-firestore[which database you need])
 - Multi-region database (data automatically copied to various regions)
 
@@ -49,7 +49,6 @@ firebase.firestore.collection('teams')
 
 - Fast and secure hosting for web app, static and dynamic content, and microservices
 - Serve content over secure connection
-- Host static and dynamic content
 - Deliver content fast (CDN around the world)
 - Deploy new versions with one command (Firebase CLI)
 - Rollback with one click
