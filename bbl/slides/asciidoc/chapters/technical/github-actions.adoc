@@ -1,8 +1,10 @@
 == GitHub Actions
+image::./github-actions.png[GHActions,600]
+
+=== !
 
 Allow to automate, customize and execute your software development workflows in your repository.
 
-image::./github-actions.png[GHActions,600]
 
 === Some wording
 
