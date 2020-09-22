@@ -13,7 +13,7 @@ ifndef::imagesdir[:imagesdir: images]
 :title-slide-transition-speed: fast
 :icons: font
 :revealjs_history: true
-
+:source-highlighter: highlightjs
 
 == Gif of the day!
 
@@ -23,7 +23,6 @@ image::./../../img/source.gif[Logo,300]
  +
  +
 The solution to decide what is the GIF theme of the day! +
-
 
 include::./speaker.adoc[]
 
