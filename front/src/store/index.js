@@ -16,7 +16,8 @@ export default new Vuex.Store({
         status: null,
         error: null,
         assignedTeamId: null,
-        organizationId: null
+        organizationId: null,
+        role: null,
     },
     mutations: {
         setUser(state, payload) {
@@ -41,6 +42,10 @@ export default new Vuex.Store({
 
         setOrganizationId(state, payload) {
             state.organizationId = payload;
+        },
+
+        setRole(state, payload) {
+            state.role = payload;
         }
     },
     actions: {
@@ -52,6 +57,10 @@ export default new Vuex.Store({
                 .doc(userId)
                 .onSnapshot(snapshot => {
                     this.userMetadata = snapshot.data();
+                    commit(
+                        'setRole',
+                        this.userMetadata?.role
+                    );
                     commit(
                         'setAssignedTeamId',
                         this.userMetadata?.assignedTeamId

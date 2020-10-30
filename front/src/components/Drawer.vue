@@ -31,6 +31,15 @@
         </v-list>
 
         <template v-slot:append>
+            <v-list-item link to="/admin" v-if="user">
+                <v-list-item-icon>
+                    <v-icon color="warning">mdi-application-cog</v-icon>
+                </v-list-item-icon>
+
+                <v-list-item-content>
+                    <v-list-item-title>Administration</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
             <v-list-item link to="/logout" v-if="user">
                 <v-list-item-icon>
                     <v-icon color="error">mdi-logout</v-icon>
