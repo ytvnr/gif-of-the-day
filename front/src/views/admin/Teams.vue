@@ -182,22 +182,22 @@ export default {
         },
 
         save () {
+            const orgaId = this.editedItem.organization.id || this.editedItem.organization;
             if (this.editedId) {
-                console.info('Edit team:', this.editedItem);
+                delete this.editedItem.id;
                 firebase.firestore().collection('teams')
                     .doc(this.editedId)
                     .update({
                         ...this.editedItem,
-                        organization: firebase.firestore().collection('organizations').doc(this.editedItem.organization)
+                        organization: firebase.firestore().collection('organizations').doc(orgaId)
                     })
                     .then(() => {
                         this.getTeams();
                     })
             } else {
-                console.info('Add new team:', this.editedItem);
                 firebase.firestore().collection('teams').add({
                     ...this.editedItem,
-                    organization: firebase.firestore().collection('organizations').doc(this.editedItem.organization)
+                    organization: firebase.firestore().collection('organizations').doc(orgaId)
                 }).then(() => {
                     this.getTeams();
                 })
