@@ -1,17 +1,32 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import firebase from '@/firebase/init';
+import store from '@/store';
 import Home from '../views/Home.vue';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
 import About from '../views/About.vue';
 import Faq from '../views/Faq.vue';
 import Logout from '../views/Logout.vue';
-import firebase from '@/firebase/init';
-import store from '@/store';
+import adminRoutes from './admin';
+import Admin from '../views/Admin.vue';
+
 
 Vue.use(VueRouter);
 
 const routes = [
+    {
+        path: '/admin',
+        name: 'admin',
+        meta: {
+            requireAuth: true,
+            requireAdmin: true,
+            requireOrganization: false,
+            requireTeam: false,
+        },
+        component: Admin,
+        children: [...adminRoutes],
+    },
     {
         path: '/',
         name: 'home',
@@ -112,9 +127,21 @@ const router = new VueRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-
     const requireAuth = to.matched.some((record) => record.meta.requireAuth);
     const requireTeam = to.matched.some((record) => record.meta.requireTeam);
+    const requireAdmin = to.matched.some((record) => record.meta.requireAdmin);
+
+    if (requireAdmin) {
+        if (
+            store.state &&
+            store.state.role &&
+            store.state.role.includes('admin')
+        ) {
+            next();
+        } else {
+            next('/');
+        }
+    }
 
     // When accessing a page that need an organization and no user, then login
     if (requireAuth && !(await firebase.getCurrentUser())) {
