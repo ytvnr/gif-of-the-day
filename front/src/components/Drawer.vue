@@ -12,13 +12,20 @@
                 <v-img :src="userPicture"></v-img>
             </v-list-item-avatar>
 
-            <v-list-item-title>{{user.displayName || user.email}}</v-list-item-title>
+            <v-list-item-title>{{
+                user.displayName || user.email
+            }}</v-list-item-title>
         </v-list-item>
 
         <v-divider></v-divider>
         <v-list dense nav>
             <template v-for="item in items">
-                <v-list-item :key="item.title" v-if="canDisplay(item)" link :to="item.href">
+                <v-list-item
+                    :key="item.title"
+                    v-if="canDisplay(item)"
+                    link
+                    :to="item.href"
+                >
                     <v-list-item-icon>
                         <v-icon>{{ item.icon }}</v-icon>
                     </v-list-item-icon>
@@ -31,7 +38,11 @@
         </v-list>
 
         <template v-slot:append>
-            <v-list-item link to="/admin" v-if="user">
+            <v-list-item
+                link
+                to="/admin"
+                v-if="isAdmin"
+            >
                 <v-list-item-icon>
                     <v-icon color="warning">mdi-application-cog</v-icon>
                 </v-list-item-icon>
@@ -72,12 +83,15 @@ export default {
         }
     },
     computed: {
-        ...mapState([ 'organizationId', 'assignedTeamId' ]),
+        ...mapState([ 'organizationId', 'assignedTeamId', 'role' ]),
         user() {
             return this.$store.getters.user;
         },
         userPicture() {
             return this.user.photoURL || `https://eu.ui-avatars.com/api/?name=${this.user.email}`
+        },
+        isAdmin() {
+            return this.user && this.role && this.role.includes('admin')
         }
     },
     methods: {
