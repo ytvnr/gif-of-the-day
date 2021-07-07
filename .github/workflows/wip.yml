@@ -1,0 +1,30 @@
+name: Block WIP merging
+on:
+  pull_request:
+    types:
+      - labeled
+      - review_request_removed
+      - review_requested
+      - unlabeled
+  pull_request_review:
+    types:
+      - dismissed
+      - submitted
+  status:
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    name: Merge
+    steps:
+      - name: Integration check
+        uses: squalrus/merge-bot@v0.2.0
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          test: true
+          reviewers: true
+          labels: Feature 🎉, Bug 🐜, Documentation 📒, Technical task 👨🏻‍, Nice to have 🦞
+          blocking-labels: Work in progress 🚧
+          checks_enabled: false
+          checks: true
+          method: squash
